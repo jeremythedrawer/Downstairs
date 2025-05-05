@@ -73,18 +73,18 @@ Material:
     - _QueueOffset: 0
     - _Radius: 1
     - _ZWrite: 0
-    - _colorFallOff: 10.33
+    - _colorFallOff: 21.18
     - _edge: 0.21
-    - _edges: 0.2
+    - _edges: 0.31
     - _float: 1
     - _innerCircle: -3.15
-    - _length: -0.68
+    - _length: -6.4
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _Vector2: {r: 1, g: 1, b: 0, a: 0}
     - _color: {r: 0, g: 0.588679, b: 0.735849, a: 0}
     - _innerColor: {r: 0.8867924, g: 0.8194685, b: 0.3722855, a: 0}
-    - _outerColor: {r: 0.10439658, g: 0.12757783, b: 0.3207547, a: 1}
+    - _outerColor: {r: 0, g: 0.16056232, b: 0.26415092, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
