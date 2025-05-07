@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_vision
+  m_Name: m_vision 1
   m_Shader: {fileID: -6465566751694194690, guid: dc77e28037966ff47bd92b53704a60c5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -77,27 +77,20 @@ Material:
     - _QueueOffset: 0
     - _Radius: 1
     - _ZWrite: 0
-    - _colorFallOff: 0.19
+    - _colorFallOff: 6.3
     - _edge: 0.21
-    - _edges: 0.31
+    - _edges: 0.09
     - _float: 1
-    - _gridFallOff: -0.02
-    - _innerCircle: -7.89
-    - _length: 0
-    - _lightDistance: 0.493
-    - _lightDistance_1: -2.19
-    - _lightFallolff: 19.81
-    - _lightStrength: 3.01
-    - _steps: 30.38
-    - _thickness: 0.071
+    - _innerCircle: 6.92
+    - _length: 0.71
+    - _steps: 34.88
+    - _thickness: 0.111
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _Vector2: {r: 1, g: 1, b: 0, a: 0}
     - _color: {r: 0, g: 0.588679, b: 0.735849, a: 0}
-    - _innerColor: {r: 0.73510927, g: 0.754717, b: 0.58739763, a: 0}
-    - _lightSourcePos: {r: 1, g: 1, b: 0, a: 0}
-    - _origin: {r: 0, g: 1.15, b: 0, a: 0}
-    - _outerColor: {r: 0.13950695, g: 0.16797636, b: 0.1792453, a: 1}
+    - _innerColor: {r: 1, g: 0.98813146, b: 0.4481132, a: 0}
+    - _outerColor: {r: 0.8509804, g: 0.13333333, b: 0.27072182, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
