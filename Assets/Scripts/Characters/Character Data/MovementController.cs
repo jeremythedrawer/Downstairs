@@ -6,8 +6,11 @@ public class MovementController : MonoBehaviour
     public CharacterBrain brain;
     private CharacterStats stats => brain.characterStats;
     public Vector2 moveInput { get; set; }
+    public bool shootInput;
     public bool canMove { get; set; } = true;
 
+    private float desiredAngle;
+    private float currentAngle;
     private void Update()
     {
         MoveWithInput();
@@ -30,12 +33,10 @@ public class MovementController : MonoBehaviour
 
         if (moveInput.sqrMagnitude <= 0.01f)
         {
-            // No input ? gradually slow down
             brain.body.linearVelocity = Vector2.Lerp(brain.body.linearVelocity, Vector2.zero, stats.damp * Time.fixedDeltaTime);
         }
         else
         {
-            // Smoothly move towards target velocity
             float dampFactor = 1f - Mathf.Exp(-stats.damp * Time.fixedDeltaTime);
             brain.body.linearVelocity = Vector2.Lerp(brain.body.linearVelocity, desiredVelocity, dampFactor);
         }
@@ -49,8 +50,12 @@ public class MovementController : MonoBehaviour
         Vector2 lookDir = (mouseWorldPos - transform.position);
 
 
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f ;
+        desiredAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 
-        brain.body.rotation = angle;
+        float dampFactor = 1f - Mathf.Exp(-stats.damp * Time.deltaTime);
+
+        currentAngle = Mathf.LerpAngle(brain.body.rotation, desiredAngle, dampFactor);
+
+        brain.body.rotation = currentAngle;
     }
 }
