@@ -568,20 +568,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "75a1db5af0a7439b904a65985e0a3cba"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "8ccf45c4b97146f284d161c7e398efbe"
-                },
-                "m_SlotId": -1866669318
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "80b09ebe3c9e48f9bb988e27cb2223ad"
                 },
                 "m_SlotId": 1
@@ -2345,27 +2331,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
-    "m_ObjectId": "4786ddc74a164eb7821b4d79b0fec8d9",
-    "m_Id": -1866669318,
-    "m_DisplayName": "origin",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_origin",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalSpriteUnlitSubTarget",
     "m_ObjectId": "4795420aca664723b9a2e222707fd767"
 }
@@ -3975,9 +3940,6 @@
         },
         {
             "m_Id": "b89cf9ead2a547feb0902397aa105e47"
-        },
-        {
-            "m_Id": "4786ddc74a164eb7821b4d79b0fec8d9"
         },
         {
             "m_Id": "5e46e18283434d809e28aa375d0dc3ff"

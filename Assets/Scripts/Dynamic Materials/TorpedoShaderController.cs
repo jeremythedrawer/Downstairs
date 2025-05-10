@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TorpedoShaderController : RendererManager
 {
-    public static float time;
+    public float time { get; set; }
     private readonly int timeID = Shader.PropertyToID("_time");
 
     private void Update()

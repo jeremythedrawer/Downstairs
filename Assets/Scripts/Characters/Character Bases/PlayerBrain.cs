@@ -1,18 +1,36 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerBrain : CharacterBrain
 {
-    public static Vector2 currentPos;
+    public static PlayerBrain Instance { get; private set; }
 
+    public List<TorpedoSpawner> torpedoSpawners;
+    [SerializeField] private float torpedoCoolDownTime = 0.1f;
+    private float currentTorpCoolDownTime = 0;
+
+    public static Vector2 currentPos;
+    public static Vector2 currentDir;
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Update()
     {
         MoveInputs();
         currentPos = CameraController.mainCam.WorldToViewportPoint(transform.position);
+        currentDir = transform.up;
 
-        if (movementController.shootInput && TorpedoShaderController.time == 0f)
+        currentTorpCoolDownTime -= Time.deltaTime;
+
+        if (movementController.shootInput && currentTorpCoolDownTime <= 0f)
         {
             Shoot();
+            currentTorpCoolDownTime = torpedoCoolDownTime;
         }
     }
 
@@ -24,17 +42,9 @@ public class PlayerBrain : CharacterBrain
 
     public void Shoot()
     {
-        StartCoroutine(Shooting());
-    }
-
-    private IEnumerator Shooting()
-    {
-        while (TorpedoShaderController.time < 1f)
+        foreach (TorpedoSpawner torpedoSpawner in torpedoSpawners)
         {
-            TorpedoShaderController.time += Time.deltaTime;
-            yield return null;
+            torpedoSpawner.FireTorpedo();
         }
-        TorpedoShaderController.time = 0f;
     }
-
 }
