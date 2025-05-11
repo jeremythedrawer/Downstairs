@@ -8,14 +8,9 @@ public abstract class State : MonoBehaviour
 
     protected StateManager core;
     protected PlayerBrain brain;
-    protected AnimationManager animManager => brain.animationManager;
-    protected BoxCollider2D boxColliider => brain.boxCollider;
-    protected Animator animator => animManager.animator;
-    protected CollisionChecker collisionChecker => brain.collisionChecker;
+    protected BoxCollider boxColliider => brain.boxCollider;
     protected MovementController movementController => brain.movementController;
     protected StateList stateList => core.stateList;
-    protected AnimStateStrings animStates => animManager.animStates;
-
 
     public StateMachine machine;
     public StateMachine parent;

@@ -5,8 +5,8 @@ using UnityEngine.Pool;
 public class Torpedo : MonoBehaviour
 {
     public TorpedoShaderController shaderController;
-    public float sprayFactor = 15f;
-    private float posSpeed = 2f;
+    public float sprayFactor = 5f;
+    private float posSpeed = 10f;
     private float shaderSpeed = 1f;
 
     private float timeElapsed = 0f;

@@ -20,9 +20,8 @@ public class TorpedoSpawner : MonoBehaviour
 
     public void FireTorpedo()
     {
-        Debug.Log("firing torpedo");
+
         if (torpedoPool == null) return;
-        Debug.Log("pool exists");
 
         Torpedo torpedo = torpedoPool.Get();
         torpedo.transform.position = transform.position;

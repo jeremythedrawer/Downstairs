@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: m_player
-  m_Shader: {fileID: -6465566751694194690, guid: db1b34da67eff1045bd43fb19dbf1b07, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 3fde0c3c4f9ddfc458c02ac3585bd713, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -58,13 +58,22 @@ Material:
     - _EnableExternalAlpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _colorFalloff: 0.52
     - _gridFallOff: 1.94
+    - _gridFalloff: 0.5
+    - _gridScale: 25.57
+    - _hit: 0
+    - _interpolation: 0.09
+    - _randomColors: 1
     - _scale: 15.85
-    - _thickness: 1.55
+    - _steps: 4.7
+    - _thickness: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _color: {r: 1, g: 1, b: 1, a: 0}
+    - _innerColor: {r: 0.990566, g: 0.8254717, b: 0, a: 0}
+    - _outerColor: {r: 0.057193395, g: 0.022443635, b: 0.004046702, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &916895014375653715

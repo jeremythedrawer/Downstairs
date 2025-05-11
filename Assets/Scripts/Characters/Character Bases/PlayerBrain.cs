@@ -37,7 +37,7 @@ public class PlayerBrain : CharacterBrain
     private void MoveInputs()
     {
         movementController.moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        movementController.shootInput = Input.GetKey(KeyCode.Space);
+        movementController.shootInput = Input.GetMouseButton(0);
     }
 
     public void Shoot()

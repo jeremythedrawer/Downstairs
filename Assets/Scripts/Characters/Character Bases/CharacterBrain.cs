@@ -2,12 +2,10 @@ using UnityEngine;
 
 public abstract class CharacterBrain : MonoBehaviour
 {
-    public Rigidbody2D body;
-    public BoxCollider2D boxCollider;
-    public SpriteRenderer spriteRenderer;
+    public Rigidbody body;
+    public BoxCollider boxCollider;
 
     public MovementController movementController;
-    public CollisionChecker collisionChecker;
-    public AnimationManager animationManager;
     public CharacterStats characterStats;
+    public PlayerMaterialController playerMaterialController;
 }

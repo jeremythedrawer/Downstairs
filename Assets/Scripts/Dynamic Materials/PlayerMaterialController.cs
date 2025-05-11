@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class TorpedoShaderController : RendererManager
+public class PlayerMaterialController : RendererManager
 {
-    public float time { get; set; }
-    private readonly int timeID = Shader.PropertyToID("_time");
+    public float hit { get; set; }
+    private readonly int hitID = Shader.PropertyToID("_hit");
 
     private void Update()
     {
@@ -15,7 +15,7 @@ public class TorpedoShaderController : RendererManager
         if (material != null)
         {
             objectRenderer.GetPropertyBlock(mpb);
-            mpb.SetFloat(timeID, time);
+            mpb.SetFloat(hitID, hit);
             objectRenderer.SetPropertyBlock(mpb);
         }
     }

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shaderController: {fileID: 8960683331766089131}
-  sprayFactor: 15
+  sprayFactor: 5
 --- !u!114 &8960683331766089131
 MonoBehaviour:
   m_ObjectHideFlags: 0
