@@ -1,16 +1,6 @@
 using UnityEngine;
 
-public class Tentacle : Enemy
+public class Tentacle : Enemy<Tentacle>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

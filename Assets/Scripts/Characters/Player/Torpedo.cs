@@ -6,13 +6,13 @@ public class Torpedo : MonoBehaviour
 {
     public TorpedoShaderController shaderController;
     public float sprayFactor = 5f;
+    public float hitPoints = 5f;
     private float posSpeed = 10f;
     private float shaderSpeed = 1f;
 
     private float timeElapsed = 0f;
     public void UpdateTorpedo(ObjectPool<Torpedo> pool)
     {
-        Debug.Log("update torpedo");
         StartCoroutine(UpdatingTorpedo(pool));
     }
     private IEnumerator UpdatingTorpedo(ObjectPool<Torpedo> pool)

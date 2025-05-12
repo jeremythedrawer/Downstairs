@@ -1,7 +1,5 @@
-using System.Collections;
 using UnityEngine;
-
-public class Jellyfish : Enemy
+public class Jellyfish : Enemy<Jellyfish>
 {
     public float moveSpeed = 1f;
     private Vector3 target;
@@ -9,8 +7,15 @@ public class Jellyfish : Enemy
     private bool isMoving;
     private float currentTime;
 
+    protected override void Update()
+    {
+        base.Update();
+        UpdatePos();
+        Death(this, () => JellyfishSpawner.jellyfishes.Remove(this));
+    }
 
-    private void Update()
+
+    private void UpdatePos()
     {
         currentTime += Time.deltaTime;
         float speedPattern = SpeedPattern(currentTime, 0.1f);
@@ -18,7 +23,7 @@ public class Jellyfish : Enemy
 
         if (isMoving)
         {
-            
+
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, target) < 0.1f)
@@ -32,7 +37,6 @@ public class Jellyfish : Enemy
             isMoving = true;
         }
     }
-
     private void GetNewPosition()
     {
         float randomX = Random.Range(CameraController.minX, CameraController.maxX);

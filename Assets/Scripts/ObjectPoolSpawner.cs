@@ -3,11 +3,11 @@ using UnityEngine.Pool;
 
 public abstract class ObjectPoolSpawner<T> : MonoBehaviour where T : Component
 {
-    protected ObjectPool<T> pool;
+    public ObjectPool<T> pool;
     [SerializeField] protected T prefab;
     public int maxSize = 50;
     [SerializeField] private int defaultSize = 5;
-
+    protected bool spawnActive; //TODO: controlled by spawnMananger
     protected virtual void Start()
     {
         CreatePool();

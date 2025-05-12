@@ -1,7 +1,15 @@
-using UnityEngine;
-
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy<T> : EnemyBase where T : Enemy<T>
 {
-    public float health;
-    public float hitStrength;
+    public ObjectPoolSpawner<T> spawner;
+
+    public delegate void OnDeath();
+    protected void Death(T enemy, OnDeath onDeath = null)
+    {
+        if (currentHealth <= 0)
+        {
+            spawner.pool.Release(enemy);
+            currentHealth = health;
+            onDeath?.Invoke();
+        }
+    }
 }

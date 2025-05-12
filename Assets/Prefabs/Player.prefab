@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ec6ffd5002aa54db6bdacc9fb44726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torpedoObject: {fileID: 4890141699499160903, guid: 3e08dbb943df1ee49b94c69658bca8eb, type: 3}
+  prefab: {fileID: 4890141699499160903, guid: 3e08dbb943df1ee49b94c69658bca8eb, type: 3}
+  maxSize: 10
+  defaultSize: 5
 --- !u!1 &1717940874028196174
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +268,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.58, z: 0.62}
+  m_Size: {x: 0.25, y: 0.3, z: 0.62}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7816332786036519498
 MonoBehaviour:
@@ -284,7 +286,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1016922169669405950}
   characterStats: {fileID: 4986212010707517054}
   movementController: {fileID: 2685732930956466201}
-  healthManager: {fileID: 0}
+  healthManager: {fileID: 3132560797817931847}
   playerMaterialController: {fileID: 7748423789807883697}
   torpedoSpawners:
   - {fileID: 2273619186955141954}
@@ -292,7 +294,7 @@ MonoBehaviour:
   torpedoCoolDownTime: 0.1
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!114 &2685732930956466201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +323,7 @@ MonoBehaviour:
   runSpeed: 3
   walkSpeed: 3
   linearDamp: 5
-  rotationDamp: 10
+  rotationDamp: 5
   health: 100
 --- !u!114 &3132560797817931847
 MonoBehaviour:
@@ -653,7 +655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ec6ffd5002aa54db6bdacc9fb44726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torpedoObject: {fileID: 4890141699499160903, guid: 3e08dbb943df1ee49b94c69658bca8eb, type: 3}
+  prefab: {fileID: 4890141699499160903, guid: 3e08dbb943df1ee49b94c69658bca8eb, type: 3}
+  maxSize: 10
+  defaultSize: 5
 --- !u!1 &7250374928922053900
 GameObject:
   m_ObjectHideFlags: 0

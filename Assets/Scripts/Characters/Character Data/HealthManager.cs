@@ -17,12 +17,11 @@ public class HealthManager : MonoBehaviour
 
         Collider[] hits = Physics.OverlapBox(playerBounds.center, playerBounds.extents, Quaternion.identity, enemyLayer);
 
-                Debug.Log(hits.Length);
         if (hits.Length > 0)
         {
             foreach (Collider hit in hits)
             {
-                Enemy enemy = hit.GetComponent<Enemy>();
+                EnemyBase enemy = hit.GetComponent<EnemyBase>();
                 if (enemy != null)
                 {
                     StartCoroutine(LoosingHealth(enemy, hit.transform));
@@ -35,7 +34,7 @@ public class HealthManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator LoosingHealth(Enemy enemy, Transform enemyTransform)
+    private IEnumerator LoosingHealth(EnemyBase enemy, Transform enemyTransform)
     {
         currentHealth -= enemy.hitStrength;
 
