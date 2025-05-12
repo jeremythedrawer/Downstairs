@@ -11,29 +11,20 @@ public class PlayerBrain : CharacterBrain
     [SerializeField] private float torpedoCoolDownTime = 0.1f;
     private float currentTorpCoolDownTime = 0;
 
-    public static Vector2 currentPos;
-    public static Vector2 currentDir;
+    public Vector2 currentPos => CameraController.mainCam.WorldToViewportPoint(transform.position);
+    public Vector2 currentDir => transform.up;
 
-
+    [SerializeField] private LayerMask enemyLayer;
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null) Instance = this;
     }
     private void Update()
     {
         MoveInputs();
-        currentPos = CameraController.mainCam.WorldToViewportPoint(transform.position);
-        currentDir = transform.up;
-
-        currentTorpCoolDownTime -= Time.deltaTime;
-
-        if (movementController.shootInput && currentTorpCoolDownTime <= 0f)
-        {
-            Shoot();
-            currentTorpCoolDownTime = torpedoCoolDownTime;
-        }
+        Shoot();
+        healthManager.LooseHealth(boxCollider.bounds, enemyLayer);
     }
-
     private void MoveInputs()
     {
         movementController.moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -42,9 +33,14 @@ public class PlayerBrain : CharacterBrain
 
     public void Shoot()
     {
-        foreach (TorpedoSpawner torpedoSpawner in torpedoSpawners)
+        currentTorpCoolDownTime -= Time.deltaTime;
+        if (movementController.shootInput && currentTorpCoolDownTime <= 0f)
         {
-            torpedoSpawner.FireTorpedo();
+            foreach (TorpedoSpawner torpedoSpawner in torpedoSpawners)
+            {
+                torpedoSpawner.FireTorpedo();
+                currentTorpCoolDownTime = torpedoCoolDownTime;
+            }
         }
     }
 }

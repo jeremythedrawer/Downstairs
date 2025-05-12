@@ -19,7 +19,7 @@ public class Torpedo : MonoBehaviour
     {
         shaderController.time = 0f;
         float angleOffset = Random.Range(-sprayFactor, sprayFactor);
-        Vector2 baseDir = PlayerBrain.currentDir.normalized;
+        Vector2 baseDir = PlayerBrain.Instance.currentDir.normalized;
         Vector2 direction = Quaternion.Euler(0, 0, angleOffset) * baseDir;
 
         while (timeElapsed < Mathf.PI * 2)
@@ -29,7 +29,7 @@ public class Torpedo : MonoBehaviour
 
             shaderController.time = 0.5f * (Mathf.Sin(timeElapsed * shaderSpeed) + 1f);
 
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.deltaTime * 2f;
 
             yield return null;
         }

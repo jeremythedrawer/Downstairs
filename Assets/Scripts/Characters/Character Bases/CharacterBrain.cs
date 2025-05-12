@@ -5,7 +5,8 @@ public abstract class CharacterBrain : MonoBehaviour
     public Rigidbody body;
     public BoxCollider boxCollider;
 
-    public MovementController movementController;
     public CharacterStats characterStats;
+    public MovementController movementController;
+    public HealthManager healthManager;
     public PlayerMaterialController playerMaterialController;
 }

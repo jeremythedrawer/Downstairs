@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    private float currentHealth;
+    public float currentHealth { get; private set; }
     private bool canLooseHealth = true;
 
     private void Start()
@@ -11,32 +11,42 @@ public class HealthManager : MonoBehaviour
         currentHealth = PlayerBrain.Instance.characterStats.health;
     }
 
-    private void OnTriggerStay(Collider other)
+    public void LooseHealth(Bounds playerBounds, LayerMask enemyLayer)
     {
-        if (other.gameObject.CompareTag("Enemy") && canLooseHealth)
-        {
-        Debug.Log("loosing health");
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (!canLooseHealth) return;
 
-            if (enemy != null)
+        Collider[] hits = Physics.OverlapBox(playerBounds.center, playerBounds.extents, Quaternion.identity, enemyLayer);
+
+                Debug.Log(hits.Length);
+        if (hits.Length > 0)
+        {
+            foreach (Collider hit in hits)
             {
-                StartCoroutine(LoosingHealth(enemy, other.transform));
-                canLooseHealth = false;
-            }
-            else
-            {
-                Debug.LogWarning("Enemy tagged but doesnt have Enemy Script");
+                Enemy enemy = hit.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    StartCoroutine(LoosingHealth(enemy, hit.transform));
+                    canLooseHealth = false;                
+                }
+                else
+                {
+                    Debug.LogWarning("Enemy tagged but doesnt have Enemy Script");
+                }
             }
         }
     }
-
     private IEnumerator LoosingHealth(Enemy enemy, Transform enemyTransform)
     {
         currentHealth -= enemy.hitStrength;
 
-        Vector2 knockBackDir = (transform.position - enemyTransform.position).normalized;
+        Vector3 knockBackDir = (transform.position - enemyTransform.position).normalized;
         float knockBackForce = 10f;
+        float torqueForce = 50f;
 
+        float randomDirection = Random.value > 0.5f ? 1f : -1f;
+        Vector3 knockBackTorque = Vector3.forward * torqueForce * randomDirection; ;
+
+        PlayerBrain.Instance.body.AddTorque(knockBackTorque, ForceMode.Impulse);
         PlayerBrain.Instance.body.AddForce(knockBackDir * knockBackForce, ForceMode.Impulse);
         PlayerBrain.Instance.playerMaterialController.hit = 1f;
 
