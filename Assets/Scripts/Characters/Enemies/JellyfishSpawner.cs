@@ -25,6 +25,7 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
     }
     private IEnumerator SpawningJellyFishes()
     {
+        yield return new WaitForEndOfFrame();
         while (spawnActive)
         {
             if (jellyfishes.Count < maxSize)

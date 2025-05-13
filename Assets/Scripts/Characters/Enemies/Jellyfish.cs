@@ -1,7 +1,6 @@
 using UnityEngine;
 public class Jellyfish : Enemy<Jellyfish>
 {
-    public float moveSpeed = 1f;
     private Vector3 target;
 
     private bool isMoving;

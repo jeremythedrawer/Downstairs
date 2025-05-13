@@ -9,8 +9,8 @@ public class Torpedo : MonoBehaviour
     public float hitPoints = 5f;
     private float posSpeed = 10f;
     private float shaderSpeed = 1f;
-
     private float timeElapsed = 0f;
+
     public void UpdateTorpedo(ObjectPool<Torpedo> pool)
     {
         StartCoroutine(UpdatingTorpedo(pool));

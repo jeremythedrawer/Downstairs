@@ -103,6 +103,7 @@ MonoBehaviour:
   enemyShaderController: {fileID: 1916193507006476812}
   health: 400
   hitStrength: 1
+  materialFlickerTime: 0.05
   spawner: {fileID: 0}
   moveSpeed: 0.1
 --- !u!65 &1507472554890940742
@@ -125,7 +126,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.33051708, y: 0.4905685, z: 0.33051717}
-  m_Center: {x: 0, y: -0.24528424, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1916193507006476812
 MonoBehaviour:
   m_ObjectHideFlags: 0
