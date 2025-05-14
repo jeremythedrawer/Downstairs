@@ -5,8 +5,6 @@ public class Jellyfish : Enemy<Jellyfish>
 
     private bool isMoving;
     private float currentTime;
-
-
     public JellyfishSpawner jellyfishSpawner {  get; set; }
     protected override void Update()
     {
@@ -37,16 +35,9 @@ public class Jellyfish : Enemy<Jellyfish>
         }
         else
         {
-            GetNewPosition();
+            target = jellyfishSpawner.GetRandomPosition();
             isMoving = true;
         }
-    }
-    private void GetNewPosition()
-    {
-        float randomX = Random.Range(CameraController.minX, CameraController.maxX);
-        float randomY = Random.Range(CameraController.minY, CameraController.maxY);
-
-        target = new Vector3(randomX, randomY, transform.position.z);
     }
 
     private float SpeedPattern(float t, float frequency)
@@ -63,7 +54,7 @@ public class Jellyfish : Enemy<Jellyfish>
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (!Application.isPlaying) return;
 

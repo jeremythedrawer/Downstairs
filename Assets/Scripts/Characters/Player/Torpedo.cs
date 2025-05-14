@@ -2,36 +2,18 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Torpedo : MonoBehaviour
+public class Torpedo : Projectile
 {
     public TorpedoShaderController shaderController;
-    public LayerMask hitMask;
-    public BoxCollider boxCollilder;
 
     public float sprayFactor = 5f;
-    public float hitPoints = 5f;
-    private float posSpeed = 10f;
+
     private float shaderSpeed = 1f;
     private float timeElapsed = 0f;
 
-    private bool hasHit;
 
-    Vector3 halfExtents;
-    Vector3 center => transform.position + boxCollilder.center;
-    private void Start()
-    {
-        halfExtents = Vector3.Scale(boxCollilder.size, transform.localScale) * 0.5f;
-    }
 
-    private void OnDisable()
-    {
-        hasHit = false;
-    }
-    private void FixedUpdate()
-    {
-        Collider[] hits = Physics.OverlapBox(center, halfExtents, transform.rotation, hitMask);
-        if (hits.Length > 0 ) hasHit = true;
-    }
+
     public void UpdateTorpedo(ObjectPool<Torpedo> pool)
     {
         StartCoroutine(UpdatingTorpedo(pool));

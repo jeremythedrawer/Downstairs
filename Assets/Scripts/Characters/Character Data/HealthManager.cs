@@ -22,22 +22,38 @@ public class HealthManager : MonoBehaviour
             foreach (Collider hit in hits)
             {
                 EnemyBase enemy = hit.GetComponent<EnemyBase>();
+                Projectile enemyProjectile = hit.GetComponent<Projectile>();
                 if (enemy != null)
                 {
-                    StartCoroutine(LoosingHealth(enemy, hit.transform));
+                    LooseHealthToEnemy(enemy);
                     canLooseHealth = false;                
+                }
+                else if (enemyProjectile != null)
+                {
+                    LooseHealthToProjectile(enemyProjectile);
+                    canLooseHealth = false;
                 }
                 else
                 {
                     Debug.LogWarning("Enemy tagged but doesnt have Enemy Script");
+
                 }
             }
         }
     }
-    private IEnumerator LoosingHealth(EnemyBase enemy, Transform enemyTransform)
+    private void LooseHealthToEnemy(EnemyBase enemy)
     {
         currentHealth -= enemy.hitStrength;
+        StartCoroutine(LoosingHealth(enemy.transform));    
+    }
 
+    private void LooseHealthToProjectile(Projectile projectile)
+    {
+        currentHealth -= projectile.hitPoints;
+        StartCoroutine(LoosingHealth(projectile.transform));
+    }
+    private IEnumerator LoosingHealth(Transform enemyTransform)
+    {
         Vector3 knockBackDir = (transform.position - enemyTransform.position).normalized;
         float knockBackForce = 10f;
         float torqueForce = 50f;

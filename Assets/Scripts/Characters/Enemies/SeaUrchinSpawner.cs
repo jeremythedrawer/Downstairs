@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
+public class SeaUrchinSpawner : ObjectPoolSpawner<SeaUrchin>
 {
-    public static JellyfishSpawner Instance { get; private set; }
+    public static SeaUrchinSpawner Instance { get; private set; }
 
-    public List<Jellyfish> jellyfishes = new List<Jellyfish>();
+    public List<SeaUrchin> seaUrchins = new List<SeaUrchin>();
 
 
     public Vector2[] localPoints = new Vector2[4]
@@ -41,7 +41,7 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
         yield return new WaitForEndOfFrame();
         while (spawnActive)
         {
-            if (jellyfishes.Count < maxSize)
+            if (seaUrchins.Count < maxSize)
             {
                 SpawnJellyFish();
             }
@@ -57,16 +57,16 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
     {
         if (pool == null) return;
 
-        Jellyfish jellyfish = pool.Get();
-        if (jellyfish.spawner == null || jellyfish.jellyfishSpawner == null)
+        SeaUrchin seaUrchin = pool.Get();
+        if (seaUrchin.spawner == null || seaUrchin.seaUrchinSpawner == null)
         {
-            jellyfish.spawner = this;
-            jellyfish.jellyfishSpawner = this;
+            seaUrchin.spawner = this;
+            seaUrchin.seaUrchinSpawner = this;
         }
-        jellyfishes.Add(jellyfish);
-        jellyfish.transform.position = GetRandomPosition();
-        jellyfish.gameObject.SetActive(true);
-        jellyfish.gameObject.transform.SetParent(this.transform);
+        seaUrchins.Add(seaUrchin);
+        seaUrchin.transform.position = GetRandomPosition();
+        seaUrchin.gameObject.SetActive(true);
+        seaUrchin.gameObject.transform.SetParent(this.transform);
     }
 
     public Vector3 GetRandomPosition()
@@ -103,7 +103,7 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
 
         if (u + v > 1)
         {
-            u = 1 - u; 
+            u = 1 - u;
             v = 1 - v;
         }
 
@@ -134,7 +134,7 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
     {
         if (localPoints == null || localPoints.Length < 3) return;
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.magenta;
 
         for (int i = 0; i < localPoints.Length; i++)
         {
