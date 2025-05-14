@@ -98,9 +98,9 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _Vector2: {r: 1, g: 1, b: 0, a: 0}
     - _color: {r: 0, g: 0.588679, b: 0.735849, a: 0}
-    - _innerColor: {r: 0.28382534, g: 0.2737652, b: 0.18609305, a: 0}
+    - _innerColor: {r: 0.3773585, g: 0.353293, b: 0.076539695, a: 0}
     - _lightSourcePos: {r: 1, g: 0.27, b: 0, a: 0}
     - _origin: {r: 0, g: 0, b: 0, a: 0}
-    - _outerColor: {r: 0, g: 0.010781658, b: 0.01886791, a: 1}
+    - _outerColor: {r: 0, g: 0.007766871, b: 0.01886791, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

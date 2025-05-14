@@ -5,7 +5,7 @@ public class HealthManager : MonoBehaviour
 {
     public float currentHealth { get; private set; }
     private bool canLooseHealth = true;
-
+    public bool isHit => PlayerBrain.Instance.playerMaterialController.hit > 0f;
     private void Start()
     {
         currentHealth = PlayerBrain.Instance.characterStats.health;

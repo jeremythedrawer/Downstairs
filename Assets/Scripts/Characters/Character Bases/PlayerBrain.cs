@@ -36,11 +36,18 @@ public class PlayerBrain : CharacterBrain
         currentTorpCoolDownTime -= Time.deltaTime;
         if (movementController.shootInput && currentTorpCoolDownTime <= 0f)
         {
-            foreach (TorpedoSpawner torpedoSpawner in torpedoSpawners)
+            if (characterStats.doubleTorpedo)
             {
-                torpedoSpawner.FireTorpedo();
-                currentTorpCoolDownTime = torpedoCoolDownTime;
+                foreach (TorpedoSpawner torpedoSpawner in torpedoSpawners)
+                {
+                    torpedoSpawner.FireTorpedo();
+                }
             }
+            else if (characterStats.singleTorpedo)
+            {
+                torpedoSpawners[0].FireTorpedo();
+            }
+            currentTorpCoolDownTime = torpedoCoolDownTime;
         }
     }
 }

@@ -7,4 +7,10 @@ public class CharacterStats : MonoBehaviour
     public float linearDamp;
     public float rotationDamp;
     public float health;
+
+    public bool singleTorpedo;
+    public bool turboBoost;
+    public bool lightRadar;
+    public bool doubleTorpedo;
+    public bool bomb;
 }

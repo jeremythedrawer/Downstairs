@@ -252,7 +252,7 @@ MonoBehaviour:
   enemyShaderController: {fileID: 4412640163895414867}
   health: 1000
   hitStrength: 10
-  moveSpeed: 1
+  moveSpeed: 3
   materialFlickerTime: 0.05
   spawner: {fileID: 0}
 --- !u!114 &4412640163895414867

@@ -56,13 +56,16 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
+    - _Float: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _colorFalloff: 0.0001
     - _gridFallOff: 1.94
     - _gridFalloff: -3.1
     - _gridScale: 24.9
+    - _hit: 0
     - _interpolation: 0.01
+    - _powerUp: 2.03
     - _randomColors: 1
     - _scale: 15.85
     - _steps: 9.76
@@ -73,6 +76,7 @@ Material:
     - _color: {r: 1, g: 1, b: 1, a: 0}
     - _innerColor: {r: 0.016375938, g: 0.13626333, b: 0.1509434, a: 0}
     - _outerColor: {r: 0, g: 0.16179796, b: 0.33962262, a: 0}
+    - _powerUpColor: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &916895014375653715

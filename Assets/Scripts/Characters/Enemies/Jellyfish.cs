@@ -6,11 +6,16 @@ public class Jellyfish : Enemy<Jellyfish>
     private bool isMoving;
     private float currentTime;
 
+
+    public JellyfishSpawner jellyfishSpawner {  get; set; }
     protected override void Update()
     {
         base.Update();
         UpdatePos();
-        Death(this, () => JellyfishSpawner.jellyfishes.Remove(this));
+        if (jellyfishSpawner != null)
+        {
+            Death(this, () => jellyfishSpawner.jellyfishes.Remove(this));
+        }
     }
 
 
