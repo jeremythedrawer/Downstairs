@@ -62,7 +62,7 @@ Material:
     - _colorFalloff: 0.52
     - _gridFallOff: 1.94
     - _gridFalloff: 0
-    - _gridScale: 25.57
+    - _gridScale: 10
     - _hit: 0
     - _interpolation: 0
     - _powerUp: 1.39

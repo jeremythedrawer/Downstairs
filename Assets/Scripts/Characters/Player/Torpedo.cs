@@ -5,12 +5,33 @@ using UnityEngine.Pool;
 public class Torpedo : MonoBehaviour
 {
     public TorpedoShaderController shaderController;
+    public LayerMask hitMask;
+    public BoxCollider boxCollilder;
+
     public float sprayFactor = 5f;
     public float hitPoints = 5f;
     private float posSpeed = 10f;
     private float shaderSpeed = 1f;
     private float timeElapsed = 0f;
 
+    private bool hasHit;
+
+    Vector3 halfExtents;
+    Vector3 center => transform.position + boxCollilder.center;
+    private void Start()
+    {
+        halfExtents = Vector3.Scale(boxCollilder.size, transform.localScale) * 0.5f;
+    }
+
+    private void OnDisable()
+    {
+        hasHit = false;
+    }
+    private void FixedUpdate()
+    {
+        Collider[] hits = Physics.OverlapBox(center, halfExtents, transform.rotation, hitMask);
+        if (hits.Length > 0 ) hasHit = true;
+    }
     public void UpdateTorpedo(ObjectPool<Torpedo> pool)
     {
         StartCoroutine(UpdatingTorpedo(pool));
@@ -22,7 +43,7 @@ public class Torpedo : MonoBehaviour
         Vector2 baseDir = PlayerBrain.Instance.currentDir.normalized;
         Vector2 direction = Quaternion.Euler(0, 0, angleOffset) * baseDir;
 
-        while (timeElapsed < Mathf.PI * 2)
+        while (timeElapsed < Mathf.PI * 2 && !hasHit)
         {
             transform.position += (Vector3)(direction * posSpeed * Time.deltaTime);
 

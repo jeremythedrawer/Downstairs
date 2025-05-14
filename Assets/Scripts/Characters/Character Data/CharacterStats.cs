@@ -10,7 +10,7 @@ public class CharacterStats : MonoBehaviour
 
     public bool singleTorpedo;
     public bool turboBoost;
-    public bool lightRadar;
+    public bool lightPing;
     public bool doubleTorpedo;
     public bool bomb;
 }

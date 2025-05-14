@@ -59,17 +59,17 @@ Material:
     - _Float: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _colorFalloff: 0.0001
+    - _colorFalloff: 25.04
     - _gridFallOff: 1.94
-    - _gridFalloff: -3.1
-    - _gridScale: 24.9
+    - _gridFalloff: 0
+    - _gridScale: 10
     - _hit: 0
-    - _interpolation: 0.01
+    - _interpolation: 0
     - _powerUp: 2.03
     - _randomColors: 1
     - _scale: 15.85
-    - _steps: 9.76
-    - _thickness: 0.04
+    - _steps: 11.05
+    - _thickness: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

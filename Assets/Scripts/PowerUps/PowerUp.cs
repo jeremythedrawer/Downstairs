@@ -6,9 +6,9 @@ public class PowerUp : MonoBehaviour
     { 
         SingleTorpedo,
         TurboBoost,
-        LightRadar,
         DoubleTorpedo,
         Bomb,
+        LightPing,
     }
 
     public PowerUpType powerUpType;
@@ -21,6 +21,7 @@ public class PowerUp : MonoBehaviour
                 case PowerUpType.SingleTorpedo:
                 {
                     PlayerBrain.Instance.characterStats.singleTorpedo = true;
+                    PlayerBrain.Instance.meshFilter.mesh = PlayerBrain.Instance.singleTorpedoMesh;
                 }
                 break;
                 case PowerUpType.TurboBoost:
@@ -28,9 +29,9 @@ public class PowerUp : MonoBehaviour
                     PlayerBrain.Instance.characterStats.turboBoost = true;
                 }
                 break;
-                case PowerUpType.LightRadar:
+                case PowerUpType.LightPing:
                 {
-                    PlayerBrain.Instance.characterStats.lightRadar = true;
+                    PlayerBrain.Instance.characterStats.lightPing = true;
                 }
                 break;
                 case PowerUpType.DoubleTorpedo:

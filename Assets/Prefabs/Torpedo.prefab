@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8965774162767198086}
   - component: {fileID: 7967659326460038646}
   - component: {fileID: 9091731275194628136}
+  - component: {fileID: 3751677789832068415}
   - component: {fileID: 4890141699499160903}
   - component: {fileID: 8960683331766089131}
-  - component: {fileID: 3751677789832068415}
   m_Layer: 8
   m_Name: Torpedo
   m_TagString: Untagged
@@ -89,33 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4890141699499160903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4525994775568579944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70eb8cd59aa04ed40ab8fb651d84511a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shaderController: {fileID: 8960683331766089131}
-  sprayFactor: 5
-  hitPoints: 1
---- !u!114 &8960683331766089131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4525994775568579944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50cebc523cad96a428712b4136d4078d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &3751677789832068415
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -137,3 +110,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 6.1232336e-17}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4890141699499160903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525994775568579944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70eb8cd59aa04ed40ab8fb651d84511a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderController: {fileID: 8960683331766089131}
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 640
+  boxCollilder: {fileID: 3751677789832068415}
+  sprayFactor: 5
+  hitPoints: 1
+--- !u!114 &8960683331766089131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525994775568579944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50cebc523cad96a428712b4136d4078d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
