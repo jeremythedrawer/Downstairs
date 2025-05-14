@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Anglerfish : Enemy<Anglerfish>
 {
+    [SerializeField] private float chaseRadius = 5f;
     private Vector3 targetPos;
 
     private bool isMoving;
@@ -12,7 +13,7 @@ public class Anglerfish : Enemy<Anglerfish>
     private Quaternion targetRotation;
     private float rotationSpeed = 5f;
 
-
+    public AnglerfishSpawner anglerfishSpawner {  get; set; }
     protected void Start()
     {
         targetRotation = transform.rotation;
@@ -21,13 +22,17 @@ public class Anglerfish : Enemy<Anglerfish>
     {
         base.Update();
         UpdatePos();
-        ReleaseToPool(this, () => AnglerfishSpawner.anglerfishes.Remove(this));
+
+        if (anglerfishSpawner != null)
+        {
+            ReleaseToPool(this, () => anglerfishSpawner.anglerfishes.Remove(this));
+        }
     }
 
     private void UpdatePos()
     {
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
         if (isMoving)
         {
@@ -50,10 +55,9 @@ public class Anglerfish : Enemy<Anglerfish>
                 isMoving = false;
             }
         }
-        else
+        else if (Vector3.Distance(transform.position, PlayerBrain.Instance.transform.position) < chaseRadius)
         {
             StartCoroutine(GetNewPosition());
-            isMoving = true;
         }
     }
 
@@ -69,6 +73,8 @@ public class Anglerfish : Enemy<Anglerfish>
         float dist = Vector3.Distance(transform.position, targetPos);
         moveDuration = dist / moveSpeed;
         currentTime = 0;
+
+        isMoving = true;
     }
 
 
@@ -76,5 +82,11 @@ public class Anglerfish : Enemy<Anglerfish>
     {
         float t = time / duration;
         return Mathf.Pow(t, 2f);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, chaseRadius);
     }
 }

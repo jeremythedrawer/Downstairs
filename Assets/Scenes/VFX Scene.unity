@@ -2389,6 +2389,59 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3872168132563733999, guid: fce84557d57e3c54cb47a9f5b149a573, type: 3}
+--- !u!1 &2068787297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2068787299}
+  - component: {fileID: 2068787298}
+  m_Layer: 0
+  m_Name: Anglerfish Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2068787298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068787297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c835e044842041a4e82b6e747c5cf0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8617203083401565118, guid: 28f5bc4d120077946bd88296f7f1e347, type: 3}
+  maxSize: 6
+  defaultSize: 5
+  anglerfishes: []
+  localPoints:
+  - {x: -3.43, y: -0.76}
+  - {x: -3.6, y: 4.36}
+  - {x: 0.25, y: 4.33}
+  - {x: 1.23, y: -0.44}
+--- !u!4 &2068787299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068787297}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.14, y: 24.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2095420618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2618,3 +2671,4 @@ SceneRoots:
   - {fileID: 1148740239}
   - {fileID: 155755792}
   - {fileID: 918988578}
+  - {fileID: 2068787299}
