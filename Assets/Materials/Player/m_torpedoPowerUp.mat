@@ -33,8 +33,8 @@ Material:
     - _time: 1
     - _useLights: 1
     m_Colors:
-    - _innerColor: {r: 23.96863, g: 0, b: 0, a: 0}
-    - _outColor: {r: 23.96863, g: 11.617042, b: 0, a: 0}
+    - _innerColor: {r: 11.984313, g: 0, b: 0, a: 0}
+    - _outColor: {r: 11.984313, g: 5.80852, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4482373470625821788

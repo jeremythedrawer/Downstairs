@@ -10,12 +10,12 @@ public class CharacterStats : MonoBehaviour
     public float health;
 
     [Header("Power Ups")]
-    public float burst;
+    public float burstPower;
 
 
     [Header("Power Up Checks")]
     public bool singleTorpedo;
-    public bool turboBoost;
+    public bool burst;
     public bool lightPing;
     public bool doubleTorpedo;
     public bool bomb;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SeaUrchinSpike : Projectile
 {
-    public static float spikeSpeed = 5f;
+    public static float spikeSpeed = 2f;
     public SeaUrchin seaUrchin {  get; set; }
     public void ReleaseSpikes()
     {

@@ -21,7 +21,11 @@ public class SeaUrchin : Enemy<SeaUrchin>
         Shoot();
         if (seaUrchinSpawner != null)
         {
-            Death(this, () => seaUrchinSpawner.seaUrchins.Remove(this));
+            ReleaseToPool(this, () => seaUrchinSpawner.seaUrchins.Remove(this));
+        }
+        else
+        {
+            DestroyForever(this);
         }
     }
 
@@ -45,7 +49,7 @@ public class SeaUrchin : Enemy<SeaUrchin>
 
         while(shaderController.time < 1f)
         {
-            shaderController.time += Time.deltaTime;
+            shaderController.time += Time.deltaTime * 0.5f;
             yield return null;
         }
         shaderController.time = 0f;

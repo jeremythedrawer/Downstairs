@@ -7,6 +7,7 @@ public class MovementController : MonoBehaviour
     private CharacterStats stats => brain.characterStats;
     public Vector2 moveInput { get; set; }
     public bool shootInput { get; set; }
+    public bool burstInput { get; set; }
     public bool canMove { get; set; } = true;
 
     private float desiredAngle;

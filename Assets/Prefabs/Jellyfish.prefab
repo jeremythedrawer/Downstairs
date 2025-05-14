@@ -101,11 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 1507472554890940742}
   enemyShaderController: {fileID: 1916193507006476812}
-  health: 400
-  hitStrength: 1
+  health: 100
+  hitStrength: 5
+  moveSpeed: 0.1
   materialFlickerTime: 0.05
   spawner: {fileID: 0}
-  moveSpeed: 0.1
 --- !u!65 &1507472554890940742
 BoxCollider:
   m_ObjectHideFlags: 0

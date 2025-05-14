@@ -43,17 +43,17 @@ public class SeaUrchinSpawner : ObjectPoolSpawner<SeaUrchin>
         {
             if (seaUrchins.Count < maxSize)
             {
-                SpawnJellyFish();
+                SpawnSeaUrchin();
             }
             else
             {
-                Debug.Log("Jellyfish count has reached maximum size");
+                Debug.Log("Sea Urchin count has reached maximum size");
             }
             yield return new WaitForSeconds(2f);
         }
     }
 
-    public void SpawnJellyFish()
+    public void SpawnSeaUrchin()
     {
         if (pool == null) return;
 

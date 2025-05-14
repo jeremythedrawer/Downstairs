@@ -41,6 +41,7 @@ Material:
     m_Floats:
     - _interpolation: 0.17
     - _isBody: 0
+    - _steps: 75.36
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

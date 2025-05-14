@@ -146,6 +146,8 @@ public class InverseKinematicTentacle : MonoBehaviour
             bones[i].position = positions[i];
         }
     }
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (seeBones)
@@ -161,4 +163,5 @@ public class InverseKinematicTentacle : MonoBehaviour
             }
         }
     }
+#endif
 }

@@ -21,7 +21,7 @@ public class Anglerfish : Enemy<Anglerfish>
     {
         base.Update();
         UpdatePos();
-        Death(this, () => AnglerfishSpawner.anglerfishes.Remove(this));
+        ReleaseToPool(this, () => AnglerfishSpawner.anglerfishes.Remove(this));
     }
 
     private void UpdatePos()

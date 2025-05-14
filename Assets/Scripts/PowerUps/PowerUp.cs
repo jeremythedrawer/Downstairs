@@ -26,7 +26,8 @@ public class PowerUp : MonoBehaviour
                 break;
                 case PowerUpType.TurboBoost:
                 {
-                    PlayerBrain.Instance.characterStats.turboBoost = true;
+                    PlayerBrain.Instance.characterStats.burst = true;
+                    PlayerBrain.Instance.meshFilter.mesh = PlayerBrain.Instance.burstMesh;
                 }
                 break;
                 case PowerUpType.LightPing:

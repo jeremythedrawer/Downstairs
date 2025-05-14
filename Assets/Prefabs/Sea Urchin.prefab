@@ -125,7 +125,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   boxCollilder: {fileID: 6170158960694468085}
-  hitPoints: 5
+  hitPoints: 10
 --- !u!1 &2951206720684352367
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   boxCollilder: {fileID: 5301527040007438003}
-  hitPoints: 5
+  hitPoints: 10
 --- !u!1 &5775941371448566200
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   boxCollilder: {fileID: 6210004455104057885}
-  hitPoints: 5
+  hitPoints: 10
 --- !u!1 &5981686578917881471
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   boxCollilder: {fileID: 8292415985241902160}
-  hitPoints: 5
+  hitPoints: 10
 --- !u!1 &6018424433600767355
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   boxCollilder: {fileID: 3200297844031081506}
-  hitPoints: 5
+  hitPoints: 10
 --- !u!1 &6704562903806756435
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +755,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   boxCollilder: {fileID: 5317063230950320755}
-  hitPoints: 5
+  hitPoints: 10
 --- !u!1 &8457836349163896142
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +881,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   boxCollilder: {fileID: 4286765569307636783}
-  hitPoints: 5
+  hitPoints: 10
 --- !u!1001 &2377057848988052097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -940,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b0da19f766d41004fa252b7ce10b1459, type: 2}
     - target: {fileID: 919132149155446097, guid: 46b59f09b14caa940a9acb2ce3e754fc, type: 3}
       propertyPath: m_Name
-      value: mesh_seaUrchin
+      value: Sea Urchin
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46b59f09b14caa940a9acb2ce3e754fc, type: 3}
       propertyPath: m_Layer
@@ -1047,8 +1047,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 83962749883960129}
   enemyShaderController: {fileID: 2805171508305953957}
-  health: 300
-  hitStrength: 5
+  health: 150
+  hitStrength: 10
   moveSpeed: 0
   materialFlickerTime: 0.05
   spawner: {fileID: 0}
@@ -1135,4 +1135,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   boxCollilder: {fileID: 5262455647335835156}
-  hitPoints: 5
+  hitPoints: 10

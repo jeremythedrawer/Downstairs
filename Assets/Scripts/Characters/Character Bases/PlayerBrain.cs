@@ -9,7 +9,9 @@ public class PlayerBrain : CharacterBrain
 
     public List<TorpedoSpawner> torpedoSpawners;
     [SerializeField] private float torpedoCoolDownTime = 0.1f;
-    private float currentTorpCoolDownTime = 0;
+    [SerializeField] private float burstCoolDownTime = 2f;
+    private float currentTorpCoolDownTime;
+    private float currentBurstCoolDownTime;
 
     public Vector2 currentPos => CameraController.mainCam.WorldToViewportPoint(transform.position);
     public Vector2 currentDir => transform.up;
@@ -23,15 +25,17 @@ public class PlayerBrain : CharacterBrain
     {
         MoveInputs();
         Shoot();
+        Burst();
         healthManager.LooseHealth(boxCollider.bounds, enemyLayer);
     }
     private void MoveInputs()
     {
         movementController.moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movementController.shootInput = Input.GetMouseButton(0);
+        movementController.burstInput = Input.GetKeyDown(KeyCode.LeftShift);
     }
 
-    public void Shoot()
+    private void Shoot()
     {
         currentTorpCoolDownTime -= Time.deltaTime;
         if (movementController.shootInput && currentTorpCoolDownTime <= 0f)
@@ -49,5 +53,29 @@ public class PlayerBrain : CharacterBrain
             }
             currentTorpCoolDownTime = torpedoCoolDownTime;
         }
+    }
+
+    private void Burst()
+    {
+        currentBurstCoolDownTime -= Time.deltaTime;
+        if (movementController.burstInput && currentBurstCoolDownTime <= 0f && characterStats.burst)
+        {
+            body.AddForce(transform.up * characterStats.burstPower, ForceMode.Impulse);
+            StartCoroutine(Bursting());
+            currentBurstCoolDownTime = burstCoolDownTime;
+        }
+    }
+
+    private IEnumerator Bursting()
+    {
+        float elaspedTime = 0;
+        float normSpeed = characterStats.runSpeed;
+        while(elaspedTime < burstCoolDownTime)
+        {
+            elaspedTime += Time.deltaTime;
+            characterStats.runSpeed = characterStats.burstPower;
+            yield return null;
+        }
+        characterStats.runSpeed = normSpeed;
     }
 }

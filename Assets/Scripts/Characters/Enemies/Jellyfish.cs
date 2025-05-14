@@ -12,7 +12,7 @@ public class Jellyfish : Enemy<Jellyfish>
         UpdatePos();
         if (jellyfishSpawner != null)
         {
-            Death(this, () => jellyfishSpawner.jellyfishes.Remove(this));
+            ReleaseToPool(this, () => jellyfishSpawner.jellyfishes.Remove(this));
         }
     }
 
