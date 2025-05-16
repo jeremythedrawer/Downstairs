@@ -682,7 +682,7 @@
         "m_Id": "559dd4aeb7354a6b9b1d6e307aae09eb"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 1,
+    "m_SurfaceType": 0,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 2,
@@ -2101,6 +2101,9 @@
             "m_Id": "fba8d4ba60934d74be5d8b27d286e3c6"
         },
         {
+            "m_Id": "91e0c3740a4f452280c1f26e8356b968"
+        },
+        {
             "m_Id": "4b5497cc4d8c4a3e90bd46ec072db254"
         },
         {
@@ -2131,7 +2134,8 @@
         "3a10450f-5767-4c4f-81f2-5174b074767f",
         "2fd6eff8-c398-41c3-88cd-702e4f985f5d",
         "7431891c-aff0-4d9e-a16a-3913df1af8d6",
-        "da3ad2d7-685d-4d19-9ab0-5490345dc6d8"
+        "da3ad2d7-685d-4d19-9ab0-5490345dc6d8",
+        "9a8c7b98-25e7-4bdb-be21-3a7ef1c3702c"
     ],
     "m_PropertyIds": [
         708669356,
@@ -2148,7 +2152,8 @@
         2105054297,
         490371495,
         -59877742,
-        -542025948
+        -542025948,
+        -2095203280
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -2241,6 +2246,21 @@
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "B",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "91e0c3740a4f452280c1f26e8356b968",
+    "m_Id": -2095203280,
+    "m_DisplayName": "minDark",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_minDark",
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,

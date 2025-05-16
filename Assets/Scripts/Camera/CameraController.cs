@@ -23,18 +23,14 @@ public class CameraController : MonoBehaviour
         camHeight = 2f * mainCam.orthographicSize;
         camWidth = camHeight * mainCam.aspect;
 
-        camPos = mainCam.transform.position;
 
-        minX = camPos.x - camWidth / 2f;
-        maxX = camPos.x + camWidth / 2f;
-        minY = camPos.y - camHeight / 2f;
-        maxY = camPos.y + camHeight / 2f;
     }
 
     private void Update()
     {
         GetTargetPos();
         FollowTarget();
+        GetCurrentCamBounds();
     }
 
     private void GetTargetPos()
@@ -56,5 +52,15 @@ public class CameraController : MonoBehaviour
         float camWoldPosY = Mathf.Lerp(transform.position.y, target.y, Time.deltaTime * damping);
 
         transform.position = new Vector3(camWoldPosX, camWoldPosY, transform.position.z);
+    }
+
+    private void GetCurrentCamBounds()
+    {
+        camPos = mainCam.transform.position;
+
+        minX = camPos.x - camWidth / 2f;
+        maxX = camPos.x + camWidth / 2f;
+        minY = camPos.y - camHeight / 2f;
+        maxY = camPos.y + camHeight / 2f;
     }
 }

@@ -15,7 +15,7 @@ public class BubblesVFXController : MonoBehaviour
 
     private void Update()
     {
-        normPlayerSpeed = player.body.linearVelocity.magnitude / player.characterStats.runSpeed;
+        normPlayerSpeed = player.body.linearVelocity.magnitude / player.characterStats.linearSpeed;
         if (normPlayerSpeed > 0.1f)
         {            
             scale = Mathf.Lerp(0f, 1f, normPlayerSpeed);

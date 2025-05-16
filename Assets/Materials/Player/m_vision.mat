@@ -77,7 +77,7 @@ Material:
     - _QueueOffset: 0
     - _Radius: 1
     - _ZWrite: 0
-    - _colorFallOff: 0.13
+    - _colorFallOff: 0.04
     - _colorStrength: 0.6
     - _edge: 0.21
     - _edges: 0.31
@@ -91,7 +91,7 @@ Material:
     - _lightDistance_1: -2.19
     - _lightFallolff: 12.33
     - _lightStrength: 1.7
-    - _steps: 14.6
+    - _steps: 6.3
     - _thickness: 0.285
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

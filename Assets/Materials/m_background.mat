@@ -143,12 +143,12 @@ Material:
     - _ZWrite: 1
     - _colorFallOff: 1.75
     - _colorStrength: 3.75
-    - _gridFallOff: 0.44
-    - _gridScale: 5.28
+    - _gridFallOff: 2.4
+    - _gridScale: 1.98
     - _randomColors: 1
     - _steps: 11.25
     - _thickness: 0.21
-    - _useLights: 0
+    - _useLights: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

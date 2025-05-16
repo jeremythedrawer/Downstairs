@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class CharacterBrain : MonoBehaviour
 {
     public Rigidbody body;
-    public BoxCollider boxCollider;
+    public CapsuleCollider capsuleCollider;
     public MeshFilter meshFilter;
 
     public CharacterStats characterStats;
@@ -11,10 +11,7 @@ public abstract class CharacterBrain : MonoBehaviour
     public HealthManager healthManager;
     public PlayerMaterialController playerMaterialController;
 
-    public Mesh noneMesh;
-    public Mesh singleTorpedoMesh;
-    public Mesh burstMesh;
-    public Mesh doubleTorpedoMesh;
-    public Mesh bombMesh;
-    public Mesh lightPingMesh;
+    public MeshRenderer canonMesh;
+    public MeshRenderer burstMesh;
+    public MeshRenderer sonarPingMesh;
 }

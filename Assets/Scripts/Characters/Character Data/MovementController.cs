@@ -5,7 +5,8 @@ public class MovementController : MonoBehaviour
 {
     public CharacterBrain brain;
     private CharacterStats stats => brain.characterStats;
-    public Vector2 moveInput { get; set; }
+    public float moveInput { get; set; }
+    public float rotationInput { get; set; }
     public bool shootInput { get; set; }
     public bool burstInput { get; set; }
     public bool canMove { get; set; } = true;
@@ -14,7 +15,7 @@ public class MovementController : MonoBehaviour
     private float currentAngle;
     private void Update()
     {
-        MoveWithInput();
+        UpdateRotation();
     }
 
     private void FixedUpdate()
@@ -29,10 +30,10 @@ public class MovementController : MonoBehaviour
             brain.body.linearVelocity = Vector2.zero;
             return;
         }
+        Vector2 moveDIr = transform.up * moveInput;
+        Vector2 desiredVelocity = moveDIr * stats.linearSpeed;
 
-        Vector2 desiredVelocity = moveInput.normalized * stats.runSpeed;
-
-        if (moveInput.sqrMagnitude <= 0.01f)
+        if (Mathf.Abs(moveInput) <= 0.01f)
         {
             brain.body.linearVelocity = Vector2.Lerp(brain.body.linearVelocity, Vector2.zero, stats.linearDamp * Time.fixedDeltaTime);
         }
@@ -42,16 +43,12 @@ public class MovementController : MonoBehaviour
             brain.body.linearVelocity = Vector2.Lerp(brain.body.linearVelocity, desiredVelocity, dampFactor);
         }
     }
-    public void MoveWithInput()
+    public void UpdateRotation()
     {
-
-        Vector3 mouseWorldPos = CameraController.mainCam.ScreenToWorldPoint(Input.mousePosition);
-
-
-        Vector2 lookDir = (mouseWorldPos - transform.position);
-
-
-        desiredAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+       if (rotationInput != 0)
+        {
+            desiredAngle += rotationInput * stats.rotationSpeed * Time.deltaTime;
+        }
 
         float dampFactor = 1f - Mathf.Exp(-stats.rotationDamp * Time.deltaTime);
 

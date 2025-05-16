@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
+public class SmallFishSpawner : ObjectPoolSpawner<SmallFish>
 {
-
-    public List<Jellyfish> jellyfishes = new List<Jellyfish>();
+    public List<SmallFish> smallFishes = new List<SmallFish>();
 
     protected override void Start()
     {
@@ -24,7 +23,7 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
         yield return new WaitForEndOfFrame();
         while (spawnActive)
         {
-            if (jellyfishes.Count < maxSize)
+            if (smallFishes.Count < maxSize)
             {
                 SpawnJellyFish();
             }
@@ -40,20 +39,20 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
     {
         if (pool == null) return;
 
-        Jellyfish jellyfish = pool.Get();
-        if (jellyfish.spawner == null || jellyfish.jellyfishSpawner == null)
-        {
-            jellyfish.spawner = this;
-            jellyfish.jellyfishSpawner = this;
-        }
-        jellyfishes.Add(jellyfish);
-        jellyfish.transform.position = GetRandomPosition();
-        jellyfish.gameObject.SetActive(true);
-        jellyfish.gameObject.transform.SetParent(this.transform);
-    }
+        SmallFish smallFish = pool.Get();
 
+        if (smallFish.spawner == null || smallFish.smallFishSpawner == null)
+        {
+            smallFish.spawner = this;
+            smallFish.smallFishSpawner = this;
+        }
+        smallFishes.Add(smallFish);
+        smallFish.transform.position = GetRandomPosition();
+        smallFish.gameObject.SetActive(true);
+        smallFish.gameObject.transform.SetParent(this.transform);
+    }
     private void OnDrawGizmos()
     {
-        DrawArea(Color.red);
+        DrawArea(Color.blue);
     }
 }

@@ -7,8 +7,8 @@ public class PlayerBrain : CharacterBrain
 {
     public static PlayerBrain Instance { get; private set; }
 
-    public List<TorpedoSpawner> torpedoSpawners;
-    [SerializeField] private float torpedoCoolDownTime = 0.1f;
+    public TorpedoSpawner torpedoSpawner;
+    [SerializeField] private float torpedoCoolDownTime = 5f;
     [SerializeField] private float burstCoolDownTime = 2f;
     private float currentTorpCoolDownTime;
     private float currentBurstCoolDownTime;
@@ -26,13 +26,14 @@ public class PlayerBrain : CharacterBrain
         MoveInputs();
         Shoot();
         Burst();
-        healthManager.LooseHealth(boxCollider.bounds, enemyLayer);
+        healthManager.LooseHealth(capsuleCollider.bounds, enemyLayer);
     }
     private void MoveInputs()
     {
-        movementController.moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        movementController.shootInput = Input.GetMouseButton(0);
+        movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : 0;
+        movementController.shootInput = Input.GetMouseButtonDown(0);
         movementController.burstInput = Input.GetKeyDown(KeyCode.LeftShift);
+        movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
     }
 
     private void Shoot()
@@ -40,16 +41,9 @@ public class PlayerBrain : CharacterBrain
         currentTorpCoolDownTime -= Time.deltaTime;
         if (movementController.shootInput && currentTorpCoolDownTime <= 0f)
         {
-            if (characterStats.doubleTorpedo)
+            if (characterStats.canon)
             {
-                foreach (TorpedoSpawner torpedoSpawner in torpedoSpawners)
-                {
-                    torpedoSpawner.FireTorpedo();
-                }
-            }
-            else if (characterStats.singleTorpedo)
-            {
-                torpedoSpawners[0].FireTorpedo();
+                torpedoSpawner.FireTorpedo();
             }
             currentTorpCoolDownTime = torpedoCoolDownTime;
         }
@@ -69,13 +63,13 @@ public class PlayerBrain : CharacterBrain
     private IEnumerator Bursting()
     {
         float elaspedTime = 0;
-        float normSpeed = characterStats.runSpeed;
+        float normSpeed = characterStats.linearSpeed;
         while(elaspedTime < burstCoolDownTime)
         {
             elaspedTime += Time.deltaTime;
-            characterStats.runSpeed = characterStats.burstPower;
+            characterStats.linearSpeed = characterStats.burstPower;
             yield return null;
         }
-        characterStats.runSpeed = normSpeed;
+        characterStats.linearSpeed = normSpeed;
     }
 }

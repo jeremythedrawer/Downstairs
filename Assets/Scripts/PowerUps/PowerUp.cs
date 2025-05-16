@@ -4,11 +4,9 @@ public class PowerUp : MonoBehaviour
 {
     public enum PowerUpType
     { 
-        SingleTorpedo,
+        Canon,
         TurboBoost,
-        DoubleTorpedo,
-        Bomb,
-        LightPing,
+        SonarPing,
     }
 
     public PowerUpType powerUpType;
@@ -16,39 +14,29 @@ public class PowerUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            switch(powerUpType)
+            switch (powerUpType)
             {
-                case PowerUpType.SingleTorpedo:
+                case PowerUpType.Canon:
                 {
-                    PlayerBrain.Instance.characterStats.singleTorpedo = true;
-                    PlayerBrain.Instance.meshFilter.mesh = PlayerBrain.Instance.singleTorpedoMesh;
+                    PlayerBrain.Instance.characterStats.canon = true;
+                    PlayerBrain.Instance.canonMesh.enabled = true;
                 }
                 break;
                 case PowerUpType.TurboBoost:
                 {
                     PlayerBrain.Instance.characterStats.burst = true;
-                    PlayerBrain.Instance.meshFilter.mesh = PlayerBrain.Instance.burstMesh;
+                    PlayerBrain.Instance.burstMesh.enabled = true;
                 }
                 break;
-                case PowerUpType.LightPing:
+                case PowerUpType.SonarPing:
                 {
-                    PlayerBrain.Instance.characterStats.lightPing = true;
-                }
-                break;
-                case PowerUpType.DoubleTorpedo:
-                {
-                    PlayerBrain.Instance.characterStats.doubleTorpedo = true;
-                }
-                break;
-                case PowerUpType.Bomb:
-                {
-                    PlayerBrain.Instance.characterStats.bomb = true;
+                    PlayerBrain.Instance.characterStats.sonarPing = true;
+                    PlayerBrain.Instance.sonarPingMesh.enabled = true;
                 }
                 break;
             }
             gameObject.SetActive(false);
         }
-
     }
 
 

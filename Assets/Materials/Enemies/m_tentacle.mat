@@ -58,18 +58,24 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ZWrite: 0
-    - _colorFalloff: 0.52
-    - _gridFalloff: 0.29
-    - _gridScale: 21.22
+    - _colorFalloff: 51.5
+    - _gridFalloff: 0.02
+    - _gridScale: 10.32
+    - _hit: 0
     - _interpolation: 0.2
+    - _minDark: 0
+    - _power: 186.87
+    - _powerUp: -4.2
     - _randomColors: 1
-    - _steps: 152.71
-    - _thickness: 0.24
+    - _steps: 25.91
+    - _thickness: 0.22
+    - _useLighting: 1
+    - _useLights: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _innerColor: {r: 4, g: 0, b: 0, a: 0}
-    - _outerColor: {r: 0.120150566, g: 4, b: 0, a: 0}
+    - _innerColor: {r: 0.7490196, g: 0.055712383, b: 0, a: 0}
+    - _outerColor: {r: 0.68770164, g: 0, b: 0.7490196, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1208932412421073585

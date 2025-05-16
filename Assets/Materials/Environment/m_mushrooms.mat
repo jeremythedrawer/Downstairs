@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-314657021744556522
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_walls
+  m_Name: m_mushrooms
   m_Shader: {fileID: -6465566751694194690, guid: 3fde0c3c4f9ddfc458c02ac3585bd713, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -97,7 +110,6 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Float: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -116,38 +128,24 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _colorFalloff: 0.52
-    - _gridFalloff: 0.22
-    - _gridScale: 7.19
+    - _gridFalloff: 0
+    - _gridScale: 17.1
     - _hit: 0
-    - _interpolation: 0.07
-    - _minDark: 0
-    - _power: 25.43
+    - _interpolation: 0
+    - _minDark: 0.01
+    - _power: 1
     - _powerUp: 0
     - _randomColors: 1
-    - _steps: 50
-    - _thickness: 0.14
+    - _steps: 6.48
+    - _thickness: 0.11
     - _useLighting: 1
-    - _useLights: 1
+    - _useLights: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _innerColor: {r: 0.23843007, g: 0.3584906, b: 0.30450293, a: 0}
-    - _outerColor: {r: 0.04481131, g: 0.26232558, b: 0.5, a: 0}
-    - _powerUpColor: {r: 0, g: 1, b: 0, a: 0}
+    - _innerColor: {r: 0, g: 1.9040879, b: 11.984315, a: 0}
+    - _outerColor: {r: 0, g: 0.5592303, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &6235676900738613051
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 9

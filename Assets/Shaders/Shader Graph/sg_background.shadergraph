@@ -1505,6 +1505,9 @@
             "m_Id": "de9b8748079e4b0aa9cce7dad2b72b8a"
         },
         {
+            "m_Id": "c36fd442b35c4882a1e085719fa0a750"
+        },
+        {
             "m_Id": "e7ac82ecf27d4e339b61b956c0e71b04"
         },
         {
@@ -1532,7 +1535,8 @@
         "3a10450f-5767-4c4f-81f2-5174b074767f",
         "2fd6eff8-c398-41c3-88cd-702e4f985f5d",
         "7431891c-aff0-4d9e-a16a-3913df1af8d6",
-        "da3ad2d7-685d-4d19-9ab0-5490345dc6d8"
+        "da3ad2d7-685d-4d19-9ab0-5490345dc6d8",
+        "9a8c7b98-25e7-4bdb-be21-3a7ef1c3702c"
     ],
     "m_PropertyIds": [
         708669356,
@@ -1546,7 +1550,8 @@
         2105054297,
         490371495,
         -59877742,
-        -542025948
+        -542025948,
+        -2095203280
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -2049,6 +2054,21 @@
         "x": 0.0,
         "y": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "c36fd442b35c4882a1e085719fa0a750",
+    "m_Id": -2095203280,
+    "m_DisplayName": "minDark",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_minDark",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
