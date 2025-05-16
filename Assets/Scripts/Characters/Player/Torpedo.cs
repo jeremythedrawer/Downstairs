@@ -36,7 +36,7 @@ public class Torpedo : Projectile
 
             yield return null;
         }
-
+        yield return new WaitForEndOfFrame();
         pool.Release(this);
 
         timeElapsed = 0f;

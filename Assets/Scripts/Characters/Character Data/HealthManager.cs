@@ -55,7 +55,7 @@ public class HealthManager : MonoBehaviour
     private IEnumerator LoosingHealth(Transform enemyTransform)
     {
         Vector3 knockBackDir = (transform.position - enemyTransform.position).normalized;
-        float knockBackForce = 10f;
+        float knockBackForce = 5f;
         float torqueForce = 50f;
 
         float randomDirection = Random.value > 0.5f ? 1f : -1f;

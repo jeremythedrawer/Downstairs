@@ -32,10 +32,6 @@ public class SeaUrchinSpawner : ObjectPoolSpawner<SeaUrchin>
             {
                 SpawnSeaUrchin();
             }
-            else
-            {
-                Debug.Log("Sea Urchin count has reached maximum size");
-            }
             yield return new WaitForSeconds(2f);
         }
     }

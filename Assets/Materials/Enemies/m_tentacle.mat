@@ -64,11 +64,12 @@ Material:
     - _hit: 0
     - _interpolation: 0.2
     - _minDark: 0
-    - _power: 186.87
+    - _power: 46.46
     - _powerUp: -4.2
     - _randomColors: 1
     - _steps: 25.91
     - _thickness: 0.22
+    - _useAlpha: 1
     - _useLighting: 1
     - _useLights: 0
     m_Colors:

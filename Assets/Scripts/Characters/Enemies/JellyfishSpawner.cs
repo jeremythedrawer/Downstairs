@@ -28,10 +28,6 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
             {
                 SpawnJellyFish();
             }
-            else
-            {
-                Debug.Log("Jellyfish count has reached maximum size");
-            }
             yield return new WaitForSeconds(2f);
         }
     }

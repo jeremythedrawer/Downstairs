@@ -32,10 +32,6 @@ public class AnglerfishSpawner : ObjectPoolSpawner<Anglerfish>
             {
                 SpawnAnglerfish();
             }
-            else
-            {
-                Debug.Log("Anglerfish count has reached maximum size");
-            }
             yield return new WaitForSeconds(2f);
         }
     }
@@ -52,7 +48,6 @@ public class AnglerfishSpawner : ObjectPoolSpawner<Anglerfish>
         }
         anglerfishes.Add(anglerfish);
         Vector3 randomPos = GetRandomPosition();
-        Debug.Log(randomPos);
         anglerfish.transform.position = randomPos;
         anglerfish.gameObject.SetActive(true);
         anglerfish.gameObject.transform.SetParent(this.transform);

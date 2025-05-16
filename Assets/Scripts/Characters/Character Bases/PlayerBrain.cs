@@ -24,19 +24,19 @@ public class PlayerBrain : CharacterBrain
     private void Update()
     {
         MoveInputs();
-        Shoot();
+        Shoot(kickbackForce: 2f);
         Burst();
         healthManager.LooseHealth(capsuleCollider.bounds, enemyLayer);
     }
     private void MoveInputs()
     {
         movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : 0;
-        movementController.shootInput = Input.GetMouseButtonDown(0);
+        movementController.shootInput = Input.GetKeyDown(KeyCode.Space);
         movementController.burstInput = Input.GetKeyDown(KeyCode.LeftShift);
         movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
     }
 
-    private void Shoot()
+    private void Shoot(float kickbackForce)
     {
         currentTorpCoolDownTime -= Time.deltaTime;
         if (movementController.shootInput && currentTorpCoolDownTime <= 0f)
@@ -44,6 +44,7 @@ public class PlayerBrain : CharacterBrain
             if (characterStats.canon)
             {
                 torpedoSpawner.FireTorpedo();
+                body.AddForce(-transform.up * kickbackForce, ForceMode.Impulse);
             }
             currentTorpCoolDownTime = torpedoCoolDownTime;
         }

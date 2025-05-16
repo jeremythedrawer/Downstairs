@@ -72,7 +72,7 @@ Material:
     - _QueueOffset: 0
     - _ZWrite: 0
     - _gridFallOff: 0.32
-    - _gridScale: 80
+    - _gridScale: 34.03
     - _interpolation: 0.24
     - _tailSize: 4
     - _thickness: 0.23
