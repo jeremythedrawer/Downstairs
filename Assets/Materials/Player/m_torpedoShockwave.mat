@@ -127,9 +127,9 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _gridFallOff: 0.316
+    - _gridFallOff: 0.298
     - _gridScale: 18.5
-    - _interpolation: 0.34
+    - _interpolation: 1
     - _tailSize: 4
     - _thickness: 0.28
     - _time: 0

@@ -6,7 +6,7 @@ public class EnemyBase : MonoBehaviour
     public BoxCollider boxCollider;
     public EnemyShaderController enemyShaderController;
     public float health;
-    public float hitStrength;
+    public float hitPoints;
     public float moveSpeed;
 
     [SerializeField] float materialFlickerTime = 0.05f;

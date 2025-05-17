@@ -13,8 +13,6 @@ public class BreakableWallPart : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         {
-            Debug.Log("torpedo layer");
-            // Use transform direction instead, since there's no Rigidbody
             Vector3 forceDirection = (transform.position - other.transform.position).normalized;
             parentWall?.BreakWall(forceDirection);
         }

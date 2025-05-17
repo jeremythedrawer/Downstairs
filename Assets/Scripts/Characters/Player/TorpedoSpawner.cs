@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TorpedoSpawner : ObjectPoolSpawner<Torpedo>
 {
-    public TorpedoShaderController shockwaveShaderController;
+    public BasicTimeShaderController shockwaveShaderController;
     protected override void Start()
     {
        base.Start();

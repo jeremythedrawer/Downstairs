@@ -75,8 +75,8 @@ Material:
     - _gridScale: 34.03
     - _interpolation: 0.24
     - _tailSize: 4
-    - _thickness: 0.23
-    - _time: 1
+    - _thickness: 0.07
+    - _time: 0.67
     - _useLights: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

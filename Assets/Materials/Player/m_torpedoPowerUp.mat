@@ -26,10 +26,10 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _gridFallOff: 0.415
+    - _gridFallOff: 0.181
     - _gridScale: 14.31
     - _tailSize: 2.5
-    - _thickness: 0.165
+    - _thickness: 0.072
     - _time: 1
     - _useLights: 1
     m_Colors:

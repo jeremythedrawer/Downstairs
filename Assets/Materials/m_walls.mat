@@ -116,6 +116,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _colorFalloff: 0.52
+    - _debug: 0
     - _gridFalloff: 0.22
     - _gridScale: 7.19
     - _hit: 0

@@ -21,8 +21,8 @@ public class BreakableWall : MonoBehaviour
 
         Debug.Log("torpedo hit");
 
-        Vector3 explosionOrigin = transform.position;  // center of explosion
-        float explosionRadius = 5f;                    // tweak this radius as needed
+        Vector3 explosionOrigin = transform.position;  
+        float explosionRadius = 5f; 
         float upwardsModifier = 1f;
 
         foreach (Rigidbody childRB in childRigidBodies)

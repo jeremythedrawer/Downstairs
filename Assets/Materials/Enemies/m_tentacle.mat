@@ -59,17 +59,18 @@ Material:
     - _QueueOffset: 0
     - _ZWrite: 0
     - _colorFalloff: 51.5
+    - _debug: 0
     - _gridFalloff: 0.02
-    - _gridScale: 10.32
+    - _gridScale: 15
     - _hit: 0
-    - _interpolation: 0.2
+    - _interpolation: 1.2
     - _minDark: 0
-    - _power: 46.46
+    - _power: 99.3
     - _powerUp: -4.2
     - _randomColors: 1
-    - _steps: 25.91
-    - _thickness: 0.22
-    - _useAlpha: 1
+    - _steps: 47.61
+    - _thickness: 0.08
+    - _useAlpha: 0
     - _useLighting: 1
     - _useLights: 0
     m_Colors:

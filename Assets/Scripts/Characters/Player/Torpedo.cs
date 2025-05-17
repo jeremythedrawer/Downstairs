@@ -4,42 +4,59 @@ using UnityEngine.Pool;
 
 public class Torpedo : Projectile
 {
-    public TorpedoShaderController shaderController;
-
-    public float sprayFactor = 5f;
+    public BasicTimeShaderController shaderController;
+    public BasicTimeShaderController explosionShaderController;
+    public MeshRenderer torpedoRenderer;
+    public BoxCollider explosionCollider;
 
     private float shaderSpeed = 1f;
-    private float timeElapsed = 0f;
 
-
-
-
+    private void Update()
+    {
+        
+    }
     public void UpdateTorpedo(ObjectPool<Torpedo> pool)
     {
         StartCoroutine(UpdatingTorpedo(pool));
     }
     private IEnumerator UpdatingTorpedo(ObjectPool<Torpedo> pool)
     {
+        float elapsedTime = 0f;
         shaderController.time = 0f;
-        float angleOffset = Random.Range(-sprayFactor, sprayFactor);
         Vector2 baseDir = PlayerBrain.Instance.currentDir.normalized;
-        Vector2 direction = Quaternion.Euler(0, 0, angleOffset) * baseDir;
 
-        while (timeElapsed < Mathf.PI * 2 && !hasHit)
+        while (elapsedTime < Mathf.PI * 2 && !hasHit)
         {
-            transform.position += (Vector3)(direction * posSpeed * Time.deltaTime);
+            transform.position += (Vector3)(baseDir * posSpeed * Time.deltaTime);
 
 
-            shaderController.time = 0.5f * (Mathf.Sin(timeElapsed * shaderSpeed) + 1f);
+            shaderController.time = 0.5f * (Mathf.Sin(elapsedTime * shaderSpeed) + 1f);
 
-            timeElapsed += Time.deltaTime * 2f;
+            elapsedTime += Time.deltaTime * 2f;
 
             yield return null;
         }
+
+        if (hasHit)
+        {
+            torpedoRenderer.enabled = false;
+            explosionCollider.enabled = true;
+            elapsedTime = 0f;
+            float explosionTime = 0.5f;
+
+            while (elapsedTime < explosionTime)
+            {
+                elapsedTime += Time.deltaTime;
+                explosionShaderController.time = elapsedTime / explosionTime;
+                yield return null;
+            }
+            explosionShaderController.time = 0f;
+        }
         yield return new WaitForEndOfFrame();
+        explosionCollider.enabled = false;
+        torpedoRenderer.enabled = true;
+        shaderController.time = 0f;
         pool.Release(this);
 
-        timeElapsed = 0f;
-        shaderController.time = 0f;
     }
 }

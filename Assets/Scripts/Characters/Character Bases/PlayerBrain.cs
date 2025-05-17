@@ -16,7 +16,7 @@ public class PlayerBrain : CharacterBrain
     public Vector2 currentPos => CameraController.mainCam.WorldToViewportPoint(transform.position);
     public Vector2 currentDir => transform.up;
 
-    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask hitLayer;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -26,7 +26,7 @@ public class PlayerBrain : CharacterBrain
         MoveInputs();
         Shoot(kickbackForce: 2f);
         Burst();
-        healthManager.LooseHealth(capsuleCollider.bounds, enemyLayer);
+        healthManager.LooseHealth(capsuleCollider.bounds, hitLayer);
     }
     private void MoveInputs()
     {

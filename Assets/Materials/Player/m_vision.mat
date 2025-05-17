@@ -82,7 +82,7 @@ Material:
     - _edge: 0.21
     - _edges: 0.31
     - _float: 1
-    - _gridFallOff: 1.26
+    - _gridFallOff: 1.17
     - _gridScale: 7.4
     - _innerCircle: -7.89
     - _interpolation: 0.23
@@ -91,14 +91,14 @@ Material:
     - _lightDistance_1: -2.19
     - _lightFallolff: 12.33
     - _lightStrength: 1.7
-    - _steps: 6.3
-    - _thickness: 0.285
+    - _steps: 6.74
+    - _thickness: 0.105
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _Vector2: {r: 1, g: 1, b: 0, a: 0}
     - _color: {r: 0, g: 0.588679, b: 0.735849, a: 0}
-    - _innerColor: {r: 0.3773585, g: 0.353293, b: 0.076539695, a: 0}
+    - _innerColor: {r: 0.13308269, g: 0.1792453, b: 0.027901392, a: 0}
     - _lightSourcePos: {r: 1, g: 0.27, b: 0, a: 0}
     - _origin: {r: 0, g: 0, b: 0, a: 0}
     - _outerColor: {r: 0, g: 0.007766871, b: 0.01886791, a: 1}

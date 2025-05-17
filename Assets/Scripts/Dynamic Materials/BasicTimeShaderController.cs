@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TorpedoShaderController : RendererManager
+public class BasicTimeShaderController : RendererManager
 {
     public float time { get; set; }
     private readonly int timeID = Shader.PropertyToID("_time");
