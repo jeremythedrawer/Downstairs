@@ -143,7 +143,7 @@ Material:
     - _randomColors: 1
     - _speed: 2
     - _steps: 74.35
-    - _thickness: 0.182
+    - _thickness: 0
     - _useLights: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

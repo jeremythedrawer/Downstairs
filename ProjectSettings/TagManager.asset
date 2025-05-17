@@ -19,8 +19,8 @@ TagManager:
   - Bullet
   - Wall
   - Player
-  - 
-  - 
+  - Grab
+  - BreakWall
   - 
   - 
   - 

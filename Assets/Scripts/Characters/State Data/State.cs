@@ -8,7 +8,7 @@ public abstract class State : MonoBehaviour
 
     protected StateManager core;
     protected PlayerBrain brain;
-    protected CapsuleCollider capsuleCollider => brain.capsuleCollider;
+    protected SphereCollider sphereCollider => brain.sphereCollider;
     protected MovementController movementController => brain.movementController;
     protected StateList stateList => core.stateList;
 

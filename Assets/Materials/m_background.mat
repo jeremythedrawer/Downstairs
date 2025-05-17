@@ -145,10 +145,11 @@ Material:
     - _colorStrength: 3.75
     - _gridFallOff: 0.15
     - _gridScale: 5.91
+    - _inverseLightMask: 0
     - _randomColors: 1
     - _steps: 11.25
     - _thickness: 0.21
-    - _useLights: 0
+    - _useLights: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

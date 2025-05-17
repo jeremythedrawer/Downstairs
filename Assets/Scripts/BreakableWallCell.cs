@@ -1,20 +1,33 @@
+using System.Collections;
 using UnityEngine;
 
 public class BreakableWallPart : MonoBehaviour
 {
-    private BreakableWall parentWall;
-
+    private Rigidbody body;
+    private bool grabbed;
+    private Transform parent;
     private void Start()
     {
-        parentWall = GetComponentInParent<BreakableWall>();
+        body = GetComponent<Rigidbody>();
+        parent = transform.parent;
     }
 
+    private void Update()
+    {
+        if (grabbed)
+        {
+            if (PlayerBrain.Instance.armController.releaseObject)
+            {
+                transform.parent = parent;
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Grab"))
         {
-            Vector3 forceDirection = (transform.position - other.transform.position).normalized;
-            parentWall?.BreakWall(forceDirection);
+            transform.parent = other.transform;
+            grabbed = true;
         }
     }
 }

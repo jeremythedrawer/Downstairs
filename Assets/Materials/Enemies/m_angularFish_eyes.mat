@@ -39,6 +39,8 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _offset: 0
+    - _thickness: 0
     - _useLights: 1
     m_Colors: []
   m_BuildTextureStacks: []

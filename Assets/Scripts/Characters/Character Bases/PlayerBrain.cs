@@ -7,10 +7,8 @@ public class PlayerBrain : CharacterBrain
 {
     public static PlayerBrain Instance { get; private set; }
 
-    public TorpedoSpawner torpedoSpawner;
-    [SerializeField] private float torpedoCoolDownTime = 5f;
     [SerializeField] private float burstCoolDownTime = 2f;
-    private float currentTorpCoolDownTime;
+
     private float currentBurstCoolDownTime;
 
     public Vector2 currentPos => CameraController.mainCam.WorldToViewportPoint(transform.position);
@@ -24,29 +22,30 @@ public class PlayerBrain : CharacterBrain
     private void Update()
     {
         MoveInputs();
-        Shoot(kickbackForce: 2f);
+        UseArm();
         Burst();
-        healthManager.LooseHealth(capsuleCollider.bounds, hitLayer);
+        healthManager.LooseHealth(sphereCollider.bounds, hitLayer);
     }
     private void MoveInputs()
     {
-        movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : 0;
-        movementController.shootInput = Input.GetKeyDown(KeyCode.Space);
+        movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
+        movementController.grabInput = Input.GetKeyDown(KeyCode.Space);
         movementController.burstInput = Input.GetKeyDown(KeyCode.LeftShift);
         movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
     }
 
-    private void Shoot(float kickbackForce)
+    private void UseArm()
     {
-        currentTorpCoolDownTime -= Time.deltaTime;
-        if (movementController.shootInput && currentTorpCoolDownTime <= 0f)
+        if (movementController.grabInput)
         {
-            if (characterStats.canon)
+            if (!armController.usingClaw)
             {
-                torpedoSpawner.FireTorpedo();
-                body.AddForce(-transform.up * kickbackForce, ForceMode.Impulse);
+                armController.Extend();
             }
-            currentTorpCoolDownTime = torpedoCoolDownTime;
+            else
+            {    
+                armController.Retract();
+            }
         }
     }
 
@@ -73,4 +72,5 @@ public class PlayerBrain : CharacterBrain
         }
         characterStats.linearSpeed = normSpeed;
     }
+
 }
