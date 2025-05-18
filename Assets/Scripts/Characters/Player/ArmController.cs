@@ -19,6 +19,7 @@ public class ArmController : MonoBehaviour
 
     private Collider currentGrabbedCollider;
 
+    private FixedJoint joint;
     private void Update()
     {
         grabTrigger.enabled = usingClaw;
@@ -39,8 +40,20 @@ public class ArmController : MonoBehaviour
                 if (!releaseObject && currentGrabbedCollider == null)
                 {
                     currentGrabbedCollider = hits[0];
-                    currentGrabbedCollider.enabled = false; // Disable collider
-                    currentGrabbedCollider.transform.parent = grabTrigger.transform;
+                    Rigidbody grabbedRB = currentGrabbedCollider.attachedRigidbody;
+
+                    if (grabbedRB != null)
+                    {
+                        if (joint != null) Destroy(joint);
+
+                        grabbedRB.constraints = RigidbodyConstraints.None;
+
+                        joint = PlayerBrain.Instance.body.gameObject.AddComponent<FixedJoint>();
+                        joint.connectedBody = grabbedRB;
+                        joint.breakForce = Mathf.Infinity;
+                        joint.breakTorque = Mathf.Infinity;
+
+                    }
                     grabbedSomething = true;
                 }
             }
@@ -53,8 +66,12 @@ public class ArmController : MonoBehaviour
             if (releaseObject && currentGrabbedCollider != null)
             {
                 Debug.Log("releasing object");
-                currentGrabbedCollider.transform.parent = null;
-                currentGrabbedCollider.enabled = true; // Re-enable collider
+                if (joint != null)
+                {
+                    Destroy(joint);
+                    joint = null;
+                }
+
                 currentGrabbedCollider = null;
                 grabbedSomething = false;
             }

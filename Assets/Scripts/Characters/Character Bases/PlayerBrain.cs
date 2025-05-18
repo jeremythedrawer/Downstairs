@@ -36,7 +36,7 @@ public class PlayerBrain : CharacterBrain
 
     private void UseArm()
     {
-        if (movementController.grabInput)
+        if (movementController.grabInput && characterStats.arm)
         {
             if (!armController.usingClaw)
             {

@@ -14,7 +14,7 @@ public class CharacterStats : MonoBehaviour
 
 
     [Header("Power Up Checks")]
-    public bool canon;
+    public bool arm;
     public bool burst;
     public bool sonarPing;
 }

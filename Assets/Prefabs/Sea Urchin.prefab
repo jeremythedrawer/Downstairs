@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7692834654548717235}
   - component: {fileID: 6170158960694468085}
   - component: {fileID: 7268483433038791871}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cone (2)
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,9 +139,9 @@ GameObject:
   - component: {fileID: 3930955459542751550}
   - component: {fileID: 5301527040007438003}
   - component: {fileID: 49729195826193381}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cone (3)
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,9 +265,9 @@ GameObject:
   - component: {fileID: 2521021264943967560}
   - component: {fileID: 6210004455104057885}
   - component: {fileID: 9061070022408296837}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cone (7)
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,9 +391,9 @@ GameObject:
   - component: {fileID: 5257834170476421636}
   - component: {fileID: 8292415985241902160}
   - component: {fileID: 5713865401229252808}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cone (4)
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -517,9 +517,9 @@ GameObject:
   - component: {fileID: 4051555260155816551}
   - component: {fileID: 3200297844031081506}
   - component: {fileID: 7214544500487160828}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cone (6)
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -643,9 +643,9 @@ GameObject:
   - component: {fileID: 2586333895099580825}
   - component: {fileID: 5317063230950320755}
   - component: {fileID: 8871806340830123823}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cone (5)
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -769,9 +769,9 @@ GameObject:
   - component: {fileID: 891130533693066068}
   - component: {fileID: 4286765569307636783}
   - component: {fileID: 5340619333867385137}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cone (1)
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -976,11 +976,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9013638940889411661, guid: 46b59f09b14caa940a9acb2ce3e754fc, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9013638940889411661, guid: 46b59f09b14caa940a9acb2ce3e754fc, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Projectile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1047,10 +1047,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 83962749883960129}
   enemyShaderController: {fileID: 2805171508305953957}
-  health: 150
-  hitStrength: 10
+  hitPoints: 0
   moveSpeed: 0
-  materialFlickerTime: 0.05
   spawner: {fileID: 0}
   hitMask:
     serializedVersion: 2

@@ -12,7 +12,7 @@ public abstract class CharacterBrain : MonoBehaviour
     public PlayerMaterialController playerMaterialController;
     public ArmController armController;
 
-    public MeshRenderer canonMesh;
-    public MeshRenderer burstMesh;
-    public MeshRenderer sonarPingMesh;
+    public GameObject armObject;
+    public GameObject burstObject;
+    public GameObject sonarPingObject;
 }

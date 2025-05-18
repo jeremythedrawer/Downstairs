@@ -6,14 +6,9 @@ public class Jellyfish : Enemy<Jellyfish>
     private bool isMoving;
     private float currentTime;
     public JellyfishSpawner jellyfishSpawner {  get; set; }
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
         UpdatePos();
-        if (jellyfishSpawner != null)
-        {
-            ReleaseToPool(this, () => jellyfishSpawner.jellyfishes.Remove(this));
-        }
     }
 
 

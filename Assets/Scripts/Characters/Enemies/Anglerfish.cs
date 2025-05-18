@@ -18,15 +18,9 @@ public class Anglerfish : Enemy<Anglerfish>
     {
         targetRotation = transform.rotation;
     }
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
         UpdatePos();
-
-        if (anglerfishSpawner != null)
-        {
-            ReleaseToPool(this, () => anglerfishSpawner.anglerfishes.Remove(this));
-        }
     }
 
     private void UpdatePos()

@@ -4,7 +4,7 @@ public class PowerUp : MonoBehaviour
 {
     public enum PowerUpType
     { 
-        Canon,
+        Arm,
         TurboBoost,
         SonarPing,
     }
@@ -16,22 +16,22 @@ public class PowerUp : MonoBehaviour
         {
             switch (powerUpType)
             {
-                case PowerUpType.Canon:
+                case PowerUpType.Arm:
                 {
-                    PlayerBrain.Instance.characterStats.canon = true;
-                    PlayerBrain.Instance.canonMesh.enabled = true;
+                    PlayerBrain.Instance.characterStats.arm = true;
+                    PlayerBrain.Instance.armObject.SetActive(true);
                 }
                 break;
                 case PowerUpType.TurboBoost:
                 {
                     PlayerBrain.Instance.characterStats.burst = true;
-                    PlayerBrain.Instance.burstMesh.enabled = true;
+                    PlayerBrain.Instance.burstObject.SetActive(true);
                 }
                 break;
                 case PowerUpType.SonarPing:
                 {
                     PlayerBrain.Instance.characterStats.sonarPing = true;
-                    PlayerBrain.Instance.sonarPingMesh.enabled = true;
+                    PlayerBrain.Instance.sonarPingObject.SetActive(true);
                 }
                 break;
             }

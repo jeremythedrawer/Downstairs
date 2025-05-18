@@ -15,18 +15,9 @@ public class SeaUrchin : Enemy<SeaUrchin>
         shaderController = enemyShaderController as SeaUrchinShaderController;
         spikes = GetComponentsInChildren<SeaUrchinSpike>();
     }
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
         Shoot();
-        if (seaUrchinSpawner != null)
-        {
-            ReleaseToPool(this, () => seaUrchinSpawner.seaUrchins.Remove(this));
-        }
-        else
-        {
-            DestroyForever(this);
-        }
     }
 
     private void Shoot()
