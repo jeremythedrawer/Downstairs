@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] private float wallHitPoints = 3f;
     [SerializeField] private float enemyKnockBackForce = 5f;
     [SerializeField] private float wallKnockBackForce = 1f;
     [SerializeField] private float torqueForce = 50f;
@@ -57,19 +56,6 @@ public class HealthManager : MonoBehaviour
                         else
                         {
                             Debug.LogWarning(hit.gameObject.name + "Doesnt have an Projectile Script attached");
-                        }
-                    }
-                    break;
-
-                    case "Wall":
-                    {
-                        Vector3 dir = (hit.bounds.center - transform.position).normalized;
-
-                        if (Physics.Raycast(transform.position, dir, out RaycastHit hitInfo, 2f, LayerMask.GetMask("Wall")))
-                        {
-                            Vector3 knockBackDir = hitInfo.normal;
-                            StartCoroutine(LoosingHealth(wallHitPoints, wallKnockBackForce, knockBackDir));
-
                         }
                     }
                     break;

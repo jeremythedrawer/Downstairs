@@ -110,6 +110,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _Float: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -128,6 +129,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _colorFalloff: 0.52
+    - _debug: 0
     - _gridFalloff: 0
     - _gridScale: 17.1
     - _hit: 0
@@ -138,6 +140,7 @@ Material:
     - _randomColors: 1
     - _steps: 6.48
     - _thickness: 0.11
+    - _useAlpha: 0
     - _useLighting: 1
     - _useLights: 0
     m_Colors:
@@ -145,7 +148,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _innerColor: {r: 0, g: 1.9040879, b: 11.984315, a: 0}
+    - _innerColor: {r: 0, g: 0.119005494, b: 0.7490197, a: 0}
     - _outerColor: {r: 0, g: 0.5592303, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

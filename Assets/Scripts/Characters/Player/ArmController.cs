@@ -46,7 +46,7 @@ public class ArmController : MonoBehaviour
                     {
                         if (joint != null) Destroy(joint);
 
-                        grabbedRB.constraints = RigidbodyConstraints.None;
+                        grabbedRB.isKinematic = false;
 
                         joint = PlayerBrain.Instance.body.gameObject.AddComponent<FixedJoint>();
                         joint.connectedBody = grabbedRB;

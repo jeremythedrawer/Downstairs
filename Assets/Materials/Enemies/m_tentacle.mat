@@ -55,12 +55,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _Float: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ZWrite: 0
     - _colorFalloff: 51.5
     - _debug: 0
-    - _gridFalloff: 0.02
+    - _gridFalloff: 3.59
     - _gridScale: 15
     - _hit: 0
     - _interpolation: 1.2
@@ -68,7 +69,7 @@ Material:
     - _power: 99.3
     - _powerUp: -4.2
     - _randomColors: 1
-    - _steps: 47.61
+    - _steps: 47.88
     - _thickness: 0.08
     - _useAlpha: 0
     - _useLighting: 1

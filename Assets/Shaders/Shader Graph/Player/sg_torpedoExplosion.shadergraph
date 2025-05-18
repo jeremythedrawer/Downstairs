@@ -1626,6 +1626,20 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "54e5a561f5c645b2a09c5144295bd382",
+    "m_Id": 1979371471,
+    "m_DisplayName": "inverseLightMask",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_inverseLightMask",
+    "m_StageCapability": 3,
+    "m_Value": false,
+    "m_DefaultValue": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "55c1320097c54198a90e6f0f1f0c98a1",
     "m_Id": 1,
@@ -1923,6 +1937,9 @@
             "m_Id": "3efc51908e374480a98c7d290404003f"
         },
         {
+            "m_Id": "54e5a561f5c645b2a09c5144295bd382"
+        },
+        {
             "m_Id": "55c1320097c54198a90e6f0f1f0c98a1"
         },
         {
@@ -1948,7 +1965,8 @@
         "dd29943c-1c9d-4a4e-baaa-7cd9b886b1e4",
         "7431891c-aff0-4d9e-a16a-3913df1af8d6",
         "3a10450f-5767-4c4f-81f2-5174b074767f",
-        "9a8c7b98-25e7-4bdb-be21-3a7ef1c3702c"
+        "9a8c7b98-25e7-4bdb-be21-3a7ef1c3702c",
+        "e081c5f0-e7b9-453e-88b9-15420e545092"
     ],
     "m_PropertyIds": [
         708669356,
@@ -1960,7 +1978,8 @@
         -1431657309,
         -59877742,
         2105054297,
-        -2095203280
+        -2095203280,
+        1979371471
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
