@@ -868,7 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DitherWorldGridVolumeComponent
   active: 1
   gridScale:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 10
 --- !u!114 &6940869943325143175
 MonoBehaviour:

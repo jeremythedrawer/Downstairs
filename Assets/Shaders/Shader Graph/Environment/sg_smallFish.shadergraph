@@ -522,20 +522,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
-    "m_ObjectId": "118b414d59974c86b8e39454e64de390",
-    "m_Id": 1979371471,
-    "m_DisplayName": "inverseLightMask",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_inverseLightMask",
-    "m_StageCapability": 3,
-    "m_Value": false,
-    "m_DefaultValue": false
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.TangentMaterialSlot",
     "m_ObjectId": "11bba0f7e97147b8bf152cc0d58ea549",
     "m_Id": 0,
@@ -986,9 +972,6 @@
         },
         {
             "m_Id": "21d6833efb3f4a519f93b7193d6a256d"
-        },
-        {
-            "m_Id": "118b414d59974c86b8e39454e64de390"
         },
         {
             "m_Id": "058e91db0e8a4d8eafebf2e6a2b8ec63"

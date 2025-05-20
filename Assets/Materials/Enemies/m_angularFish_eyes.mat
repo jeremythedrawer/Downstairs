@@ -42,6 +42,8 @@ Material:
     - _offset: 0
     - _thickness: 0
     - _useLights: 1
-    m_Colors: []
+    m_Colors:
+    - _innerColor: {r: 1, g: 1, b: 1, a: 0}
+    - _outColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

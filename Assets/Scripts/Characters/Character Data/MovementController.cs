@@ -9,6 +9,7 @@ public class MovementController : MonoBehaviour
     public float rotationInput { get; set; }
     public bool grabInput { get; set; }
     public bool burstInput { get; set; }
+    public bool sonarPingInput { get; set; }
     public bool canMove { get; set; } = true;
 
     private float desiredAngle;

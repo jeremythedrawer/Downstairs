@@ -174,9 +174,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -256.0329895019531,
-            "y": -108.03296661376953,
-            "width": 208.0,
+            "x": -220.9999542236328,
+            "y": 298.99993896484377,
+            "width": 207.9999542236328,
             "height": 302.0
         }
     },
@@ -213,10 +213,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1313.0001220703125,
-            "y": 76.0,
+            "x": -1724.0,
+            "y": -188.99996948242188,
             "width": 127.0,
-            "height": 34.0
+            "height": 34.00001525878906
         }
     },
     "m_Slots": [
@@ -364,9 +364,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 357.0,
-            "y": -268.0000305175781,
-            "width": 123.00006103515625,
+            "x": -13.000009536743164,
+            "y": -391.0,
+            "width": 122.9999771118164,
             "height": 77.0
         }
     },
@@ -440,10 +440,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -388.0,
-            "y": -25.00001335144043,
-            "width": 104.0,
-            "height": 34.0
+            "x": -352.9998779296875,
+            "y": 382.0,
+            "width": 103.99996948242188,
+            "height": 33.999969482421878
         }
     },
     "m_Slots": [
@@ -534,41 +534,41 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "AddAdditionalLights (Custom Function)",
+    "m_Name": "ComputeTotalAttenuation (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1053.0001220703125,
-            "y": -19.0,
-            "width": 269.0,
+            "x": -1500.0,
+            "y": -256.9999694824219,
+            "width": 300.0,
             "height": 278.0
         }
     },
     "m_Slots": [
         {
-            "m_Id": "bece3ffe27394293a9348489db9ce53d"
+            "m_Id": "d0941f1400c1432e9fdeb0ac417ae9dc"
         },
         {
-            "m_Id": "d0941f1400c1432e9fdeb0ac417ae9dc"
+            "m_Id": "bece3ffe27394293a9348489db9ce53d"
         }
     ],
     "synonyms": [
         "code",
         "HLSL"
     ],
-    "m_Precision": 0,
+    "m_Precision": 2,
     "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
+    "m_PreviewMode": 1,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_SourceType": 1,
-    "m_FunctionName": "AddAdditionalLights",
+    "m_SourceType": 0,
+    "m_FunctionName": "ComputeTotalAttenuation",
     "m_FunctionSource": "327b3b9817437a548b53d49976ada745",
     "m_FunctionSourceUsePragmas": true,
-    "m_FunctionBody": "TotalAttenuation = 0;\r\n#ifndef SHADERGRAPH_PREVIEW\r\n\r\n    uint pixelLightCount = GetAdditionalLightsCount();\r\n\r\n    LIGHT_LOOP_BEGIN(pixelLightCount)\r\n    \r\n        lightIndex = GetPerObjectLightIndex(lightIndex);\r\n        Light light = GetAdditionalPerObjectLight(lightIndex, WorldPosition);\r\n    \r\n        light.shadowAttenuation = AdditionalLightRealtimeShadow(lightIndex, WorldPosition, light.direction);\r\n        float atten = light.distanceAttenuation * light.shadowAttenuation;\r\n\r\n    \r\n        TotalAttenuation += atten;\r\n\r\n    LIGHT_LOOP_END\r\n#endif"
+    "m_FunctionBody": "TotalAttenuation = 0;\r\n#ifndef SHADERGRAPH_PREVIEW\r\n\r\n    uint pixelLightCount = GetAdditionalLightsCount();\r\n\r\n    LIGHT_LOOP_BEGIN(pixelLightCount)\r\n    \r\n        lightIndex = GetPerObjectLightIndex(lightIndex);\r\n        Light light = GetAdditionalPerObjectLight(lightIndex, WorldPosition);\r\n\r\n        float atten = light.distanceAttenuation;\r\n\r\n    \r\n        TotalAttenuation += atten;\r\n\r\n    LIGHT_LOOP_END\r\n#endif"
 }
 
 {
@@ -583,10 +583,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -629.0001220703125,
-            "y": -293.0000305175781,
-            "width": 208.00006103515626,
-            "height": 302.0000305175781
+            "x": -593.9998779296875,
+            "y": 113.99998474121094,
+            "width": 207.99993896484376,
+            "height": 302.0
         }
     },
     "m_Slots": [
@@ -739,10 +739,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -858.5781860351563,
-            "y": -191.10287475585938,
-            "width": 0.0,
-            "height": 0.0
+            "x": -719.9999389648438,
+            "y": 310.0000305175781,
+            "width": 108.0,
+            "height": 33.999969482421878
         }
     },
     "m_Slots": [

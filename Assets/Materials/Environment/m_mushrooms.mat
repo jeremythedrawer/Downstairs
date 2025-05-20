@@ -130,7 +130,7 @@ Material:
     - _ZWrite: 1
     - _colorFalloff: 0.52
     - _debug: 0
-    - _gridFalloff: 0
+    - _gridFalloff: 0.5
     - _gridScale: 17.1
     - _hit: 0
     - _interpolation: 0

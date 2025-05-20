@@ -24,13 +24,14 @@ public class PlayerBrain : CharacterBrain
         MoveInputs();
         UseArm();
         Burst();
+        UseSonarPing();
         healthManager.LooseHealth(sphereCollider.bounds, hitLayer);
     }
     private void MoveInputs()
     {
         movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
         movementController.grabInput = Input.GetKeyDown(KeyCode.Space);
-        movementController.burstInput = Input.GetKeyDown(KeyCode.LeftShift);
+        movementController.sonarPingInput = Input.GetKeyDown(KeyCode.LeftShift);
         movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
     }
 
@@ -49,6 +50,13 @@ public class PlayerBrain : CharacterBrain
         }
     }
 
+    private void UseSonarPing()
+    {
+        if (movementController.sonarPingInput && characterStats.sonarPing)
+        {
+            lightController.SonarPing();
+        }
+    }
     private void Burst()
     {
         currentBurstCoolDownTime -= Time.deltaTime;

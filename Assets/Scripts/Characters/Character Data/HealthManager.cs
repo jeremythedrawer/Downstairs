@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private float enemyKnockBackForce = 5f;
-    [SerializeField] private float wallKnockBackForce = 1f;
     [SerializeField] private float torqueForce = 50f;
     public float currentHealth { get; private set; }
     private bool canLooseHealth = true;

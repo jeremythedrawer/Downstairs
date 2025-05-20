@@ -126,7 +126,7 @@ Material:
     - _powerUp: 0
     - _randomColors: 1
     - _steps: 50
-    - _thickness: 0.09
+    - _thickness: 0.05
     - _useAlpha: 0
     - _useLighting: 1
     - _useLights: 1
@@ -135,8 +135,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _innerColor: {r: 0.23843007, g: 0.3584906, b: 0.30450293, a: 0}
-    - _outerColor: {r: 0.04481131, g: 0.26232558, b: 0.5, a: 0}
+    - _innerColor: {r: 0.027901383, g: 0.31132078, b: 0.1885057, a: 0}
+    - _outerColor: {r: 0, g: 0.05655147, b: 0.31132078, a: 0}
     - _powerUpColor: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
