@@ -139,7 +139,7 @@ Material:
     - _powerUp: 0
     - _randomColors: 1
     - _steps: 6.48
-    - _thickness: 0.11
+    - _thickness: 0.06
     - _useAlpha: 0
     - _useLighting: 1
     - _useLights: 0

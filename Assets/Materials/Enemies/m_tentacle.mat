@@ -61,7 +61,7 @@ Material:
     - _ZWrite: 0
     - _colorFalloff: 51.5
     - _debug: 0
-    - _gridFalloff: 3.45
+    - _gridFalloff: 0.28
     - _gridScale: 14.8
     - _hit: 0
     - _interpolation: 1.2
@@ -69,7 +69,7 @@ Material:
     - _power: 285.2
     - _powerUp: -4.2
     - _randomColors: 1
-    - _steps: 47.88
+    - _steps: 42.2
     - _thickness: 0.08
     - _useAlpha: 0
     - _useLighting: 1

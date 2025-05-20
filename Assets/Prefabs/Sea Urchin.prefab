@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 83962749883960129}
   enemyShaderController: {fileID: 2805171508305953957}
-  hitPoints: 0
+  hitPoints: 5
   moveSpeed: 0
   spawner: {fileID: 0}
   hitMask:
