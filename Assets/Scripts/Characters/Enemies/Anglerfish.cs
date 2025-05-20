@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Anglerfish : Enemy<Anglerfish>
 {
+    [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float chaseRadius = 5f;
+    [SerializeField] private float wallCheckDistance = 0.5f;
     private Vector3 targetPos;
 
     private bool isMoving;
@@ -30,6 +32,11 @@ public class Anglerfish : Enemy<Anglerfish>
 
         if (isMoving)
         {
+            if (IsHittingWall())
+            {
+                isMoving = false;
+                return;
+            }
 
             currentTime += Time.deltaTime;
             float speedPattern = SpeedPattern(currentTime, moveDuration);
@@ -77,10 +84,19 @@ public class Anglerfish : Enemy<Anglerfish>
         float t = time / duration;
         return Mathf.Pow(t, 2f);
     }
+    private bool IsHittingWall()
+    {
+        Vector3 direction = (targetPos - transform.position).normalized;
+        return Physics.Raycast(transform.position, direction, wallCheckDistance, wallLayer);
+    }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, chaseRadius);
+
+        Vector3 direction = (targetPos - transform.position).normalized;
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, direction * wallCheckDistance);
     }
 }
