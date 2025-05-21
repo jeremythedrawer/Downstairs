@@ -62,7 +62,7 @@ Material:
     - _colorFalloff: 51.5
     - _debug: 0
     - _gridFalloff: 0.28
-    - _gridScale: 14.8
+    - _gridScale: 260.1
     - _hit: 0
     - _interpolation: 1.2
     - _minDark: 0
@@ -77,8 +77,8 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _innerColor: {r: 0.16981131, g: 0, b: 0, a: 0}
-    - _outerColor: {r: 0.2663707, g: 0, b: 0.2830189, a: 0}
+    - _innerColor: {r: 0.5566038, g: 0, b: 0.3897282, a: 0}
+    - _outerColor: {r: 0.89989537, g: 0, b: 0.9528302, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1208932412421073585

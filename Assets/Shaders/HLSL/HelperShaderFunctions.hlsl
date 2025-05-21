@@ -72,3 +72,11 @@ float3 Remap(float3 In, float2 InMinMax, float2 OutMinMax)
     
     return In;
 }
+
+float DistLine(float2 a, float2 b)
+{
+    float2 distA = a - b;
+    float distB = saturate(dot(a, distA) / dot(distA, distA));
+    
+    return length(a - distA * distB);
+}

@@ -1,4 +1,4 @@
-﻿void ComputeTotalAttenuation_half(float3 WorldPosition, float3 WorldNormal, out float TotalAttenuation, out float3 LightColor)
+﻿void BasicAdditionalLights_half(float3 WorldPosition, float3 WorldNormal, out float TotalAttenuation, out float3 LightColor)
 {
 
 
@@ -6,9 +6,7 @@
     LightColor = float3(0, 0, 0);
 
 #ifndef SHADERGRAPH_PREVIEW
-
     uint pixelLightCount = GetAdditionalLightsCount();
-
     LIGHT_LOOP_BEGIN(pixelLightCount)
 
     uint perObjectLightIndex = GetPerObjectLightIndex(lightIndex);
@@ -21,9 +19,8 @@
     float diffuse = atten * NdotL;
 
     float intensity = dot(light.color.rgb, float3(0.2126, 0.7152, 0.0722));
-    TotalAttenuation += atten * intensity;
+    TotalAttenuation += diffuse * intensity;
     LightColor += light.color;
-
     LIGHT_LOOP_END
 
 #endif

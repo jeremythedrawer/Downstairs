@@ -98,6 +98,8 @@ public class DitherWorldGridPass : ScriptableRenderPass
     private TextureHandle ditherWorldGridTextureHandle;
 
     private static readonly int gridScaleID = Shader.PropertyToID("_gridScale");
+    private static readonly int gridFallOffID = Shader.PropertyToID("_gridFallOff");
+    private static readonly int gridThicknessID = Shader.PropertyToID("_gridThickness");
 
     private const string temporaryTextureName = "TempDitherWorldGrid";
     private const string k_CalculateDitherWorldGridPass = "CalculateDitherWorldGridPass";
@@ -214,8 +216,12 @@ public class DitherWorldGridPass : ScriptableRenderPass
         DitherWorldGridVolumeComponent vc = VolumeManager.instance.stack.GetComponent<DitherWorldGridVolumeComponent>();
 
         float gridScale = vc != null && vc.gridScale.overrideState ? vc.gridScale.value : defaultSettings.gridScale;
+        float gridFallOff = vc != null && vc.gridFallOff.overrideState ? vc.gridFallOff.value : defaultSettings.gridFallOff;
+        float gridThickness = vc != null && vc.gridThickness.overrideState ? vc.gridThickness.value : defaultSettings.gridThickness;
 
         material.SetFloat(gridScaleID, gridScale);
+        material.SetFloat(gridFallOffID, gridFallOff);
+        material.SetFloat(gridThicknessID, gridThickness);
     }
 }
 
@@ -223,12 +229,16 @@ public class DitherWorldGridPass : ScriptableRenderPass
 public class DefaultDitherWorldGridSettings
 {
     public float gridScale = 10f;
+    public float gridFallOff = 1f;
+    public float gridThickness = 0.1f;
 }
 
 [Serializable]
 public class DitherWorldGridVolumeComponent : VolumeComponent
 {
     public FloatParameter gridScale = new FloatParameter(10f);
+    public FloatParameter gridFallOff = new FloatParameter(1f);
+    public FloatParameter gridThickness = new FloatParameter(0.1f);
 }
 
 

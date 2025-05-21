@@ -3,49 +3,45 @@ Shader "Unlit/s_ditherWorldGrid"
         HLSLINCLUDE
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
         #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
+        #include "Assets/Shaders/HLSL/HelperShaderFunctions.hlsl"
+        #include "Assets/Shaders/HLSL/NoiseFunctions.hlsl"
 
         float _gridScale;
+        float _gridFallOff;
+        float _gridThickness;
 
-        float4 ReconstructWorldPos(float2 uv)
-        {
-            float depth = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, uv).r;
-            float4 clipPos = float4(uv * 2 - 1, depth, 1);
-            float4 worldPos = mul(_InvViewProjMatrix, clipPos);
-            return worldPos / worldPos.w;
-        }
-
-        float distLine(float2 a, float2 b) // code version of my Distance Line sub graph
-        {
-            float2 distA = a - b;
-            float distB = saturate(dot(a, distA) / dot(distA, distA));
-    
-            return length(a - distA * distB);
-        }
+        SamplerState point_clamp_sampler;
 
         float4 calc(Varyings input) : SV_Target
         {
+            float2 scaledAspectRatioUV = float2(_ScreenParams.x, _ScreenParams.y) / _gridScale;
+            float2 scaledTexCoord = input.texcoord * scaledAspectRatioUV;
+            float2 roundTexCoord = round(scaledTexCoord);
 
-            float2 worldPos = ReconstructWorldPos(input.texcoord).xy;
-
-            float2 scaledWorldPos = worldPos * _gridScale;
-            float2 worldGV = frac(scaledWorldPos);
-            worldGV -= 0.5;
-            worldGV = abs(worldGV);
+            float2 gridTexCoord = roundTexCoord / scaledAspectRatioUV;
             
-            float gridContour = distLine(worldGV.x, worldGV.y);
+            float2 gv = abs(frac(scaledTexCoord) - 0.5);
+            float gridSDF = DistLine(gv.x, gv.y);
 
+            float t = _Time.y * 0.1;
+            float2 noiseUV = t + roundTexCoord;
+            float gridNoise = SimpleNoise(noiseUV, 10);
+            gridSDF *= gridNoise;
 
-            float2 gridID = 1/(_gridScale * 2) * _gridScale + scaledWorldPos;
-            gridID = round(gridID);
-            gridID /= _gridScale;
+            float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, gridTexCoord);
 
-            float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, gridID);
-            return blit;
+            float3 blitHSV = RGBToHSV(blit);
+            float gridThicknessThreshold = max(_gridThickness * pow(1 - blitHSV.z, _gridFallOff), 0);
+
+            float grid = smoothstep(gridThicknessThreshold, gridThicknessThreshold + (1 / _ScreenParams.x), gridSDF);
+
+            float4 output = blit * grid.xxxx;
+            return output;
         }
 
         float4 apply(Varyings input) : SV_Target
         {
-            return SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, input.texcoord);
+            return SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, input.texcoord);
         }
 
     ENDHLSL
@@ -55,11 +51,6 @@ Shader "Unlit/s_ditherWorldGrid"
         LOD 100
         ZWrite Off
         Cull Off
-
-        Stencil {
-            ref 1
-            comp equal
-        }
 
         Pass { // pass 0
             Name "CalculateDitherWorldGridPass"
