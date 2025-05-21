@@ -48,8 +48,10 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
         jellyfish.gameObject.transform.SetParent(this.transform);
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         DrawArea(Color.red);
     }
+#endif
 }

@@ -51,8 +51,10 @@ public class SeaUrchinSpawner : ObjectPoolSpawner<SeaUrchin>
         seaUrchin.gameObject.SetActive(true);
         seaUrchin.gameObject.transform.SetParent(this.transform);
     }
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         DrawArea(Color.magenta);
     }
+#endif
 }

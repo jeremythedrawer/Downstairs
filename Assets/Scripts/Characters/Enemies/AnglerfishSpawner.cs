@@ -52,9 +52,10 @@ public class AnglerfishSpawner : ObjectPoolSpawner<Anglerfish>
         anglerfish.gameObject.SetActive(true);
         anglerfish.gameObject.transform.SetParent(this.transform);
     }
-
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         DrawArea(Color.green);
     }
+#endif
 }

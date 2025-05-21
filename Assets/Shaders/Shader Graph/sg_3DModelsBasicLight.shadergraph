@@ -4,9 +4,6 @@
     "m_ObjectId": "3ba9ba753743469ba0b24d9585815620",
     "m_Properties": [
         {
-            "m_Id": "e70f540c519e409e8e29e316f2f5695b"
-        },
-        {
             "m_Id": "654504fa83c64392923cfb1842fcd823"
         }
     ],
@@ -72,6 +69,20 @@
                     "m_Id": "2bb89bec4350459bb77fa025af7ee4f9"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "d9643708d6a64a5aa99786e7b0b20ff6"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "79d6059f505544c5a377615623764e85"
+                },
+                "m_SlotId": 778646106
             }
         }
     ],
@@ -564,9 +575,6 @@
     "m_Name": "",
     "m_ChildObjectList": [
         {
-            "m_Id": "e70f540c519e409e8e29e316f2f5695b"
-        },
-        {
             "m_Id": "654504fa83c64392923cfb1842fcd823"
         }
     ]
@@ -666,34 +674,6 @@
     "m_SGVersion": 2,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
     "m_ObjectId": "dd723d75560a461d9b2d2edc2064c4cf"
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "e70f540c519e409e8e29e316f2f5695b",
-    "m_Guid": {
-        "m_GuidSerialized": "389907f6-6005-48b0-8e06-744b2f9e6ac7"
-    },
-    "m_Name": "thickness",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "thickness",
-    "m_DefaultReferenceName": "_thickness",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 0.10999999940395355,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
-    }
 }
 
 {

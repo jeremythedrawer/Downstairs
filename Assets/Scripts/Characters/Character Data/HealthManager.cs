@@ -1,7 +1,5 @@
 using System.Collections;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class HealthManager : MonoBehaviour
 {

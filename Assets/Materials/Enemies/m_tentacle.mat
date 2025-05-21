@@ -70,13 +70,14 @@ Material:
     - _powerUp: -4.2
     - _randomColors: 1
     - _steps: 42.2
-    - _thickness: 0.08
+    - _thickness: -0.05
     - _useAlpha: 0
     - _useLighting: 1
     - _useLights: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _color: {r: 1, g: 0, b: 0.2573738, a: 0}
     - _innerColor: {r: 0.5566038, g: 0, b: 0.3897282, a: 0}
     - _outerColor: {r: 0.89989537, g: 0, b: 0.9528302, a: 0}
   m_BuildTextureStacks: []

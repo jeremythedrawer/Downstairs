@@ -65,10 +65,15 @@ public class Anglerfish : Enemy<Anglerfish>
     private IEnumerator GetNewPosition()
     {
         yield return new WaitForSeconds(1f);
-        Vector3 direction = PlayerBrain.Instance.transform.position - transform.position;
+
+        float randomRadius = 5f;
+        Vector2 randomOffset = Random.insideUnitCircle * randomRadius;
+        Vector3 randomTarget = PlayerBrain.Instance.transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+
+        Vector3 direction = randomTarget - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
-        targetPos = PlayerBrain.Instance.transform.position;
+        targetPos = randomTarget;
         targetRotation = Quaternion.Euler(0, 0, angle);
 
         float dist = Vector3.Distance(transform.position, targetPos);

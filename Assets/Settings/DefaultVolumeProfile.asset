@@ -299,6 +299,28 @@ MonoBehaviour:
   cropToFit:
     m_OverrideState: 1
     m_Value: 1
+--- !u!114 &-1740034175309252154
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: DitherWorldGridVolumeComponent
+  m_EditorClassIdentifier: Assembly-CSharp::DitherWorldGridVolumeComponent
+  active: 1
+  gridScale:
+    m_OverrideState: 1
+    m_Value: 10
+  gridFallOff:
+    m_OverrideState: 1
+    m_Value: 1
+  gridThickness:
+    m_OverrideState: 1
+    m_Value: 0.1
 --- !u!114 &-1410297666881709256
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -465,7 +487,7 @@ MonoBehaviour:
   - {fileID: -6288072647309666549}
   - {fileID: 7518938298396184218}
   - {fileID: -1410297666881709256}
-  - {fileID: 7981798902154456074}
+  - {fileID: -1740034175309252154}
 --- !u!114 &853819529557874667
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -911,6 +933,28 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &7182753510719042482
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: DitherWorldGridVolumeComponent
+  m_EditorClassIdentifier: Assembly-CSharp::DitherWorldGridVolumeComponent
+  active: 1
+  gridScale:
+    m_OverrideState: 1
+    m_Value: 10
+  gridFallOff:
+    m_OverrideState: 1
+    m_Value: 1
+  gridThickness:
+    m_OverrideState: 1
+    m_Value: 0.1
 --- !u!114 &7518938298396184218
 MonoBehaviour:
   m_ObjectHideFlags: 3

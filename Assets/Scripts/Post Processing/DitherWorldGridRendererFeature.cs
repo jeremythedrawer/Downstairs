@@ -222,6 +222,7 @@ public class DitherWorldGridPass : ScriptableRenderPass
         material.SetFloat(gridScaleID, gridScale);
         material.SetFloat(gridFallOffID, gridFallOff);
         material.SetFloat(gridThicknessID, gridThickness);
+        material.SetVector("_gridWorldOffset", new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y));
     }
 }
 

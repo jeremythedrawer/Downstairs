@@ -47,8 +47,11 @@ public class SmallFishSpawner : ObjectPoolSpawner<SmallFish>
         smallFish.gameObject.SetActive(true);
         smallFish.gameObject.transform.SetParent(this.transform);
     }
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         DrawArea(Color.blue);
     }
+#endif
 }

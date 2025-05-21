@@ -9,4 +9,11 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this; 
     }
+
+    private void Start()
+    {
+#if !UNITY_EDITOR
+    Cursor.visible = false;
+#endif
+    }
 }
