@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerLightController : MonoBehaviour
 {
-    public Light submarineLight;
+    public VolumeProfile volumeProfile;
+    private DitherWorldGridVolumeComponent ditherVolume;
     public float sonarPingRange = 10f;
     public float sonarPingInsensity = 5f;
     public float sonarPingTime = 1f;
@@ -14,8 +16,12 @@ public class PlayerLightController : MonoBehaviour
     private bool canPing = true;
     private void Start()
     {
-        normLightRange = submarineLight.range;
-        normLightIntensity = submarineLight.intensity;
+        volumeProfile.TryGet<DitherWorldGridVolumeComponent>(out ditherVolume);
+    }
+
+    private void Update()
+    {
+        ditherVolume.playerPos.value = Camera.main.WorldToViewportPoint(PlayerBrain.Instance.transform.position);
     }
     public void SonarPing()
     {
@@ -35,13 +41,12 @@ public class PlayerLightController : MonoBehaviour
             float t = elapsedTime / sonarPingTime;
             float pingValue = Mathf.Sin(t * Mathf.PI);
 
-            submarineLight.range = Mathf.Lerp(normLightRange, sonarPingRange, pingValue);
-            submarineLight.intensity = Mathf.Lerp(normLightIntensity, sonarPingInsensity, pingValue);
-            yield return null;
+            ditherVolume.sonarPingTime.value = t;
+             // submarineLight.range = Mathf.Lerp(normLightRange, sonarPingRange, pingValue);
+             // submarineLight.intensity = Mathf.Lerp(normLightIntensity, sonarPingInsensity, pingValue);
+             yield return null;
         }
-
-        submarineLight.range = normLightRange;
-        submarineLight.intensity = normLightIntensity;
+        ditherVolume.sonarPingTime.value = 0;
         canPing = true;
     }
 }

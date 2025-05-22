@@ -100,6 +100,8 @@ public class DitherWorldGridPass : ScriptableRenderPass
     private static readonly int gridScaleID = Shader.PropertyToID("_gridScale");
     private static readonly int gridFallOffID = Shader.PropertyToID("_gridFallOff");
     private static readonly int gridThicknessID = Shader.PropertyToID("_gridThickness");
+    private static readonly int sonarPingTimeID = Shader.PropertyToID("_sonarPingTime");
+    private static readonly int playerPosID = Shader.PropertyToID("_playerPos");
 
     private const string temporaryTextureName = "TempDitherWorldGrid";
     private const string k_CalculateDitherWorldGridPass = "CalculateDitherWorldGridPass";
@@ -218,11 +220,14 @@ public class DitherWorldGridPass : ScriptableRenderPass
         float gridScale = vc != null && vc.gridScale.overrideState ? vc.gridScale.value : defaultSettings.gridScale;
         float gridFallOff = vc != null && vc.gridFallOff.overrideState ? vc.gridFallOff.value : defaultSettings.gridFallOff;
         float gridThickness = vc != null && vc.gridThickness.overrideState ? vc.gridThickness.value : defaultSettings.gridThickness;
+        float sonarPingTime = vc != null && vc.sonarPingTime.overrideState ? vc.sonarPingTime.value : 0;
+        Vector2 playerPos = vc != null && vc.playerPos.overrideState ? vc.playerPos.value : Vector2.zero;
 
         material.SetFloat(gridScaleID, gridScale);
         material.SetFloat(gridFallOffID, gridFallOff);
         material.SetFloat(gridThicknessID, gridThickness);
-        material.SetVector("_gridWorldOffset", new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y));
+        material.SetFloat(sonarPingTimeID, sonarPingTime);
+        material.SetVector(playerPosID, playerPos);
     }
 }
 
@@ -240,6 +245,8 @@ public class DitherWorldGridVolumeComponent : VolumeComponent
     public FloatParameter gridScale = new FloatParameter(10f);
     public FloatParameter gridFallOff = new FloatParameter(1f);
     public FloatParameter gridThickness = new FloatParameter(0.1f);
+    public ClampedFloatParameter sonarPingTime = new ClampedFloatParameter(0.0f, 0.0f, 1.0f);
+    public Vector2Parameter playerPos = new Vector2Parameter(Vector2.zero);
 }
 
 

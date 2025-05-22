@@ -69,7 +69,7 @@ MonoBehaviour:
   renderPassEvent: 600
   passEventOrder: 0
   settings:
-    gridScale: 41.03
+    gridScale: 14.3
     gridFallOff: 10
     gridThickness: 0.5
 --- !u!114 &7102298832342586146

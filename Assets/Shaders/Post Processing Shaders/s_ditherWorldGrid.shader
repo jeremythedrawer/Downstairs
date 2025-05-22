@@ -9,50 +9,44 @@ Shader "Unlit/s_ditherWorldGrid"
         float _gridScale;
         float _gridFallOff;
         float _gridThickness;
-        float2 _gridWorldOffset;
-        static const float GRID_STEPS[4] = { 1.0, 0.5, 0.25, 0.125 };
+        float _sonarPingTime;
+        float2 _playerPos;
 
-        float GetQuantizedGridScale(float brightness)
+        float2 aspectRatioPentile(float2 wh)
         {
-            int index = clamp(int((1.0 - brightness) * 4.0), 0, 3);
-            return GRID_STEPS[index];
+            float2 w = float2(wh.x / wh.y, 1);
+            float2 h = float2(1, wh.y / wh.x);
+            return max(w,h);
         }
 
+        float sonarSDF(float2 uv, float2 screenPos)
+        {
+            float2 aspScreenPos = aspectRatioPentile(screenPos);
 
+            float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
+            float innerLength = saturate(1 - pow(length(p*4),2));
+
+            p /= _sonarPingTime;
+            float sonarPingLength = pow(length(p*0.75),2);
+            float ping = saturate((1 - distance(sonarPingLength, 1 - sonarPingLength)) - _sonarPingTime);
+            return saturate((ping * 2) + innerLength);
+        }
 
 
         SamplerState point_clamp_sampler;
 
         float4 calc(Varyings input) : SV_Target
         {
-            float2 screenCenter = float2(0.5, 0.5);
-            float2 uvToCenter = input.texcoord - screenCenter;
-            float distToCenter = max(abs(uvToCenter.x), abs(uvToCenter.y));
-            float normalizedDist = pow(saturate(distToCenter / 0.5),1.5);
-            float quantizedGridSize = GetQuantizedGridScale(normalizedDist);
-            //return quantizedGridSize.xxxx;
-            float finalGridScale = _gridScale * quantizedGridSize;
+            float2 screenPos = float2(_ScreenParams.x, _ScreenParams.y);
+            float2 scaledAspectRatioUV = screenPos / _gridScale;
 
-            float2 pixelSize = 1.0 / _ScreenParams.xy;
-            float2 pixelBlockSize = pixelSize * finalGridScale;
-            float2 snappedUV = round(input.texcoord / pixelBlockSize) * pixelBlockSize;
-
-            pixelBlockSize = pixelSize * finalGridScale;
-            snappedUV = round(input.texcoord / pixelBlockSize) * pixelBlockSize;
-
-            float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, snappedUV);
-
-
-            float2 gridOffsetUV =  (_gridWorldOffset / _ScreenParams.xy);
-            float2 scaledAspectRatioUV = float2(_ScreenParams.x, _ScreenParams.y) / finalGridScale;
-
-
-            float2 gridOrigin = screenCenter * scaledAspectRatioUV;
-            float2 scaledTexCoord = ((input.texcoord + gridOffsetUV) * scaledAspectRatioUV) - gridOrigin;
+            float2 scaledTexCoord = input.texcoord * scaledAspectRatioUV;
             float2 roundTexCoord = round(scaledTexCoord);
-            float2 gridTexCoord = (roundTexCoord + gridOrigin) / scaledAspectRatioUV;
-            blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, gridTexCoord);
-
+            float2 gridTexCoord = roundTexCoord / scaledAspectRatioUV;
+            float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, gridTexCoord);
+            float sonarPing = sonarSDF(gridTexCoord, screenPos);
+            //return sonarPing;
+            blit *= sonarPing;
             float2 gv = abs(frac(scaledTexCoord) - 0.5);
             float gridSDF = DistLine(gv.x, gv.y);
 
