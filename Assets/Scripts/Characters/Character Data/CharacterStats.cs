@@ -9,12 +9,8 @@ public class CharacterStats : MonoBehaviour
     public float rotationDamp;
     public float health;
 
-    [Header("Power Ups")]
-    public float burstPower;
-
 
     [Header("Power Up Checks")]
-    public bool arm;
-    public bool burst;
-    public bool sonarPing;
+    public bool canFlare;
+    public bool canSonarPing;
 }

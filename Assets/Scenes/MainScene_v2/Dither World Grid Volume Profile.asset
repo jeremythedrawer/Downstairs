@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3862199409767456536
+--- !u!114 &-4659069974477688674
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18,16 +18,44 @@ MonoBehaviour:
     m_Value: 8
   gridFallOff:
     m_OverrideState: 1
+    m_Value: 0.7
+  gridThickness:
+    m_OverrideState: 1
+    m_Value: 0.1
+  sonarPingTime:
+    m_OverrideState: 1
+    m_Value: 0.37188813
+  playerPos:
+    m_OverrideState: 1
+    m_Value: {x: 0.58002377, y: 0.4375565}
+--- !u!114 &-3862199409767456536
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: DitherWorldGridVolumeComponent
+  m_EditorClassIdentifier: Assembly-CSharp::DitherWorldGridVolumeComponent
+  active: 1
+  gridScale:
+    m_OverrideState: 1
+    m_Value: -16.6
+  gridFallOff:
+    m_OverrideState: 1
     m_Value: 1
   gridThickness:
     m_OverrideState: 1
     m_Value: 0.1
   sonarPingTime:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.602
   playerPos:
     m_OverrideState: 1
-    m_Value: {x: 0.5, y: 0.5}
+    m_Value: {x: 0.50001717, y: 0.33336377}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,4 +69,4 @@ MonoBehaviour:
   m_Name: Dither World Grid Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -3862199409767456536}
+  - {fileID: -4659069974477688674}

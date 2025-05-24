@@ -33,6 +33,7 @@ public class PlayerLightController : MonoBehaviour
 
     private IEnumerator SonarPinging()
     {
+        PlayerBrain.Instance.audioSource.Play();
         float elapsedTime = 0;
         canPing = false;
         while (elapsedTime < sonarPingTime)

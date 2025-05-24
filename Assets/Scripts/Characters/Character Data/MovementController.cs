@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
@@ -14,14 +15,15 @@ public class MovementController : MonoBehaviour
 
     private float desiredAngle;
     private float currentAngle;
+
     private void Update()
     {
         UpdateRotation();
+        UpdatePos();
     }
 
     private void FixedUpdate()
     {
-        UpdatePos();
     }
 
     private void UpdatePos()
@@ -40,6 +42,7 @@ public class MovementController : MonoBehaviour
         }
         else
         {
+
             float dampFactor = 1f - Mathf.Exp(-stats.linearDamp * Time.fixedDeltaTime);
             brain.body.linearVelocity = Vector2.Lerp(brain.body.linearVelocity, desiredVelocity, dampFactor);
         }

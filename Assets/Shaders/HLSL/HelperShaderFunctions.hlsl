@@ -19,6 +19,7 @@ float3 HueDegrees(float3 input, float offset)
     float4 K2 = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
     float3 P2 = abs(frac(hsv.xxx + K2.xyz) * 6.0 - K2.www);
     return float3(hsv.z * lerp(K2.xxx, saturate(P2 - K2.xxx), hsv.y));
+    
 }
 
 float3 RGBToHSV(float3 In)
