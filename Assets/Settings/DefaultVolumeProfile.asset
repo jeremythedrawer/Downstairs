@@ -385,13 +385,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 2.59
+    m_Value: 3.67
   intensity:
     m_OverrideState: 1
-    m_Value: 2.3
+    m_Value: 1.28
   scatter:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -0
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -487,7 +487,7 @@ MonoBehaviour:
   - {fileID: -6288072647309666549}
   - {fileID: 7518938298396184218}
   - {fileID: -1410297666881709256}
-  - {fileID: -1740034175309252154}
+  - {fileID: 2468223371511804142}
 --- !u!114 &853819529557874667
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -798,6 +798,31 @@ MonoBehaviour:
   contribution:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &2468223371511804142
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce48900f7f01dd47b364668ffbbd890, type: 3}
+  m_Name: DitherWorldGridVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  gridScale:
+    m_OverrideState: 1
+    m_Value: 10
+  gridThickness:
+    m_OverrideState: 1
+    m_Value: 0.1
+  sonarPingTime:
+    m_OverrideState: 1
+    m_Value: 0
+  playerPos:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 0}
 --- !u!114 &3959858460715838825
 MonoBehaviour:
   m_ObjectHideFlags: 3

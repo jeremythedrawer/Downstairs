@@ -12,6 +12,8 @@ public class DitherWorldGridRendererFeature : ScriptableRendererFeature
     [SerializeField] private RenderPassEvent renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
     [SerializeField] int passEventOrder = 0;
     [SerializeField, Space] private DefaultDitherWorldGridSettings settings;
+    [SerializeField] private ComputeShader computeShader;
+    [SerializeField] private Texture2D noiseTexture;
 
     private Material material;
     private DitherWorldGridPass ditherWorldGridPass;
@@ -23,13 +25,17 @@ public class DitherWorldGridRendererFeature : ScriptableRendererFeature
 
         if (shader == null)
         {
-            Debug.LogError("Dither World Grid shade is missing.");
+            Debug.LogError("Dither World Grid shader is missing.");
         }
 
         material = CoreUtils.CreateEngineMaterial(shader);
 
         ditherWorldGridPass = new DitherWorldGridPass(material, settings);
         ditherWorldGridPass.renderPassEvent = (RenderPassEvent)((int)renderPassEvent + passEventOrder);
+
+        // Set the compute shader here
+        ditherWorldGridPass.SetTexture(noiseTexture);
+        ditherWorldGridPass.SetComputeShader(computeShader);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -97,8 +103,12 @@ public class DitherWorldGridPass : ScriptableRenderPass
     private RTHandle ditherWorldGridPassRTHandle;
     private TextureHandle ditherWorldGridTextureHandle;
 
+    private ComputeShader computeShader;
+    private RenderTexture computeOutput;
+    private Texture2D noiseTex;
+    private int kernelHandle;
+
     private static readonly int gridScaleID = Shader.PropertyToID("_gridScale");
-    private static readonly int gridFallOffID = Shader.PropertyToID("_gridFallOff");
     private static readonly int gridThicknessID = Shader.PropertyToID("_gridThickness");
     private static readonly int sonarPingTimeID = Shader.PropertyToID("_sonarPingTime");
     private static readonly int playerPosID = Shader.PropertyToID("_playerPos");
@@ -111,8 +121,6 @@ public class DitherWorldGridPass : ScriptableRenderPass
         this.defaultSettings = settings;
         this.material = material;
         ditherWorldGridTextureDescriptor = new RenderTextureDescriptor(Screen.width, Screen.height, RenderTextureFormat.ARGBFloat, 0);
-
-
     }
 
     public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
@@ -171,8 +179,7 @@ public class DitherWorldGridPass : ScriptableRenderPass
 
         if (!ditherWorldGridTextureHandle.IsValid())
         {
-            RTHandle rtHandle = RTHandles.Alloc(ditherWorldGridPassRTHandle);
-            ditherWorldGridTextureHandle = renderGraph.ImportTexture(rtHandle);
+            ditherWorldGridTextureHandle = renderGraph.ImportTexture(ditherWorldGridPassRTHandle);
         }
 
         if (!ditherWorldGridTextureHandle.IsValid())
@@ -192,6 +199,43 @@ public class DitherWorldGridPass : ScriptableRenderPass
             material: material,
             shaderPass: 0 // Calculate dither world grid pass
         );
+
+        if (computeShader != null)
+        {
+            if (computeOutput == null || computeOutput.width != ditherWorldGridTextureDescriptor.width || computeOutput.height != ditherWorldGridTextureDescriptor.height)
+            {
+                if (computeOutput != null) computeOutput.Release(); //Release old output as soon as possible to avoid clogging memory
+
+                computeOutput = new RenderTexture(ditherWorldGridTextureDescriptor.width, ditherWorldGridTextureDescriptor.height, 0)
+                {
+                    enableRandomWrite = true,
+                    graphicsFormat = GraphicsFormat.R32G32B32A32_SFloat
+                };
+                computeOutput.Create(); // create new render texture to pass into the shader
+            }
+
+            //Setting compute shader parameters
+            computeShader.SetTexture(kernelHandle, "Result", computeOutput);
+            computeShader.SetFloat("_TimeY", Time.time); //compute shaders don't have access to time so manually implement the Unity Engine Time instead
+            computeShader.SetVector("_Resolution", new Vector4(ditherWorldGridTextureDescriptor.width, ditherWorldGridTextureDescriptor.height, 0, 0)); //resolution is hel the descriptor
+            computeShader.SetTexture(kernelHandle, "_NoiseTex", noiseTex);
+
+            // get the post processing material parameters and set the same parameter in the compute shader to the same value
+            computeShader.SetFloat("_gridScale", material.GetFloat(gridScaleID)); 
+            computeShader.SetFloat("_gridThickness", material.GetFloat(gridThicknessID));
+            computeShader.SetFloat("_sonarPingTime", material.GetFloat(sonarPingTimeID));
+            computeShader.SetVector("_playerPos", material.GetVector(playerPosID));
+
+            //to get the needed thread groups for the compute shader is determined by the width of the descriptor
+            int threadGroupsX = Mathf.CeilToInt(ditherWorldGridTextureDescriptor.width / 8.0f);
+            int threadGroupsY = Mathf.CeilToInt(ditherWorldGridTextureDescriptor.height / 8.0f);
+
+
+            //execute the shader
+            computeShader.Dispatch(kernelHandle, threadGroupsX, threadGroupsY, 1);
+            //pass the output to the text
+            material.SetTexture("_GridComputeTex", computeOutput);
+        }
         renderGraph.AddBlitPass(ditheringEffectParams, k_CalculateDitherWorldGridPass);
 
         // Second pass: Copy jpeg compressed result back to sourceCamColor
@@ -206,6 +250,17 @@ public class DitherWorldGridPass : ScriptableRenderPass
         renderGraph.AddBlitPass(applyToCameraParams, k_ApplyDitherWorldGridPass);
     }
 
+    public void SetComputeShader( ComputeShader shader )
+    {
+        computeShader = shader;
+        kernelHandle = computeShader.FindKernel("CSMain");
+    }
+
+    public void SetTexture (Texture2D tex)
+    {
+        noiseTex = tex;
+    }
+
     public void SetDitherWorldRTHandle(RTHandle rtHandle)
     {
         ditherWorldGridPassRTHandle = rtHandle;
@@ -218,13 +273,11 @@ public class DitherWorldGridPass : ScriptableRenderPass
         DitherWorldGridVolumeComponent vc = VolumeManager.instance.stack.GetComponent<DitherWorldGridVolumeComponent>();
 
         float gridScale = vc != null && vc.gridScale.overrideState ? vc.gridScale.value : defaultSettings.gridScale;
-        float gridFallOff = vc != null && vc.gridFallOff.overrideState ? vc.gridFallOff.value : defaultSettings.gridFallOff;
         float gridThickness = vc != null && vc.gridThickness.overrideState ? vc.gridThickness.value : defaultSettings.gridThickness;
         float sonarPingTime = vc != null && vc.sonarPingTime.overrideState ? vc.sonarPingTime.value : 0;
         Vector2 playerPos = vc != null && vc.playerPos.overrideState ? vc.playerPos.value : Vector2.zero;
 
         material.SetFloat(gridScaleID, gridScale);
-        material.SetFloat(gridFallOffID, gridFallOff);
         material.SetFloat(gridThicknessID, gridThickness);
         material.SetFloat(sonarPingTimeID, sonarPingTime);
         material.SetVector(playerPosID, playerPos);
@@ -235,7 +288,6 @@ public class DitherWorldGridPass : ScriptableRenderPass
 public class DefaultDitherWorldGridSettings
 {
     public float gridScale = 10f;
-    public float gridFallOff = 1f;
     public float gridThickness = 0.1f;
 }
 

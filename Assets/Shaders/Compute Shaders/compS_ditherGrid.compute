@@ -1,0 +1,66 @@
+#pragma kernel CSMain
+
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+#include "Assets/Shaders/HLSL/HelperShaderFunctions.hlsl"
+#include "Assets/Shaders/HLSL/NoiseFunctions.hlsl"
+
+RWTexture2D<float4> Result;
+float2 _Resolution;
+float _gridScale;
+float _gridThickness;
+float _sonarPingTime;
+float2 _playerPos;
+float _TimeY;
+
+Texture2D<float> _NoiseTex;
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    float2 screenPos = _Resolution;
+    float2 uv = (float2(id.xy) + 0.5) / screenPos;
+
+    float2 scaledAspectRatioUV = screenPos / _gridScale;
+    float2 scaledTexCoord = uv * scaledAspectRatioUV;
+
+    float2 idCoord = round(scaledTexCoord);
+    float2 gridTexCoord = idCoord / scaledAspectRatioUV;
+
+    float2 gridSpacePlayerPos = (_playerPos * screenPos) / _gridScale;
+
+    float col = 0;
+    int neighbourRange = 10;
+    for (int x = -neighbourRange; x <= neighbourRange; x++)
+    {
+        for (int y = -neighbourRange; y <= neighbourRange; y++)
+        {
+            float2 offset = float2(x, y);
+            float4 currSC = float4(abs(frac(scaledTexCoord - offset)), floor(scaledTexCoord - offset));
+
+            float2 displacementDir = normalize(gridSpacePlayerPos - currSC.zw);
+            float t = lerp(0, 20, _sonarPingTime);
+
+            float rippleRadius = _sonarPingTime * _gridScale * 8;
+            float shellThickness = 10;
+            float dist = length(currSC.zw - gridSpacePlayerPos);
+            float rippleBand = 1.0 - smoothstep(1, shellThickness, abs(dist - rippleRadius));
+            float displacementAmount = t * rippleBand;
+
+            float2 displacedPos = currSC.xy + displacementDir * displacementAmount + offset;
+            float currDistFromSquare = max(-(max(abs(displacedPos.x) - 0.5, abs(displacedPos.y) - 0.5)), 0);
+
+            float2 noiseOffset = float2
+            (
+                frac(sin(dot(currSC.zw, float2(12.9898, 78.233))) * 43758.5453),
+                frac(sin(dot(currSC.zw, float2(93.9898, 67.345))) * 96321.5647)
+            );
+
+            float2 noiseUV = frac((_TimeY * 0.1 + currSC.zw + noiseOffset * 0.25) / _gridScale);
+            float gridNoise = _NoiseTex.SampleLevel(sampler_LinearClamp, noiseUV, 0);
+
+            col += currDistFromSquare * gridNoise;
+        }
+    }
+
+    Result[id.xy] = float4(col, 0, 0, 1);
+}

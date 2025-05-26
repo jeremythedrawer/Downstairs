@@ -47,20 +47,20 @@ float3 TangentToWorldNormal(float3 tangentNormal, float3 tangent, float3 bitange
     return worldNormal;
 }
 
-float3 TextureToTangentNormal(Texture2D seemlessTexture, SamplerState Sampler, float strength, float offset, float2 UV, float UVscale)
-{
-    UV = frac(UV * UVscale);
+//float3 TextureToTangentNormal(Texture2D seemlessTexture, SamplerState Sampler, float strength, float offset, float2 UV, float UVscale)
+//{
+//    UV = frac(UV * UVscale);
 
-    offset = pow(offset, 3) * 0.1;
-    float2 offsetU = float2(UV.x + offset, UV.y);
-    float2 offsetV = float2(UV.x, UV.y + offset);
-    float normalSample = seemlessTexture.Sample(Sampler, UV);
-    float uSample = seemlessTexture.Sample(Sampler, offsetU);
-    float vSample = seemlessTexture.Sample(Sampler, offsetV);
-    float3 va = float3(1, 0, (uSample - normalSample) * strength);
-    float3 vb = float3(0, 1, (vSample - normalSample) * strength);
-    return normalize(cross(va, vb));
-}
+//    offset = pow(offset, 3) * 0.1;
+//    float2 offsetU = float2(UV.x + offset, UV.y);
+//    float2 offsetV = float2(UV.x, UV.y + offset);
+//    float normalSample = seemlessTexture.Sample(Sampler, UV);
+//    float uSample = seemlessTexture.Sample(Sampler, offsetU);
+//    float vSample = seemlessTexture.Sample(Sampler, offsetV);
+//    float3 va = float3(1, 0, (uSample - normalSample) * strength);
+//    float3 vb = float3(0, 1, (vSample - normalSample) * strength);
+//    return normalize(cross(va, vb));
+//}
 
 float3 Posterize(float3 inTexture, float steps)
 {
