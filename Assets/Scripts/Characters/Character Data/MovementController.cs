@@ -8,9 +8,9 @@ public class MovementController : MonoBehaviour
     private CharacterStats stats => brain.characterStats;
     public float moveInput { get; set; }
     public float rotationInput { get; set; }
-    public bool grabInput { get; set; }
-    public bool burstInput { get; set; }
     public bool sonarPingInput { get; set; }
+    public bool flareInput { get; set; }
+    public bool radialScanInput { get; set; }
     public bool canMove { get; set; } = true;
 
     private float desiredAngle;

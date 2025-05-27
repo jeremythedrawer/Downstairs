@@ -14,6 +14,7 @@ public class PowerUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            PlayerBrain.Instance.collectAbilityAudioSource.PlayOneShot(PlayerBrain.Instance.collectAbilityAudioSource.clip);
             switch (powerUpType)
             {
                 case PowerUpType.Flare:
@@ -30,6 +31,4 @@ public class PowerUp : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
-
 }

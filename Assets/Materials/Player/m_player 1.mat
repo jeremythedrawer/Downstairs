@@ -76,7 +76,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _color: {r: 0.25244266, g: 0.22659309, b: 0.7169812, a: 0}
+    - _color: {r: 0.10637725, g: 0.06132078, b: 1, a: 0}
     - _innerColor: {r: 0.016375938, g: 0.13626333, b: 0.1509434, a: 0}
     - _outerColor: {r: 0, g: 0.16179796, b: 0.33962262, a: 0}
     - _powerUpColor: {r: 0, g: 1, b: 0, a: 0}

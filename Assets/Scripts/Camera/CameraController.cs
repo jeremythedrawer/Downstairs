@@ -37,12 +37,7 @@ public class CameraController : MonoBehaviour
     {
         Transform playerTransform = PlayerBrain.Instance.transform;
         Vector3 playerPos = playerTransform.position;
-
-        if (!PlayerBrain.Instance.healthManager.isHit)
-        {
-            offset = playerTransform.up * forwardOffset;
-        }
-
+        offset = playerTransform.up * forwardOffset;
         target = new Vector3(playerPos.x + offset.x, playerPos.y + offset.y, transform.position.z);
     }
 

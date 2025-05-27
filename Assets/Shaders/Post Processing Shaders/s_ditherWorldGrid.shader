@@ -15,26 +15,8 @@ Shader "Unlit/s_ditherWorldGrid"
         float _sonarPingTime;
         float2 _playerPos;
 
-        float2 aspectRatioPentile(float2 wh)
-        {
-            float2 w = float2(wh.x / wh.y, 1);
-            float2 h = float2(1, wh.y / wh.x);
-            return max(w,h);
-        }
-
-        float sonarSDF(float2 uv, float2 screenPos, float minValue, float maxValue)
-        {
-            float2 aspScreenPos = aspectRatioPentile(screenPos);
-
-            float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
-            float innerLength = saturate(1 - pow(length(p*2),1));
-
-            p /= _sonarPingTime;
-            float sonarPingLength = pow(length(p*0.25),4);
-            float ping = saturate((1 - distance(sonarPingLength, 1 - sonarPingLength)) - _sonarPingTime);
-            ping = saturate(ping * 2 + innerLength);
-            return lerp(minValue, maxValue, ping);
-        }
+        float2 _flarePos;
+        float _flareTime;
 
         SamplerState point_clamp_sampler;
 
@@ -45,24 +27,21 @@ Shader "Unlit/s_ditherWorldGrid"
 
             float2 scaledTexCoord = input.texcoord * scaledAspectRatioUV;
             float2 id = round(scaledTexCoord);
-            float2 gridTexCoord = id / scaledAspectRatioUV;
+            float2 gridTexCoord = id / scaledAspectRatioUV; // quantized UV
 
-            float sonarPing = sonarSDF(gridTexCoord, screenPos, 0, 1);
-
-            float col = SAMPLE_TEXTURE2D(_GridComputeTex, sampler_GridComputeTex, input.texcoord).r;;
-            //return col.xxxx;
+            float2 col = SAMPLE_TEXTURE2D(_GridComputeTex, sampler_GridComputeTex, input.texcoord).xy; // Compute Shader
+           //return col.xxxx;
             float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, gridTexCoord);
 
-            blit *= 3;
-            blit = saturate(pow(blit, 10));
-            blit *= pow(sonarPing,1);
+            blit = pow(blit, 2);
+            //blit *= 10;
             float3 blitHSV = RGBToHSV(blit);
-            float brightnessFactor = 1- saturate(blitHSV.z);
-            float minThickness = 0.0005;
+            float brightnessFactor = 1- (blitHSV.z);
+            float minThickness = 0.005;
             float gridThicknessThreshold = lerp(minThickness, _gridThickness, brightnessFactor);
-            float grid = smoothstep(gridThicknessThreshold, gridThicknessThreshold + (1 / _ScreenParams.x), col);
-
-            return blit * grid;
+            float grid = smoothstep(gridThicknessThreshold, gridThicknessThreshold + (1 / _ScreenParams.x), col.x); // Grid Mask
+            //return grid.xxxx;
+            return max(blit * grid, float4(0, 0.002, 0.005, 0)) * (grid * 5);
         }
 
 

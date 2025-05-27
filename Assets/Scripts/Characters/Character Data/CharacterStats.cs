@@ -11,6 +11,7 @@ public class CharacterStats : MonoBehaviour
 
 
     [Header("Power Up Checks")]
-    public bool canFlare;
     public bool canSonarPing;
+    public bool canFlare;
+    public bool canRadialScan;
 }

@@ -110,8 +110,13 @@ public class DitherWorldGridPass : ScriptableRenderPass
 
     private static readonly int gridScaleID = Shader.PropertyToID("_gridScale");
     private static readonly int gridThicknessID = Shader.PropertyToID("_gridThickness");
-    private static readonly int sonarPingTimeID = Shader.PropertyToID("_sonarPingTime");
     private static readonly int playerPosID = Shader.PropertyToID("_playerPos");
+
+    private static readonly int sonarPingTimeID = Shader.PropertyToID("_sonarPingTime");
+    private static readonly int flareTimeID = Shader.PropertyToID("_flareTime");
+    private static readonly int flarePosID = Shader.PropertyToID("_flarePos");
+    private static readonly int radialScanTimeID = Shader.PropertyToID("_radialScanTime");
+    private static readonly int radialScanRotationID = Shader.PropertyToID("_radialScanRotation");
 
     private const string temporaryTextureName = "TempDitherWorldGrid";
     private const string k_CalculateDitherWorldGridPass = "CalculateDitherWorldGridPass";
@@ -217,14 +222,19 @@ public class DitherWorldGridPass : ScriptableRenderPass
             //Setting compute shader parameters
             computeShader.SetTexture(kernelHandle, "Result", computeOutput);
             computeShader.SetFloat("_TimeY", Time.time); //compute shaders don't have access to time so manually implement the Unity Engine Time instead
-            computeShader.SetVector("_Resolution", new Vector4(ditherWorldGridTextureDescriptor.width, ditherWorldGridTextureDescriptor.height, 0, 0)); //resolution is hel the descriptor
+            computeShader.SetVector("_Resolution", new Vector4(ditherWorldGridTextureDescriptor.width, ditherWorldGridTextureDescriptor.height, 0, 0)); //resolution is held in the descriptor
             computeShader.SetTexture(kernelHandle, "_NoiseTex", noiseTex);
 
             // get the post processing material parameters and set the same parameter in the compute shader to the same value
             computeShader.SetFloat("_gridScale", material.GetFloat(gridScaleID)); 
             computeShader.SetFloat("_gridThickness", material.GetFloat(gridThicknessID));
-            computeShader.SetFloat("_sonarPingTime", material.GetFloat(sonarPingTimeID));
             computeShader.SetVector("_playerPos", material.GetVector(playerPosID));
+
+            computeShader.SetFloat("_sonarPingTime", material.GetFloat(sonarPingTimeID));
+            computeShader.SetFloat("_flareTime", material.GetFloat(flareTimeID));
+            computeShader.SetVector("_flarePos", material.GetVector(flarePosID));
+            computeShader.SetFloat("_radialScanTime", material.GetFloat(radialScanTimeID));
+            computeShader.SetFloat("_radialScanRotation", material.GetFloat(radialScanRotationID));
 
             //to get the needed thread groups for the compute shader is determined by the width of the descriptor
             int threadGroupsX = Mathf.CeilToInt(ditherWorldGridTextureDescriptor.width / 8.0f);
@@ -274,13 +284,23 @@ public class DitherWorldGridPass : ScriptableRenderPass
 
         float gridScale = vc != null && vc.gridScale.overrideState ? vc.gridScale.value : defaultSettings.gridScale;
         float gridThickness = vc != null && vc.gridThickness.overrideState ? vc.gridThickness.value : defaultSettings.gridThickness;
-        float sonarPingTime = vc != null && vc.sonarPingTime.overrideState ? vc.sonarPingTime.value : 0;
         Vector2 playerPos = vc != null && vc.playerPos.overrideState ? vc.playerPos.value : Vector2.zero;
+
+        float sonarPingTime = vc != null && vc.sonarPingTime.overrideState ? vc.sonarPingTime.value : 0;
+        float flareTime = vc != null && vc.flareTime.overrideState ? vc.flareTime.value : 0;
+        Vector2 flarePos = vc != null && vc.flarePos.overrideState ? vc.flarePos.value : Vector2.zero;
+        float radialScanTime = vc != null && vc.radialScanTime.overrideState ? vc.radialScanTime.value : 0;
+        float radialScanRotation = vc != null && vc.radialScanTime.overrideState ? vc.radialScanRotation.value : 0;
 
         material.SetFloat(gridScaleID, gridScale);
         material.SetFloat(gridThicknessID, gridThickness);
-        material.SetFloat(sonarPingTimeID, sonarPingTime);
         material.SetVector(playerPosID, playerPos);
+
+        material.SetFloat(sonarPingTimeID, sonarPingTime);
+        material.SetFloat(flareTimeID, flareTime);
+        material.SetVector (flarePosID, flarePos);
+        material.SetFloat(radialScanTimeID, radialScanTime);
+        material.SetFloat(radialScanRotationID, radialScanRotation);
     }
 }
 

@@ -8,16 +8,90 @@ RWTexture2D<float4> Result;
 float2 _Resolution;
 float _gridScale;
 float _gridThickness;
-float _sonarPingTime;
 float2 _playerPos;
 float _TimeY;
 
+float _sonarPingTime;
+float _flareTime;
+float2 _flarePos;
+float _radialScanTime;
+float _radialScanRotation;
+
 Texture2D<float> _NoiseTex;
+
+float2 aspectRatioPentile(float2 wh)
+{
+    float2 w = float2(wh.x / wh.y, 1);
+    float2 h = float2(1, wh.y / wh.x);
+    return max(w, h);
+}
+
+float2 rotateUV(float2 uv, float rotation)
+{
+    rotation *= 6.2831853;
+    float s = sin(rotation);
+    float c = cos(rotation);
+    float2x2 rMatrix = float2x2(c, -s, s, c);
+    rMatrix *= 0.5;
+    rMatrix += 0.5;
+    rMatrix = rMatrix * 2 - 1;
+    uv.xy = mul(uv.xy, rMatrix);
+    return uv;
+}
+
+float circleSDF(float2 uv, float2 aspScreenPos)
+{
+    float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
+    float circle = 1 - length(p * 5);
+    return saturate(circle);
+}
+
+float sonarSDF(float2 uv, float2 aspScreenPos, float minValue, float maxValue)
+{
+    float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
+
+    p /= _sonarPingTime;
+    float sonarPingLength = pow(length(p * 0.4), 0.9);
+    float ping = saturate((1 - distance(sonarPingLength, 1 - sonarPingLength)) - _sonarPingTime);
+    ping = saturate(ping * 2);
+    return lerp(minValue, maxValue, ping);
+}
+
+
+float flareSDF(float2 uv, float2 aspScreenPos, float minValue, float maxValue)
+{
+    float t = sin(_flareTime * 3.1415926);
+    float updatingScale = lerp(minValue, maxValue, t);
+
+    float2 p = (uv * aspScreenPos) - (_flarePos * aspScreenPos);
+    float exponent = lerp(10, 2, t);
+    float circle = 1 - length(p * updatingScale);
+    return saturate(circle * t);
+}
+
+float radialScanSDF(float2 uv, float2 aspScreenPos, float fallOff, float strength)
+{
+    float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
+    p = rotateUV(p, _radialScanRotation);
+    
+    float arc = atan2(p.x, p.y);
+    float piMinusHalf = 2.64159265;
+    float t = lerp(piMinusHalf, -piMinusHalf, _radialScanTime);
+    float radialScanMask = pow(saturate(1 - length(arc + t)), fallOff);
+    
+    float logLight = saturate(dot(normalize(p), float2(0, 1)));
+    float circleMask = saturate(1 - length(p));
+    
+    
+    return logLight * circleMask * strength * radialScanMask;
+}
+
 
 [numthreads(8, 8, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
     float2 screenPos = _Resolution;
+    float2 aspScreen = aspectRatioPentile(_Resolution);
     float2 uv = (float2(id.xy) + 0.5) / screenPos;
 
     float2 scaledAspectRatioUV = screenPos / _gridScale;
@@ -37,30 +111,32 @@ void CSMain(uint3 id : SV_DispatchThreadID)
             float2 offset = float2(x, y);
             float4 currSC = float4(abs(frac(scaledTexCoord - offset)), floor(scaledTexCoord - offset));
 
+            float2 uv = (currSC.zw + 0.5) / scaledAspectRatioUV;
+            float sonar = sonarSDF(uv, aspScreen, 0.1, 8);
+            float flare = flareSDF(uv, aspScreen, 50, 5) * 4;
+            float radialScan = radialScanSDF(uv, aspScreen, 1, 5);
+            
+            float totalMask = sonar + flare + radialScan;
+            
             float2 displacementDir = normalize(gridSpacePlayerPos - currSC.zw);
-            float t = lerp(0, 20, _sonarPingTime);
-
-            float rippleRadius = _sonarPingTime * _gridScale * 8;
-            float shellThickness = 10;
-            float dist = length(currSC.zw - gridSpacePlayerPos);
-            float rippleBand = 1.0 - smoothstep(1, shellThickness, abs(dist - rippleRadius));
-            float displacementAmount = t * rippleBand;
-
-            float2 displacedPos = currSC.xy + displacementDir * displacementAmount + offset;
+            float2 displacedPos = currSC.xy + displacementDir * totalMask + offset;
             float currDistFromSquare = max(-(max(abs(displacedPos.x) - 0.5, abs(displacedPos.y) - 0.5)), 0);
 
-            float2 noiseOffset = float2
-            (
-                frac(sin(dot(currSC.zw, float2(12.9898, 78.233))) * 43758.5453),
-                frac(sin(dot(currSC.zw, float2(93.9898, 67.345))) * 96321.5647)
-            );
+            float2 mirroredNoiseUV = abs(frac((_TimeY * 0.1 + currSC.zw * 0.5) / (_gridScale * 2)) * 2 - 1);
+            float gridNoise = _NoiseTex.SampleLevel(sampler_LinearClamp, mirroredNoiseUV, 0);
 
-            float2 noiseUV = frac((_TimeY * 0.1 + currSC.zw + noiseOffset * 0.25) / _gridScale);
-            float gridNoise = _NoiseTex.SampleLevel(sampler_LinearClamp, noiseUV, 0);
-
-            col += currDistFromSquare * gridNoise;
+            col += (currDistFromSquare * gridNoise);
         }
     }
 
-    Result[id.xy] = float4(col, 0, 0, 1);
+    float centerLight = circleSDF(gridTexCoord, aspScreen);
+    float sonarPing = sonarSDF(gridTexCoord, aspScreen, 0, 1);
+    float flare = flareSDF(gridTexCoord, aspScreen, 10, 5);
+    float radialScan = radialScanSDF(gridTexCoord, aspScreen, 1, 1) * 10;
+    
+    float totalMask = centerLight + sonarPing + flare + radialScan;
+    
+    col *= totalMask;
+    col = saturate(col * 6);
+    Result[id.xy] = float4(col, totalMask, 0, 1);
 }

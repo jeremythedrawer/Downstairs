@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour
     public BoxCollider boxCollilder;
 
     protected float posSpeed = 10f;
-    public float hitPoints = 5f;
 
     protected bool hasHit;
 

@@ -69,10 +69,10 @@ MonoBehaviour:
   renderPassEvent: 600
   passEventOrder: 0
   settings:
-    gridScale: 15.51
+    gridScale: 15.16
     gridThickness: 0.5
   computeShader: {fileID: 7200000, guid: eaf1291dd86effc438b7e0bd7456fcf0, type: 3}
-  noiseTexture: {fileID: 2800000, guid: 8f1cbad5a4843724a8adae3f7da9b45d, type: 3}
+  noiseTexture: {fileID: 2800000, guid: 3ec591be7bf3d5a408e4e653a7e1fdfd, type: 3}
 --- !u!114 &7102298832342586146
 MonoBehaviour:
   m_ObjectHideFlags: 0

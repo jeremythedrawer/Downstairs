@@ -17,13 +17,15 @@ public class PlayerBrain : CharacterBrain
     {
         MoveInputs();
         UseSonarPing();
-        healthManager.LooseHealth(sphereCollider.bounds, hitLayer);
+        UseFlare();
+        UseRadialScan();
     }
     private void MoveInputs()
     {
         movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
-        movementController.grabInput = Input.GetKeyDown(KeyCode.Space);
-        movementController.sonarPingInput = Input.GetKeyDown(KeyCode.LeftShift);
+        movementController.sonarPingInput = Input.GetKeyDown(KeyCode.I);
+        movementController.flareInput = Input.GetKeyDown(KeyCode.O);
+        movementController.radialScanInput = Input.GetKeyDown(KeyCode.P);
         movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
     }
 
@@ -35,4 +37,19 @@ public class PlayerBrain : CharacterBrain
         }
     }
 
+    private void UseFlare()
+    {
+        if(movementController.flareInput && characterStats.canFlare)
+        {
+            lightController.Flare();
+        }
+    }
+
+    private void UseRadialScan()
+    {
+        if (movementController.radialScanInput && characterStats.canRadialScan)
+        {
+            lightController.RadialScan();
+        }
+    }
 }

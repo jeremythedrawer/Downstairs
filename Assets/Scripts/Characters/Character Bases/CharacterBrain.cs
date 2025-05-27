@@ -10,5 +10,6 @@ public abstract class CharacterBrain : MonoBehaviour
     public HealthManager healthManager;
     public PlayerMaterialController playerMaterialController;
     public PlayerLightController lightController;
-    public AudioSource audioSource;
+    public AudioSource sonarPingAudioSource;
+    public AudioSource collectAbilityAudioSource;
 }
