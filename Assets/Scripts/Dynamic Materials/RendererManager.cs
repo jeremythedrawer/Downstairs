@@ -13,5 +13,5 @@ public abstract class RendererManager : MonoBehaviour
         mpb = new MaterialPropertyBlock();
     }
 
-    public abstract void UpdateMaterial();
+   // public abstract void UpdateMaterial();
 }

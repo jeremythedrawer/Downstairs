@@ -10,7 +10,7 @@ public class SmallFishShaderController : RendererManager
         UpdateMaterial();
     }
 
-    public override void UpdateMaterial()
+    public void UpdateMaterial()
     {
         if (material != null)
         {

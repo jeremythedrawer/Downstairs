@@ -10,7 +10,7 @@ public class EnemyShaderController : RendererManager
         UpdateMaterial();
     }
 
-    public override void UpdateMaterial()
+    public virtual void UpdateMaterial()
     {
         if (material != null)
         {
