@@ -33,15 +33,16 @@ Shader "Unlit/s_ditherWorldGrid"
            //return col.xxxx;
             float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, gridTexCoord);
 
-            blit = pow(blit, 2);
+            blit = pow(blit, 1);
             float3 blitHSV = RGBToHSV(blit);
             float brightnessFactor = 1- blitHSV.z;
             float minThickness = 0.005;
             float gridThicknessThreshold = lerp(minThickness, _gridThickness, brightnessFactor);
-            blit *= 5;
+            blit *= float4(1,2,2,1);
+            //return blit;
             float grid = smoothstep(gridThicknessThreshold, gridThicknessThreshold + (1 / _ScreenParams.x), col.x); // Grid Mask
-
-            return max(blit * grid, (float4(0, 0.01, 0.03, 0)) * col.x) * grid;
+            //return col.xxxx;
+            return max(blit * grid, (float4(0, 0.004, 0.007, 0)) * col.x) * grid;
         }
 
 

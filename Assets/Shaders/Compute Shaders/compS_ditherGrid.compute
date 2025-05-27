@@ -42,7 +42,7 @@ float2 rotateUV(float2 uv, float rotation)
 float circleSDF(float2 uv, float2 aspScreenPos)
 {
     float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
-    float circle = 1 - length(p);
+    float circle = 1 - length(p * 5);
     return saturate(circle);
 }
 
@@ -130,13 +130,12 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     }
 
     float centerLight = circleSDF(gridTexCoord, aspScreen);
-    float sonarPing = sonarSDF(gridTexCoord, aspScreen, 0, 5);
+    float sonarPing = sonarSDF(gridTexCoord, aspScreen, 0, 1);
     float flare = flareSDF(gridTexCoord, aspScreen, 20, 2) * 50;
     float radialScan = radialScanSDF(gridTexCoord, aspScreen, 1, 1) * 10;
     
     float totalMask = centerLight + sonarPing + flare + radialScan;
     
     col *= totalMask;
-    col = saturate(col * 6);
     Result[id.xy] = float4(col, totalMask, 0, 1);
 }
