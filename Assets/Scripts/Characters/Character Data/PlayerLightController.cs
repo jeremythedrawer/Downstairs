@@ -53,7 +53,7 @@ public class PlayerLightController : MonoBehaviour
     }
     private IEnumerator SonarPinging()
     {
-        PlayerBrain.Instance.sonarPingAudioSource.Play();
+        PlayerBrain.Instance.audioManager.sonarPingAudioSource.Play();
         float elapsedTime = 0;
         canPing = false;
         while (elapsedTime < sonarPingTime)
@@ -74,7 +74,7 @@ public class PlayerLightController : MonoBehaviour
         canFlare = false;
 
         Vector2 playerDir = PlayerBrain.Instance.currentDir.normalized;
-
+        PlayerBrain.Instance.audioManager.flareAudioSource.Play();
         while (elapsedTime < flareTime)
         {
             elapsedTime += Time.deltaTime;
@@ -93,7 +93,7 @@ public class PlayerLightController : MonoBehaviour
     {
         float elapsedTime = 0f;
         canScan = false;
-
+        PlayerBrain.Instance.audioManager.radialScanAudioSource.Play();
         Vector2 playerDir = PlayerBrain.Instance.currentDir;
         while(elapsedTime < radialScanTime)
         {

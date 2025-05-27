@@ -817,12 +817,24 @@ MonoBehaviour:
   gridThickness:
     m_OverrideState: 1
     m_Value: 0.1
-  sonarPingTime:
-    m_OverrideState: 1
-    m_Value: 0
   playerPos:
     m_OverrideState: 1
     m_Value: {x: 0, y: 0}
+  sonarPingTime:
+    m_OverrideState: 1
+    m_Value: 0
+  flareTime:
+    m_OverrideState: 1
+    m_Value: 0
+  flarePos:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 0}
+  radialScanTime:
+    m_OverrideState: 1
+    m_Value: 0
+  radialScanRotation:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &3959858460715838825
 MonoBehaviour:
   m_ObjectHideFlags: 3

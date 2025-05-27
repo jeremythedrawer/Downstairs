@@ -5,7 +5,8 @@ public class PowerUp : MonoBehaviour
     public enum PowerUpType
     { 
         SonarPing,
-        Flare
+        Flare,
+        RadialScan
 
     }
 
@@ -14,7 +15,7 @@ public class PowerUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerBrain.Instance.collectAbilityAudioSource.PlayOneShot(PlayerBrain.Instance.collectAbilityAudioSource.clip);
+            PlayerBrain.Instance.audioManager.collectAbilityAudioSource.PlayOneShot(PlayerBrain.Instance.audioManager.collectAbilityAudioSource.clip);
             switch (powerUpType)
             {
                 case PowerUpType.Flare:
@@ -25,6 +26,11 @@ public class PowerUp : MonoBehaviour
                 case PowerUpType.SonarPing:
                 {
                     PlayerBrain.Instance.characterStats.canSonarPing = true;
+                }
+                break;
+                case PowerUpType.RadialScan:
+                {
+                    PlayerBrain.Instance.characterStats.canRadialScan = true;
                 }
                 break;
             }

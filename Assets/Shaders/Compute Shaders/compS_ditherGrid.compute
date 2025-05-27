@@ -42,7 +42,7 @@ float2 rotateUV(float2 uv, float rotation)
 float circleSDF(float2 uv, float2 aspScreenPos)
 {
     float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
-    float circle = 1 - length(p * 5);
+    float circle = 1 - length(p);
     return saturate(circle);
 }
 
@@ -61,7 +61,7 @@ float sonarSDF(float2 uv, float2 aspScreenPos, float minValue, float maxValue)
 float flareSDF(float2 uv, float2 aspScreenPos, float minValue, float maxValue)
 {
     float t = sin(_flareTime * 3.1415926);
-    float updatingScale = lerp(minValue, maxValue, t);
+    float updatingScale = lerp(minValue, maxValue, _flareTime);
 
     float2 p = (uv * aspScreenPos) - (_flarePos * aspScreenPos);
     float exponent = lerp(10, 2, t);
@@ -113,7 +113,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
 
             float2 uv = (currSC.zw + 0.5) / scaledAspectRatioUV;
             float sonar = sonarSDF(uv, aspScreen, 0.1, 8);
-            float flare = flareSDF(uv, aspScreen, 50, 5) * 4;
+            float flare = flareSDF(uv, aspScreen, 20, 2) * 4;
             float radialScan = radialScanSDF(uv, aspScreen, 1, 5);
             
             float totalMask = sonar + flare + radialScan;
@@ -130,8 +130,8 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     }
 
     float centerLight = circleSDF(gridTexCoord, aspScreen);
-    float sonarPing = sonarSDF(gridTexCoord, aspScreen, 0, 1);
-    float flare = flareSDF(gridTexCoord, aspScreen, 10, 5);
+    float sonarPing = sonarSDF(gridTexCoord, aspScreen, 0, 5);
+    float flare = flareSDF(gridTexCoord, aspScreen, 20, 2) * 50;
     float radialScan = radialScanSDF(gridTexCoord, aspScreen, 1, 1) * 10;
     
     float totalMask = centerLight + sonarPing + flare + radialScan;

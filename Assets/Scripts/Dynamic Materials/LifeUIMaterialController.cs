@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class LifeUIMaterialController : UIRendererManager
 {
-    private static float currentLife => PlayerBrain.Instance.healthManager.currentHealth * 0.01f;
     private readonly int currentLifeID = Shader.PropertyToID("_currentLife");
     public override void Start()
     {
@@ -18,7 +17,7 @@ public class LifeUIMaterialController : UIRendererManager
     {
         if (material != null)
         {
-            material.SetFloat(currentLifeID, currentLife);
+            //material.SetFloat(currentLifeID, currentLife);
         }
     }
 }
