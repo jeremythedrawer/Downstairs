@@ -11,7 +11,7 @@ public class PlayerLightController : MonoBehaviour
     public float flareTime = 1f;
     public float radialScanTime = 1f;
 
-    private bool canPing = true;
+    public bool canPing = true;
     private bool canFlare = true;
     private bool canScan = true;
 

@@ -29,7 +29,7 @@ public class SmallFish : MonoBehaviour
     private void UpdatePos()
     {
 
-        if (Vector3.Distance(transform.position, PlayerBrain.Instance.transform.position) < triggerRadius || smallFishSpawner.smallFishes.Any(fish => fish.panic)) panic = true;
+        if ((Vector3.Distance(transform.position, PlayerBrain.Instance.transform.position) < triggerRadius && !PlayerBrain.Instance.lightController.canPing) || smallFishSpawner.smallFishes.Any(fish => fish.panic)) panic = true;
 
         float speedToUse = panic ? panicMoveSpeed : calmMoveSpeed;
         if (isMoving)
