@@ -66,6 +66,7 @@ Material:
     - _hit: 0
     - _interpolation: 1.2
     - _minDark: 0
+    - _movingVertices: 0
     - _power: 285.2
     - _powerUp: -4.2
     - _randomColors: 1

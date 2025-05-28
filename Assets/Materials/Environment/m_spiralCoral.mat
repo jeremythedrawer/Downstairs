@@ -135,6 +135,7 @@ Material:
     - _hit: 0
     - _interpolation: 0
     - _minDark: 0
+    - _movingVertices: 1
     - _power: 1
     - _powerUp: 0
     - _randomColors: 1
