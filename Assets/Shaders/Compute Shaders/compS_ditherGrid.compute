@@ -101,8 +101,23 @@ void CSMain(uint3 id : SV_DispatchThreadID)
 
     float2 gridSpacePlayerPos = (_playerPos * screenPos) / _gridScale;
 
+    
+
+    float centerLight = circleSDF(gridTexCoord, aspScreen);
+    float sonarPing = sonarSDF(gridTexCoord, aspScreen, 0, 1);
+    float flare = flareSDF(gridTexCoord, aspScreen, 20, 2) * 50;
+    float radialScan = radialScanSDF(gridTexCoord, aspScreen, 1, 1) * 10;
+
+    float totalMask = saturate(centerLight + sonarPing + flare + radialScan);
+
+    if (totalMask < 0.1)
+    {
+        Result[id.xy] = float4(0, 0, 0, 1);
+        return;
+    }
+
     float col = 0;
-    int neighbourRange = 10;
+    int neighbourRange = 8;
     for (int x = -neighbourRange; x <= neighbourRange; x++)
     {
         for (int y = -neighbourRange; y <= neighbourRange; y++)
@@ -127,13 +142,8 @@ void CSMain(uint3 id : SV_DispatchThreadID)
             col += (currDistFromSquare * gridNoise);
         }
     }
-
-    float centerLight = circleSDF(gridTexCoord, aspScreen);
-    float sonarPing = sonarSDF(gridTexCoord, aspScreen, 0, 1);
-    float flare = flareSDF(gridTexCoord, aspScreen, 20, 2) * 50;
-    float radialScan = radialScanSDF(gridTexCoord, aspScreen, 1, 1) * 10;
     
-    float totalMask = saturate(centerLight + sonarPing + flare + radialScan);
+    totalMask = saturate(centerLight + sonarPing + flare + radialScan);
     
     col *= totalMask;
     Result[id.xy] = float4(col, totalMask, 0, 1);

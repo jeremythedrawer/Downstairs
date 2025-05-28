@@ -732,7 +732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &286348879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1847,7 +1847,7 @@ Transform:
   m_GameObject: {fileID: 663950286}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.39, y: -0.3000003, z: -10.25}
+  m_LocalPosition: {x: 15.5599985, y: -0.3000003, z: -10.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6268,7 +6268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2673365830193026396, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.7
+      value: 15.87
       objectReference: {fileID: 0}
     - target: {fileID: 2673365830193026396, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6312,15 +6312,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4986212010707517054, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: canFlare
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986212010707517054, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
+      propertyPath: linearDamp
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4986212010707517054, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: canSonarPing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4986212010707517054, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: canRadialScan
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6770750177555964174, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_Volume

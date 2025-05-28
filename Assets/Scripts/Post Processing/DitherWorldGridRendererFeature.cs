@@ -290,7 +290,7 @@ public class DitherWorldGridPass : ScriptableRenderPass
         float flareTime = vc != null && vc.flareTime.overrideState ? vc.flareTime.value : 0;
         Vector2 flarePos = vc != null && vc.flarePos.overrideState ? vc.flarePos.value : Vector2.zero;
         float radialScanTime = vc != null && vc.radialScanTime.overrideState ? vc.radialScanTime.value : 0;
-        float radialScanRotation = vc != null && vc.radialScanTime.overrideState ? vc.radialScanRotation.value : 0;
+        float radialScanRotation = vc != null && vc.radialScanRotation.overrideState ? vc.radialScanRotation.value : 0;
 
         material.SetFloat(gridScaleID, gridScale);
         material.SetFloat(gridThicknessID, gridThickness);

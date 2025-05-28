@@ -9,6 +9,8 @@ public class PlayerBrain : CharacterBrain
     public Vector2 currentDir => transform.up;
 
     [SerializeField] private LayerMask hitLayer;
+
+    private bool inGodMode;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -19,6 +21,7 @@ public class PlayerBrain : CharacterBrain
         UseSonarPing();
         UseFlare();
         UseRadialScan();
+        GodMode();
     }
     private void MoveInputs()
     {
@@ -50,6 +53,27 @@ public class PlayerBrain : CharacterBrain
         if (movementController.radialScanInput && characterStats.canRadialScan)
         {
             lightController.RadialScan();
+        }
+    }
+
+    private void GodMode()
+    {
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            if (!inGodMode)
+            {
+                characterStats.canSonarPing = true;
+                characterStats.canFlare = true;
+                characterStats.canRadialScan = true;
+                inGodMode = true;
+            }
+            else
+            {
+                characterStats.canSonarPing = false;
+                characterStats.canFlare = false;
+                characterStats.canRadialScan = false;
+                inGodMode = false;
+            }
         }
     }
 }
