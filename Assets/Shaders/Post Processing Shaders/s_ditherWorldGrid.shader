@@ -30,19 +30,18 @@ Shader "Unlit/s_ditherWorldGrid"
             float2 gridTexCoord = id / scaledAspectRatioUV; // quantized UV
 
             float2 col = SAMPLE_TEXTURE2D(_GridComputeTex, sampler_GridComputeTex, input.texcoord).xy; // Compute Shader
-           //return col.xxxx;
             float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, gridTexCoord);
 
-            blit = pow(blit, 1);
+            float3 hardMix = step(1 - blit.rgb, float4(0.9,0.99,0.99,1));
+            blit.rgb = (ceil(blit.rgb * 20) / 20) * (hardMix * 2);
+
             float3 blitHSV = RGBToHSV(blit);
             float brightnessFactor = 1- blitHSV.z;
             float minThickness = 0.005;
             float gridThicknessThreshold = lerp(minThickness, _gridThickness, brightnessFactor);
-            blit *= float4(1,2,2,1);
-            //return blit;
             float grid = smoothstep(gridThicknessThreshold, gridThicknessThreshold + (1 / _ScreenParams.x), col.x); // Grid Mask
-            //return col.xxxx;
-            return max(blit * grid, (float4(0, 0.004, 0.007, 0)) * col.x) * grid;
+            float4 background = col.y * float4(0,0.002, 0.005,1);
+            return max(blit * grid, background);
         }
 
 

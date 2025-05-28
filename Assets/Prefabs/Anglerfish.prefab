@@ -248,9 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b4ec23cc69ebd44bc8ba62ced6e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider: {fileID: 687498484222724090}
   enemyShaderController: {fileID: 4412640163895414867}
-  hitPoints: 7
   moveSpeed: 2
   spawner: {fileID: 0}
   wallLayer:

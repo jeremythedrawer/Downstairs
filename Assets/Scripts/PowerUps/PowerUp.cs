@@ -45,7 +45,7 @@ public class PowerUp : MonoBehaviour
 
     private IEnumerator PoweringUpMaterial(int materialIndex)
     {
-        float powerUpTime = 1f;
+        float powerUpTime = 0.5f;
         float elapsedTime = 0f;
         var matController = PlayerBrain.Instance.playerMaterialController;
         Color originalColor = matController.GetOriginalColor(materialIndex);
@@ -55,7 +55,7 @@ public class PowerUp : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / powerUpTime;
 
-            float intensity = Mathf.Lerp(10, 1, t);
+            float intensity = Mathf.Lerp(40, 1, t);
 
             Color pulsedColor = originalColor * intensity;
 
