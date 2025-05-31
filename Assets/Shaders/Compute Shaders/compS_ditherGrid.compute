@@ -5,19 +5,24 @@
 #include "Assets/Shaders/HLSL/NoiseFunctions.hlsl"
 
 RWTexture2D<float4> Result;
-float2 _Resolution;
+
 float _gridScale;
 float _gridThickness;
-float2 _playerPos;
 float _TimeY;
-
 float _sonarPingTime;
 float _flareTime;
-float2 _flarePos;
 float _radialScanTime;
 float _radialScanRotation;
 
+float2 _playerPos;
+float2 _flarePos;
+float2 _Resolution;
+
 Texture2D<float> _NoiseTex;
+
+#define PI 3.1415926
+#define TAU 6.2831853
+#define PIMINUSHALF 2.64159265
 
 float2 aspectRatioPentile(float2 wh)
 {
@@ -28,7 +33,7 @@ float2 aspectRatioPentile(float2 wh)
 
 float2 rotateUV(float2 uv, float rotation)
 {
-    rotation *= 6.2831853;
+    rotation *= TAU;
     float s = sin(rotation);
     float c = cos(rotation);
     float2x2 rMatrix = float2x2(c, -s, s, c);
@@ -60,7 +65,7 @@ float sonarSDF(float2 uv, float2 aspScreenPos, float minValue, float maxValue)
 
 float flareSDF(float2 uv, float2 aspScreenPos, float minValue, float maxValue)
 {
-    float t = sin(_flareTime * 3.1415926);
+    float t = sin(_flareTime * PI);
     float updatingScale = lerp(minValue, maxValue, _flareTime);
 
     float2 p = (uv * aspScreenPos) - (_flarePos * aspScreenPos);
@@ -74,8 +79,7 @@ float radialScanSDF(float2 uv, float2 aspScreenPos, float fallOff, float strengt
     p = rotateUV(p, _radialScanRotation);
     
     float arc = atan2(p.x, p.y);
-    float piMinusHalf = 2.64159265;
-    float t = lerp(piMinusHalf, -piMinusHalf, _radialScanTime);
+    float t = lerp(PIMINUSHALF, -PIMINUSHALF, _radialScanTime);
     float radialScanMask = pow(saturate(1 - length(arc + t)), fallOff);
     
     float logLight = saturate(dot(normalize(p), float2(0, 1)));
@@ -110,6 +114,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
 
     float totalMask = saturate(centerLight + sonarPing + flare + radialScan);
 
+    [branch]
     if (totalMask < 0.1)
     {
         Result[id.xy] = float4(0, 0, 0, 1);

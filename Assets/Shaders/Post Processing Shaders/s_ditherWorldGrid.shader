@@ -6,17 +6,11 @@ Shader "Unlit/s_ditherWorldGrid"
         #include "Assets/Shaders/HLSL/HelperShaderFunctions.hlsl"
         #include "Assets/Shaders/HLSL/NoiseFunctions.hlsl"
 
-
         TEXTURE2D(_GridComputeTex);
         SAMPLER(sampler_GridComputeTex);
 
         float _gridScale;
         float _gridThickness;
-        float _sonarPingTime;
-        float2 _playerPos;
-
-        float2 _flarePos;
-        float _flareTime;
 
         SamplerState point_clamp_sampler;
 
@@ -43,13 +37,6 @@ Shader "Unlit/s_ditherWorldGrid"
             float4 background = col.y * float4(0,0.002, 0.005,1);
             return max(blit * grid, background);
         }
-
-
-        float4 apply(Varyings input) : SV_Target
-        {
-            return SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, input.texcoord);
-        }
-
     ENDHLSL
 
     SubShader {
@@ -63,14 +50,6 @@ Shader "Unlit/s_ditherWorldGrid"
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment calc
-            ENDHLSL
-        }
-
-        Pass { // pass 1
-            Name "ApplyDitherWorldGridPass"
-            HLSLPROGRAM
-            #pragma vertex Vert
-            #pragma fragment apply
             ENDHLSL
         }
     }

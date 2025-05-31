@@ -6400,6 +6400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2003040896761280280, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2673365830193026396, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.23
@@ -6444,6 +6448,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2777125807332923440, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4986212010707517054, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: canFlare
       value: 0
@@ -6460,12 +6468,20 @@ PrefabInstance:
       propertyPath: canRadialScan
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5261720718774239220, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6770750177555964174, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_Volume
       value: 0.432
       objectReference: {fileID: 0}
     - target: {fileID: 7092500086037202234, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250374928922053900, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8103805600809897009, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
@@ -6487,6 +6503,14 @@ PrefabInstance:
     - target: {fileID: 8103805600809897009, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_Intensity
       value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382174964805248606, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890207314445533293, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
