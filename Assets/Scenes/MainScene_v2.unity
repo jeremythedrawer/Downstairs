@@ -1858,7 +1858,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 4.95
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6466,7 +6466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4986212010707517054, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: canRadialScan
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5261720718774239220, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_Enabled
@@ -6486,7 +6486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103805600809897009, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_Range
-      value: 6.96
+      value: 6.87
       objectReference: {fileID: 0}
     - target: {fileID: 8103805600809897009, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_Color.b
@@ -6502,7 +6502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8103805600809897009, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_Intensity
-      value: 0.03
+      value: 13.1
       objectReference: {fileID: 0}
     - target: {fileID: 8382174964805248606, guid: f5d1dbc73b737ef43abc5bd14424d0be, type: 3}
       propertyPath: m_Enabled

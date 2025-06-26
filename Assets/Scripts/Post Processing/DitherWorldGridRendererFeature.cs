@@ -82,6 +82,7 @@ public class DitherWorldGridPass : ScriptableRenderPass
 
     private static readonly int gridScaleID = Shader.PropertyToID("_gridScale");
     private static readonly int gridThicknessID = Shader.PropertyToID("_gridThickness");
+    private static readonly int gridFallOffID = Shader.PropertyToID("_gridFallOff");
 
     private static readonly int gridComputeTexID = Shader.PropertyToID("_GridComputeTex");
 
@@ -227,8 +228,10 @@ public class DitherWorldGridPass : ScriptableRenderPass
     {        
         float gridScale = passData.vc.active && passData.vc.gridScale.overrideState ? passData.vc.gridScale.value : passData.defaultSettings.gridScale;
         float gridThickness = passData.vc.active && passData.vc.gridThickness.overrideState ? passData.vc.gridThickness.value :  passData.defaultSettings.gridThickness;
+        float gridFallOff = passData.vc.active && passData.vc.gridFallOff.overrideState ? passData.vc.gridFallOff.value :  passData.defaultSettings.gridFallOff;
 
         passData.material.SetFloat(gridScaleID, gridScale);
+        passData.material.SetFloat(gridFallOffID, gridFallOff);
         passData.material.SetFloat(gridThicknessID, gridThickness);
     }
 }
@@ -238,6 +241,7 @@ public class DefaultDitherWorldGridSettings
 {
     public float gridScale = 10f;
     public float gridThickness = 0.1f;
+    public float gridFallOff = 0.1f;
 }
 
 

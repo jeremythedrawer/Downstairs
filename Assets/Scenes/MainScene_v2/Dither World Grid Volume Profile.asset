@@ -88,10 +88,13 @@ MonoBehaviour:
     m_Value: 8
   gridThickness:
     m_OverrideState: 1
-    m_Value: 0.02
+    m_Value: 0.21
+  gridFallOff:
+    m_OverrideState: 1
+    m_Value: 0.4
   playerPos:
     m_OverrideState: 1
-    m_Value: {x: 0.5000057, y: 0.3333335}
+    m_Value: {x: 0.44379315, y: 0.48528272}
   sonarPingTime:
     m_OverrideState: 1
     m_Value: 0
@@ -100,10 +103,10 @@ MonoBehaviour:
     m_Value: 0
   flarePos:
     m_OverrideState: 1
-    m_Value: {x: 0.50000787, y: 0.33333355}
+    m_Value: {x: 0.64, y: 0.5018759}
   radialScanTime:
     m_OverrideState: 1
     m_Value: 0
   radialScanRotation:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.56287354

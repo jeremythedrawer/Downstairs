@@ -20,7 +20,6 @@ float2 _Resolution;
 
 Texture2D<float> _NoiseTex;
 
-#define PI 3.1415926
 #define TAU 6.2831853
 #define PIMINUSHALF 2.64159265
 
@@ -115,12 +114,12 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     float totalMask = saturate(centerLight + sonarPing + flare + radialScan);
 
     [branch]
-    if (totalMask < 0.1)
+    if (totalMask < 0.05)
     {
-        Result[id.xy] = float4(0, 0, 0, 1);
+        Result[id.xy] = float4(0, 0, 0, 0);
         return;
     }
-
+    
     float col = 0;
     int neighbourRange = 8;
     for (int x = -neighbourRange; x <= neighbourRange; x++)
@@ -128,28 +127,28 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         for (int y = -neighbourRange; y <= neighbourRange; y++)
         {
             float2 offset = float2(x, y);
-            float4 currSC = float4(abs(frac(scaledTexCoord - offset)), floor(scaledTexCoord - offset));
+            float4 currSC = float4(frac(scaledTexCoord - offset), floor(scaledTexCoord - offset));
 
             float2 localUV = (currSC.zw + 0.5) / scaledAspectRatioUV;
-            float sonar = sonarSDF(localUV, aspScreen, 0.1, 8);
+            float sonar = sonarSDF(localUV, aspScreen, 0, 8);
             float flare = flareSDF(localUV, aspScreen, 20, 2) * 4;
             float radialScan = radialScanSDF(localUV, aspScreen, 1, 5);
             
             float totalMask = sonar + flare + radialScan;
             
             float2 displacementDir = normalize(gridSpacePlayerPos - currSC.zw);
-            float2 displacedPos = currSC.xy + displacementDir * totalMask + offset;
+            float2 displacedPos = currSC.xy + offset + (displacementDir * totalMask);
             float currDistFromSquare = max(-(max(abs(displacedPos.x) - 0.5, abs(displacedPos.y) - 0.5)), 0);
 
             float2 mirroredNoiseUV = abs(frac((_TimeY * 0.1 + currSC.zw * 0.5) / (_gridScale * 2)) * 2 - 1);
             float gridNoise = _NoiseTex.SampleLevel(sampler_LinearClamp, mirroredNoiseUV, 0);
-
-            col += (currDistFromSquare * gridNoise);
+            col += currDistFromSquare;
         }
     }
     
     totalMask = saturate(centerLight + sonarPing + flare + radialScan);
     
+    col = smoothstep(_gridThickness, 1 - _gridThickness, col);
     col *= totalMask;
     Result[id.xy] = float4(col, totalMask, 0, 1);
 }
