@@ -26,18 +26,21 @@ Shader "Unlit/s_ditherWorldGrid"
             float2 col = SAMPLE_TEXTURE2D(_GridComputeTex, sampler_GridComputeTex, input.texcoord).xy; // Compute Shader
 
             float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, gridTexCoord);
+            float4 background = float4(0,0.002, 0.005,1);
+
             float3 blitHSV = RGBToHSV(blit);
 
             float3 hardMix = step(0.992 - blit.rgb, float4(0.9,0.99,0.99,1));
-            blit.rgb = (ceil(blit.rgb * 20) / 20) * hardMix;
+           // blit.rgb = (ceil(blit.rgb * 10) / 10) * hardMix;
             //return blit;
-            float brightnessFactor = max(blitHSV.z, 0);
+            float brightnessFactor = max(blitHSV.z, 0.1);
             float gridSDF = pow(brightnessFactor, _gridFallOff) * col.x;
+            
           // return gridSDF;
             float grid = step(0.001, gridSDF); // Grid Mask
-            //return grid;
-            float4 background = col.y * float4(0,0.002, 0.005,1);
-            return max(blit * grid, background);
+
+           // return grid;
+            return max(blit * grid, (background*grid));
         }
     ENDHLSL
 

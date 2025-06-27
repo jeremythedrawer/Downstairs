@@ -1,29 +1,28 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
     public enum PowerUpType
     {
+        None,
         SonarPing,
         Flare,
         RadialScan
     }
 
     public PowerUpType powerUpType;
-
+    public AudioSource powerUpAudioSource;
+    public static event Action onAquirePowerUp;
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerBrain.Instance.audioManager.collectAbilityAudioSource.PlayOneShot(PlayerBrain.Instance.audioManager.collectAbilityAudioSource.clip);
-
-            int materialCount = PlayerBrain.Instance.playerMaterialController.GetMaterialCount();
-
-            for (int i = 0; i < materialCount; i++)
-            {
-                StartCoroutine(PoweringUpMaterial(i));
-            }
+            powerUpAudioSource.PlayOneShot(powerUpAudioSource.clip);
+            AquirePowerUpUI.GetPowerUI(powerUpType);
+            onAquirePowerUp?.Invoke();
 
             switch (powerUpType)
             {
@@ -41,29 +40,5 @@ public class PowerUp : MonoBehaviour
             gameObject.GetComponent<Renderer>().enabled = false;
             gameObject.GetComponent<Collider>().enabled = false;
         }
-    }
-
-    private IEnumerator PoweringUpMaterial(int materialIndex)
-    {
-        float powerUpTime = 0.5f;
-        float elapsedTime = 0f;
-        var matController = PlayerBrain.Instance.playerMaterialController;
-        Color originalColor = matController.GetOriginalColor(materialIndex);
-
-        while (elapsedTime < powerUpTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / powerUpTime;
-
-            float intensity = Mathf.Lerp(40, 1, t);
-
-            Color pulsedColor = originalColor * intensity;
-
-            matController.SetColor(materialIndex, pulsedColor);
-
-            yield return null;
-        }
-        // Restore original color after pulse
-        matController.SetColor(materialIndex, originalColor);
     }
 }

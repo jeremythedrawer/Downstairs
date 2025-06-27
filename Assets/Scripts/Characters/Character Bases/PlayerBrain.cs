@@ -15,6 +15,16 @@ public class PlayerBrain : CharacterBrain
     {
         if (Instance == null) Instance = this;
     }
+
+    private void OnEnable()
+    {
+        PowerUp.onAquirePowerUp += PowerUpMaterial;
+    }
+
+    private void OnDisable()
+    {
+        PowerUp.onAquirePowerUp -= PowerUpMaterial;      
+    }
     private void Update()
     {
         MoveInputs();
@@ -54,6 +64,39 @@ public class PlayerBrain : CharacterBrain
         {
             lightController.RadialScan();
         }
+    }
+
+    private void PowerUpMaterial()
+    {
+        int materialCount = playerMaterialController.GetMaterialCount();
+
+        for (int i = 0; i < materialCount; i++)
+        {
+            StartCoroutine(PoweringUpMaterial(i));
+        }
+    }
+
+    private IEnumerator PoweringUpMaterial(int materialIndex)
+    {
+        float powerUpTime = 0.5f;
+        float elapsedTime = 0f;
+        Color originalColor = playerMaterialController.GetOriginalColor(materialIndex);
+
+        while (elapsedTime < powerUpTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / powerUpTime;
+
+            float intensity = Mathf.Lerp(40, 1, t);
+
+            Color pulsedColor = originalColor * intensity;
+
+            playerMaterialController.SetColor(materialIndex, pulsedColor);
+
+            yield return null;
+        }
+        // Restore original color after pulse
+        playerMaterialController.SetColor(materialIndex, originalColor);
     }
 
     private void GodMode()
