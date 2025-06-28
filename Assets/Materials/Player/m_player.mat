@@ -40,6 +40,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: fd6de8aab85ecdc43bb80dea231e93ac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _difuse:
+        m_Texture: {fileID: 2800000, guid: 446c84f73b3ba3f44b661dd36c8237ac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -67,6 +71,7 @@ Material:
     - _hit: 0
     - _interpolation: 0
     - _minDark: 0
+    - _movingVertices: 0
     - _power: 1
     - _powerUp: 1.39
     - _randomColors: 1
@@ -78,7 +83,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _color: {r: 1, g: 0.93226576, b: 0, a: 0}
+    - _color: {r: 1, g: 1, b: 1, a: 0}
     - _innerColor: {r: 0.990566, g: 0.8254717, b: 0, a: 0}
     - _outerColor: {r: 0.4339623, g: 0.2773674, b: 0.19037023, a: 0}
     - _powerUpColor: {r: 1, g: 0, b: 0.0586915, a: 0}

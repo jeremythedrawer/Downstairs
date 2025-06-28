@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class MovementController : MonoBehaviour
 {
@@ -14,16 +15,12 @@ public class MovementController : MonoBehaviour
     public bool canMove { get; set; } = true;
 
     private float desiredAngle;
-    private float currentAngle;
+    private float currentYAngle;
 
     private void Update()
     {
         UpdateRotation();
         UpdatePos();
-    }
-
-    private void FixedUpdate()
-    {
     }
 
     private void UpdatePos()
@@ -33,12 +30,12 @@ public class MovementController : MonoBehaviour
             brain.body.linearVelocity = Vector2.zero;
             return;
         }
-        Vector2 moveDIr = transform.up * moveInput;
+        Vector2 moveDIr = transform.right * moveInput;
         Vector2 desiredVelocity = moveDIr * stats.linearSpeed;
 
         if (Mathf.Abs(moveInput) <= 0.01f)
         {
-            brain.body.linearVelocity = Vector2.Lerp(brain.body.linearVelocity, Vector2.zero, stats.linearDamp * Time.fixedDeltaTime);
+            brain.body.linearVelocity = Vector2.Lerp(brain.body.linearVelocity, Vector2.zero, stats.linearDamp * Time.deltaTime);
         }
         else
         {
@@ -49,15 +46,19 @@ public class MovementController : MonoBehaviour
     }
     public void UpdateRotation()
     {
-       if (rotationInput != 0)
+        if (rotationInput != 0)
         {
             desiredAngle += rotationInput * stats.rotationSpeed * Time.deltaTime;
         }
 
         float dampFactor = 1f - Mathf.Exp(-stats.rotationDamp * Time.deltaTime);
 
-        currentAngle = Mathf.LerpAngle(brain.body.rotation.eulerAngles.z, desiredAngle, dampFactor);
+        float currentY = brain.body.rotation.eulerAngles.y;
+        float smoothedY = Mathf.LerpAngle(currentY, -desiredAngle, dampFactor);
 
-        brain.body.MoveRotation(Quaternion.Euler(0f, 0f, currentAngle));
+        float smoothedZ = Mathf.Sin(-smoothedY * Mathf.Deg2Rad) * 90f;
+
+        Quaternion finalRotation = Quaternion.Euler(0, smoothedY, smoothedZ);
+        brain.body.MoveRotation(finalRotation);
     }
 }

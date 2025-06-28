@@ -94,7 +94,7 @@ MonoBehaviour:
     m_Value: 1.37
   playerPos:
     m_OverrideState: 1
-    m_Value: {x: 0.53693235, y: 0.57676315}
+    m_Value: {x: 0.4598424, y: 0.42679834}
   sonarPingTime:
     m_OverrideState: 1
     m_Value: 0
@@ -103,10 +103,10 @@ MonoBehaviour:
     m_Value: 0
   flarePos:
     m_OverrideState: 1
-    m_Value: {x: 0.53693235, y: 0.5767627}
+    m_Value: {x: 0.55031455, y: 0.42818838}
   radialScanTime:
     m_OverrideState: 1
     m_Value: 0
   radialScanRotation:
     m_OverrideState: 1
-    m_Value: 0.7580078
+    m_Value: 0.030753732
