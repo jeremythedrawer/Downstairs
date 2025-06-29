@@ -6,7 +6,7 @@ public class PlayerBrain : CharacterBrain
     public static PlayerBrain Instance { get; private set; }
 
     public Vector2 currentPos => CameraController.mainCam.WorldToViewportPoint(transform.position);
-    public Vector2 currentDir => transform.up;
+    public Vector2 currentDir => transform.right;
 
     [SerializeField] private LayerMask hitLayer;
 

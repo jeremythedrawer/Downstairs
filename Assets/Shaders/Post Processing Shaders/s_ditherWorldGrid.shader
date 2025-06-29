@@ -26,7 +26,6 @@ Shader "Unlit/s_ditherWorldGrid"
             float2 col = SAMPLE_TEXTURE2D(_GridComputeTex, sampler_GridComputeTex, input.texcoord).xy; // Compute Shader
 
             float4 blit = SAMPLE_TEXTURE2D_X(_BlitTexture, point_clamp_sampler, gridTexCoord);
-            float4 background = float4(0,0.002, 0.005,1);
 
             float3 blitHSV = RGBToHSV(blit);
 
@@ -39,7 +38,7 @@ Shader "Unlit/s_ditherWorldGrid"
             float grid = step(0.001, gridSDF); // Grid Mask
 
            // return grid;
-            return max(blit * grid, (background*grid));
+            return blit * grid;
         }
     ENDHLSL
 

@@ -117,7 +117,7 @@ public class AquirePowerUpUI : MonoBehaviour
     private IEnumerator ShowingUI()
     {
         float elapsedTime = 0;
-
+        yield return new WaitForSeconds(1f);
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
