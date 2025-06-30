@@ -2679,7 +2679,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "98cf69ef640c4ee0bfc28e2e47e42788",
     "m_Id": 0,
-    "m_DisplayName": "difuse",
+    "m_DisplayName": "baseTexture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2861,10 +2861,10 @@
     "m_Guid": {
         "m_GuidSerialized": "5b73750b-d801-4122-8b30-851b6eba78cb"
     },
-    "m_Name": "difuse",
+    "m_Name": "baseTexture",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "difuse",
-    "m_DefaultReferenceName": "_difuse",
+    "m_RefNameGeneratedByDisplayName": "baseTexture",
+    "m_DefaultReferenceName": "_baseTexture",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

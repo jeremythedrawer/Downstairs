@@ -65,7 +65,7 @@ public class AquirePowerUpUI : MonoBehaviour
         {
             case PowerUp.PowerUpType.SonarPing:
             {
-                if (PlayerBrain.Instance.movementController.sonarPingInput)
+                if (PlayerBrain.instance.sonarPingInput)
                 {
                     if (!hideUIFlag)
                     {
@@ -78,7 +78,7 @@ public class AquirePowerUpUI : MonoBehaviour
 
             case PowerUp.PowerUpType.Flare:
             {
-                if (PlayerBrain.Instance.movementController.flareInput)
+                if (PlayerBrain.instance.flareInput)
                 {
                     if (!hideUIFlag)
                     {
@@ -91,7 +91,7 @@ public class AquirePowerUpUI : MonoBehaviour
 
             case PowerUp.PowerUpType.RadialScan:
             {
-                if (PlayerBrain.Instance.movementController.radialScanInput)
+                if (PlayerBrain.instance.radialScanInput)
                 {
                     if (!hideUIFlag)
                     {

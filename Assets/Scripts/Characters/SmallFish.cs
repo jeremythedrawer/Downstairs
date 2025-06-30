@@ -1,17 +1,13 @@
 using System.Linq;
 using UnityEngine;
 
-public class SmallFish : MonoBehaviour
+public class SmallFish : SchoolFish<SmallFish>
 {
     public float calmMoveSpeed = 0.5f;
     public float panicMoveSpeed = 2f;
     public float triggerRadius = 2f;
-
-    public SmallFishShaderController smallFishShaderController;
-    public ObjectPoolSpawner<SmallFish> spawner { get; set; }
     public SmallFishSpawner smallFishSpawner { get; set; }
 
-    private Vector3 targetPos;
     private Quaternion targetRotation;
     private float rotationSpeed = 5f;
 
@@ -29,7 +25,7 @@ public class SmallFish : MonoBehaviour
     private void UpdatePos()
     {
 
-        if ((Vector3.Distance(transform.position, PlayerBrain.Instance.transform.position) < triggerRadius && !PlayerBrain.Instance.lightController.canPing) || smallFishSpawner.smallFishes.Any(fish => fish.panic)) panic = true;
+        if ((Vector3.Distance(transform.position, PlayerBrain.instance.transform.position) < triggerRadius && !PlayerBrain.instance.lightController.canPing) || smallFishSpawner.smallFishes.Any(fish => fish.panic)) panic = true;
 
         float speedToUse = panic ? panicMoveSpeed : calmMoveSpeed;
         if (isMoving)
@@ -51,7 +47,7 @@ public class SmallFish : MonoBehaviour
         }
         else
         {
-            targetPos = spawner.GetRandomPosition();
+            GetNewPos();
             isMoving = true;
         }
     }
@@ -59,7 +55,7 @@ public class SmallFish : MonoBehaviour
     private void UpdateRotation()
     {
         if (panic) return;
-        Vector3 dir = transform.position - targetPos;
+        Vector3 dir = transform.position - (Vector3)targetPos;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90;
         targetRotation = Quaternion.Euler(0, 0, angle);
@@ -82,6 +78,6 @@ public class SmallFish : MonoBehaviour
 
     private void UpdateMaterial()
     {
-        smallFishShaderController.speed = panic ? panicMoveSpeed * 10f : calmMoveSpeed * 10f;
+        shaderController.speed = panic ? panicMoveSpeed * 10f : calmMoveSpeed * 10f;
     }
 }

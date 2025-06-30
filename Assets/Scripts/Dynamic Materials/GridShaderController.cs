@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GridShaderController : RendererManager
 {
-    public Vector2 playerPos => PlayerBrain.Instance.currentPos;
+    public Vector2 playerPos => PlayerBrain.instance.currentPos;
     private readonly int playerPosID = Shader.PropertyToID("_playerPos");
 
     private void Update()

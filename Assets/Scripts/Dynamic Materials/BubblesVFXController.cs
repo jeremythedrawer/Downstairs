@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 public class BubblesVFXController : MonoBehaviour
 {
-    public PlayerBrain player;
+    public MovementController movementController;
     private float normPlayerSpeed;
     private float scale;
 
@@ -15,7 +15,7 @@ public class BubblesVFXController : MonoBehaviour
 
     private void Update()
     {
-        normPlayerSpeed = player.body.linearVelocity.magnitude / player.characterStats.linearSpeed;
+        normPlayerSpeed = movementController.body.linearVelocity.magnitude / movementController.stats.linearSpeed;
         if (normPlayerSpeed > 0.1f)
         {            
             scale = Mathf.Lerp(0f, 1f, normPlayerSpeed);

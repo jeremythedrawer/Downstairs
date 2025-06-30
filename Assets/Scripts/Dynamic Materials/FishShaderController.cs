@@ -1,21 +1,21 @@
 using UnityEngine;
 
-public class EnemyShaderController : RendererManager
+public class FishShaderController : RendererManager
 {
-    public bool hit { get; set; }
-    private readonly int hitID = Shader.PropertyToID("_hit");
+    public float speed { get; set; }
+    private readonly int speedID = Shader.PropertyToID("_speed");
 
     private void Update()
     {
         UpdateMaterial();
     }
 
-    public virtual void UpdateMaterial()
+    public void UpdateMaterial()
     {
         if (material != null)
         {
             objectRenderer.GetPropertyBlock(mpb);
-            mpb.SetFloat(hitID, hit ? 1 : 0);
+            mpb.SetFloat(speedID, speed);
             objectRenderer.SetPropertyBlock(mpb);
         }
     }

@@ -40,6 +40,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: fd6de8aab85ecdc43bb80dea231e93ac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _baseTexture:
+        m_Texture: {fileID: 2800000, guid: 446c84f73b3ba3f44b661dd36c8237ac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _difuse:
         m_Texture: {fileID: 2800000, guid: 446c84f73b3ba3f44b661dd36c8237ac, type: 3}
         m_Scale: {x: 1, y: 1}

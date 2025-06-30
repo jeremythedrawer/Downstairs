@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
 
     private void GetTargetPos()
     {
-        Transform playerTransform = PlayerBrain.Instance.transform;
+        Transform playerTransform = PlayerBrain.instance.transform;
         Vector3 playerPos = playerTransform.position;
         offset = playerTransform.up * forwardOffset;
         target = new Vector3(playerPos.x + offset.x, playerPos.y + offset.y, transform.position.z);

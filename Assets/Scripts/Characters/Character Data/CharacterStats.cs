@@ -7,11 +7,4 @@ public class CharacterStats : MonoBehaviour
     public float rotationSpeed;
     public float linearDamp;
     public float rotationDamp;
-    public float health;
-
-
-    [Header("Power Up Checks")]
-    public bool canSonarPing;
-    public bool canFlare;
-    public bool canRadialScan;
 }

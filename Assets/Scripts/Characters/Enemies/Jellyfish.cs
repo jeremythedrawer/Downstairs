@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Jellyfish : Enemy<Jellyfish>
+public class Jellyfish : SchoolFish<Jellyfish>
 {
     private Vector3 target;
 
@@ -16,7 +16,7 @@ public class Jellyfish : Enemy<Jellyfish>
     {
         currentTime += Time.deltaTime;
         float speedPattern = SpeedPattern(currentTime, 0.1f);
-        float speed = moveSpeed * speedPattern;
+        float speed = stats.linearSpeed * speedPattern;
 
         if (isMoving)
         {

@@ -25,7 +25,7 @@ public class PlayerLightController : MonoBehaviour
 
     private void Update()
     {
-        playerScreenPos = Camera.main.WorldToViewportPoint(PlayerBrain.Instance.transform.position);
+        playerScreenPos = Camera.main.WorldToViewportPoint(PlayerBrain.instance.transform.position);
         ditherVolume.playerPos.value = playerScreenPos;
     }
     public void SonarPing()
@@ -53,7 +53,7 @@ public class PlayerLightController : MonoBehaviour
     }
     private IEnumerator SonarPinging()
     {
-        PlayerBrain.Instance.audioManager.sonarPingAudioSource.Play();
+        PlayerBrain.instance.audioManager.sonarPingAudioSource.Play();
         float elapsedTime = 0;
         canPing = false;
         while (elapsedTime < sonarPingTime)
@@ -73,8 +73,8 @@ public class PlayerLightController : MonoBehaviour
         float elapsedTime = 0f;
         canFlare = false;
 
-        Vector2 playerDir = PlayerBrain.Instance.currentDir.normalized;
-        PlayerBrain.Instance.audioManager.flareAudioSource.Play();
+        Vector2 playerDir = PlayerBrain.instance.currentDir.normalized;
+        PlayerBrain.instance.audioManager.flareAudioSource.Play();
         while (elapsedTime < flareTime)
         {
             elapsedTime += Time.deltaTime;
@@ -93,8 +93,8 @@ public class PlayerLightController : MonoBehaviour
     {
         float elapsedTime = 0f;
         canScan = false;
-        PlayerBrain.Instance.audioManager.radialScanAudioSource.Play();
-        Vector2 playerDir = PlayerBrain.Instance.currentDir;
+        PlayerBrain.instance.audioManager.radialScanAudioSource.Play();
+        Vector2 playerDir = PlayerBrain.instance.currentDir;
         while(elapsedTime < radialScanTime)
         {
             elapsedTime += Time.deltaTime;

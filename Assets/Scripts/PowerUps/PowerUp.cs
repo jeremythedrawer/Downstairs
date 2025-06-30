@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -27,13 +25,13 @@ public class PowerUp : MonoBehaviour
             switch (powerUpType)
             {
                 case PowerUpType.Flare:
-                PlayerBrain.Instance.characterStats.canFlare = true;
+                PlayerBrain.instance.canFlare = true;
                 break;
                 case PowerUpType.SonarPing:
-                PlayerBrain.Instance.characterStats.canSonarPing = true;
+                PlayerBrain.instance.canSonarPing = true;
                 break;
                 case PowerUpType.RadialScan:
-                PlayerBrain.Instance.characterStats.canRadialScan = true;
+                PlayerBrain.instance.canRadialScan = true;
                 break;
             }
 

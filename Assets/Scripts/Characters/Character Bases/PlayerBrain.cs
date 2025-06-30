@@ -1,19 +1,32 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerBrain : CharacterBrain
+public class PlayerBrain : MonoBehaviour
 {
-    public static PlayerBrain Instance { get; private set; }
+    public static PlayerBrain instance { get; private set; }
+
+    public SphereCollider sphereCollider;
+    public MovementController movementController;
+    public PlayerMaterialController playerMaterialController;
+    public PlayerLightController lightController;
+    public AudioManager audioManager;
+
+
+    [Header("Power Up Checks")]
+    public bool canSonarPing;
+    public bool canFlare;
+    public bool canRadialScan;
 
     public Vector2 currentPos => CameraController.mainCam.WorldToViewportPoint(transform.position);
     public Vector2 currentDir => transform.right;
-
-    [SerializeField] private LayerMask hitLayer;
+    public bool sonarPingInput { get; set; }
+    public bool flareInput { get; set; }
+    public bool radialScanInput { get; set; }
 
     private bool inGodMode;
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (instance == null) instance = this;
     }
 
     private void OnEnable()
@@ -36,15 +49,15 @@ public class PlayerBrain : CharacterBrain
     private void MoveInputs()
     {
         movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
-        movementController.sonarPingInput = Input.GetKeyDown(KeyCode.I);
-        movementController.flareInput = Input.GetKeyDown(KeyCode.O);
-        movementController.radialScanInput = Input.GetKeyDown(KeyCode.P);
+        sonarPingInput = Input.GetKeyDown(KeyCode.I);
+        flareInput = Input.GetKeyDown(KeyCode.O);
+        radialScanInput = Input.GetKeyDown(KeyCode.P);
         movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
     }
 
     private void UseSonarPing()
     {
-        if (movementController.sonarPingInput && characterStats.canSonarPing)
+        if (sonarPingInput && canSonarPing)
         {
             lightController.SonarPing();
         }
@@ -52,7 +65,7 @@ public class PlayerBrain : CharacterBrain
 
     private void UseFlare()
     {
-        if(movementController.flareInput && characterStats.canFlare)
+        if(flareInput && canFlare)
         {
             lightController.Flare();
         }
@@ -60,7 +73,7 @@ public class PlayerBrain : CharacterBrain
 
     private void UseRadialScan()
     {
-        if (movementController.radialScanInput && characterStats.canRadialScan)
+        if (radialScanInput && canRadialScan)
         {
             lightController.RadialScan();
         }
@@ -105,16 +118,16 @@ public class PlayerBrain : CharacterBrain
         {
             if (!inGodMode)
             {
-                characterStats.canSonarPing = true;
-                characterStats.canFlare = true;
-                characterStats.canRadialScan = true;
+                canSonarPing = true;
+                canFlare = true;
+                canRadialScan = true;
                 inGodMode = true;
             }
             else
             {
-                characterStats.canSonarPing = false;
-                characterStats.canFlare = false;
-                characterStats.canRadialScan = false;
+                canSonarPing = false;
+                canFlare = false;
+                canRadialScan = false;
                 inGodMode = false;
             }
         }

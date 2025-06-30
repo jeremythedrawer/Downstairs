@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tentacle : Enemy<Tentacle>
+public class Tentacle : SchoolFish<Tentacle>
 {
 
 }
