@@ -4,16 +4,17 @@ public class Anglerfish : SolitaryFish
 {
     private float rotThreshold = 0.9f;
 
-    private Vector2 dirToTarget;
-    private float dirDot;
     protected override void OnEnable()
     {
         base.OnEnable();
         GetNewPos();
     }
-    protected void Update()
+    private void Update()
     {
+        if (distanceFromPlayer > 5f) return;
         UpdateInputs();
+        movementController.UpdateRotation();
+        movementController.UpdatePos();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -34,8 +35,8 @@ public class Anglerfish : SolitaryFish
 
             if (Mathf.Abs(angleToTarget) > rotThreshold)
             {
-                movementController.rotationInput = angleToTarget > 0 ? 1 : -1;
-                movementController.moveInput = 0;
+                float turnStrength = Mathf.Clamp(angleToTarget / 45f, -1f, 1f); 
+                movementController.rotationInput = turnStrength;
             }
             else
             {
@@ -48,20 +49,4 @@ public class Anglerfish : SolitaryFish
             GetNewPos();
         }
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (!Application.isPlaying)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, moveBoundRadius);
-        }
-        DrawPath();
-    }
-
-    private void DrawPath()
-    {
-        Debug.DrawLine(transform.position, targetPos, Color.magenta);
-    }
-
 }

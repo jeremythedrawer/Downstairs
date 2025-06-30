@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c6f7e5f358d434e418af0329467d5159, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 71.3
+      value: 28.974365
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c6f7e5f358d434e418af0329467d5159, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.86
+      value: 31.45713
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c6f7e5f358d434e418af0329467d5159, type: 3}
       propertyPath: m_LocalPosition.z
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0c6b22b52c59a43a8e2cd0245f5843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBoundRadius: 0
+  moveBoundRadius: 1
   shaderController: {fileID: 1270304821005827741}
   stats: {fileID: 522374910404975}
   spawner: {fileID: 0}

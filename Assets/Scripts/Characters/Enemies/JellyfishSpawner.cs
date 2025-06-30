@@ -44,6 +44,7 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
         }
         jellyfishes.Add(jellyfish);
         jellyfish.transform.position = GetRandomPosition();
+        jellyfish.startPos = jellyfish.transform.position;
         jellyfish.gameObject.SetActive(true);
         jellyfish.gameObject.transform.SetParent(this.transform);
     }

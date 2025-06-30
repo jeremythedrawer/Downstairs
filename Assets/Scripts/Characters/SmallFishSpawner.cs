@@ -44,6 +44,7 @@ public class SmallFishSpawner : ObjectPoolSpawner<SmallFish>
         }
         smallFishes.Add(smallFish);
         smallFish.transform.position = GetRandomPosition();
+        smallFish.startPos = smallFish.transform.position;
         smallFish.gameObject.SetActive(true);
         smallFish.gameObject.transform.SetParent(this.transform);
     }

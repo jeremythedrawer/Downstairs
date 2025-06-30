@@ -10,13 +10,7 @@ public class MovementController : MonoBehaviour
 
     private float desiredAngle;
 
-    private void Update()
-    {
-        UpdateRotation();
-        UpdatePos();
-    }
-
-    private void UpdatePos()
+    public void UpdatePos()
     {
         if (!canMove)
         {

@@ -45,6 +45,8 @@ public class PlayerBrain : MonoBehaviour
         UseFlare();
         UseRadialScan();
         GodMode();
+        movementController.UpdatePos();
+        movementController.UpdateRotation();
     }
     private void MoveInputs()
     {

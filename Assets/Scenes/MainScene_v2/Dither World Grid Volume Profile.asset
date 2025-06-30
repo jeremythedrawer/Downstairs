@@ -94,7 +94,7 @@ MonoBehaviour:
     m_Value: 1.49
   playerPos:
     m_OverrideState: 1
-    m_Value: {x: 0.5006667, y: 0.40019238}
+    m_Value: {x: 0.5596025, y: 0.45119405}
   sonarPingTime:
     m_OverrideState: 1
     m_Value: 0

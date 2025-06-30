@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8735445825166381245}
   - component: {fileID: 6950386774135041209}
   - component: {fileID: 5673173002883354077}
+  - component: {fileID: 655276668397548171}
+  - component: {fileID: 7291616189568725165}
   m_Layer: 0
   m_Name: Small Fish
   m_TagString: Untagged
@@ -100,10 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687360a246fefe54486ff33985dbbb4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  calmMoveSpeed: 0.2
-  panicMoveSpeed: 5
+  moveBoundRadius: 0.78
+  shaderController: {fileID: 655276668397548171}
+  stats: {fileID: 7291616189568725165}
+  spawner: {fileID: 0}
+  panicSpeedMultiplier: 25
   triggerRadius: 2
-  smallFishShaderController: {fileID: 5673173002883354077}
 --- !u!114 &5673173002883354077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,3 +120,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01b2e0182e26fa46ad7bf4f99c24fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &655276668397548171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035533046250022860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01b2e0182e26fa46ad7bf4f99c24fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7291616189568725165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035533046250022860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c697d9805e720e7408dbdb6eb863993d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linearSpeed: 0.2
+  rotationSpeed: 0
+  linearDamp: 0
+  rotationDamp: 0

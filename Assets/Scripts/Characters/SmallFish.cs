@@ -3,19 +3,24 @@ using UnityEngine;
 
 public class SmallFish : SchoolFish<SmallFish>
 {
-    public float calmMoveSpeed = 0.5f;
-    public float panicMoveSpeed = 2f;
-    public float triggerRadius = 2f;
+    public float panicSpeedMultiplier = 25f;
+    public float triggerRadius = 1f;
     public SmallFishSpawner smallFishSpawner { get; set; }
+    public bool panic {  get; private set; } 
 
     private Quaternion targetRotation;
     private float rotationSpeed = 5f;
-
     private bool isMoving;
+    private float curSpeed;
 
-    public bool panic {  get; private set; } 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
     private void Update()
     {
+        if (distanceFromPlayer > 5f) return;
         UpdatePos();
         UpdateRotation();
         UpdateMaterial();
@@ -27,12 +32,12 @@ public class SmallFish : SchoolFish<SmallFish>
 
         if ((Vector3.Distance(transform.position, PlayerBrain.instance.transform.position) < triggerRadius && !PlayerBrain.instance.lightController.canPing) || smallFishSpawner.smallFishes.Any(fish => fish.panic)) panic = true;
 
-        float speedToUse = panic ? panicMoveSpeed : calmMoveSpeed;
         if (isMoving)
         {
             if (!panic)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPos, speedToUse * Time.deltaTime);
+                curSpeed = stats.linearSpeed;
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, curSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, targetPos) < 0.1f)
                 {
                     isMoving = false;
@@ -41,7 +46,8 @@ public class SmallFish : SchoolFish<SmallFish>
             }
             else
             {
-                transform.position += transform.up * panicMoveSpeed * Time.deltaTime;
+                curSpeed = stats.linearSpeed * panicSpeedMultiplier;
+                transform.position += transform.up * curSpeed * Time.deltaTime;
             }
 
         }
@@ -78,6 +84,6 @@ public class SmallFish : SchoolFish<SmallFish>
 
     private void UpdateMaterial()
     {
-        shaderController.speed = panic ? panicMoveSpeed * 10f : calmMoveSpeed * 10f;
+        shaderController.speed = curSpeed * 10f;
     }
 }
