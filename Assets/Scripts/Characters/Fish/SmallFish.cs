@@ -30,7 +30,7 @@ public class SmallFish : SchoolFish<SmallFish>
     private void UpdatePos()
     {
 
-        if ((Vector3.Distance(transform.position, PlayerBrain.instance.transform.position) < triggerRadius && !PlayerBrain.instance.lightController.canPing) || smallFishSpawner.smallFishes.Any(fish => fish.panic)) panic = true;
+        if ((Vector3.Distance(transform.position, PlayerBrain.instance.transform.position) < triggerRadius && !PlayerBrain.instance.lightController.canPing)) panic = true;
 
         if (isMoving)
         {

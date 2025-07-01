@@ -1,41 +1,22 @@
 using UnityEngine;
 
-public class Anglerfish : SolitaryFish
+public abstract class SolitaryFish : Fish
 {
+    public MovementController movementController;
     private float rotThreshold = 0.9f;
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        GetNewPos();
-    }
-    private void Update()
-    {
-        if (distanceFromPlayer > 5f) return;
-        UpdateInputs();
-        movementController.UpdateRotation();
-        movementController.UpdatePos();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            GetNewPos();
-        }
-    }
-    private void UpdateInputs()
+    private float distThreshold = 0.3f;
+    protected void UpdateInputs()
     {
         Vector2 toTarget = targetPos - (Vector2)transform.position;
         float distToTarget = toTarget.magnitude;
 
-        if (distToTarget > 0.3f)
+        if (distToTarget > distThreshold)
         {
             float angleToTarget = Vector2.SignedAngle(transform.right, toTarget.normalized);
 
             if (Mathf.Abs(angleToTarget) > rotThreshold)
             {
-                float turnStrength = Mathf.Clamp(angleToTarget / 45f, -1f, 1f); 
+                float turnStrength = Mathf.Clamp(angleToTarget / 45f, -1f, 1f);
                 movementController.rotationInput = turnStrength;
             }
             else

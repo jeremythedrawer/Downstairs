@@ -11,6 +11,9 @@ public class PlayerBrain : MonoBehaviour
     public PlayerLightController lightController;
     public AudioManager audioManager;
 
+    [Header("Fish Detection")]
+    public float fishDetectionRadius = 5f;
+    public LayerMask fishToFindLayer;
 
     [Header("Power Up Checks")]
     public bool canSonarPing;
@@ -22,6 +25,8 @@ public class PlayerBrain : MonoBehaviour
     public bool sonarPingInput { get; set; }
     public bool flareInput { get; set; }
     public bool radialScanInput { get; set; }
+    public bool findFishInput { get; set; }
+    public bool menuInput { get; set; }
 
     private bool inGodMode;
     private void Awake()
@@ -41,20 +46,29 @@ public class PlayerBrain : MonoBehaviour
     private void Update()
     {
         MoveInputs();
+        movementController.UpdatePos();
+        movementController.UpdateRotation();
+
         UseSonarPing();
         UseFlare();
         UseRadialScan();
+
+        UseFindFish();
+
         GodMode();
-        movementController.UpdatePos();
-        movementController.UpdateRotation();
     }
     private void MoveInputs()
     {
         movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
+        movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
+
         sonarPingInput = Input.GetKeyDown(KeyCode.I);
         flareInput = Input.GetKeyDown(KeyCode.O);
         radialScanInput = Input.GetKeyDown(KeyCode.P);
-        movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
+
+        findFishInput = Input.GetKeyDown(KeyCode.Space);
+
+        menuInput = Input.GetKeyDown(KeyCode.Tab);
     }
 
     private void UseSonarPing()
@@ -64,7 +78,6 @@ public class PlayerBrain : MonoBehaviour
             lightController.SonarPing();
         }
     }
-
     private void UseFlare()
     {
         if(flareInput && canFlare)
@@ -72,7 +85,6 @@ public class PlayerBrain : MonoBehaviour
             lightController.Flare();
         }
     }
-
     private void UseRadialScan()
     {
         if (radialScanInput && canRadialScan)
@@ -90,7 +102,6 @@ public class PlayerBrain : MonoBehaviour
             StartCoroutine(PoweringUpMaterial(i));
         }
     }
-
     private IEnumerator PoweringUpMaterial(int materialIndex)
     {
         float powerUpTime = 0.5f;
@@ -112,6 +123,40 @@ public class PlayerBrain : MonoBehaviour
         }
         // Restore original color after pulse
         playerMaterialController.SetColor(materialIndex, originalColor);
+    }
+
+
+    private void UseFindFish()
+    {
+        if (findFishInput)
+        {
+            FindFish();
+        }
+    }
+    private void FindFish()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, fishDetectionRadius, fishToFindLayer);
+
+        if (hits.Length > 0)
+        {
+            foreach (Collider c in hits)
+            {
+                if (c.TryGetComponent<SolitaryFish>(out SolitaryFish fish))
+                {
+                    StatsManager.instance.CheckOffFish(fish);
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        DrawFishDetectionRadius();
+    }
+    private void DrawFishDetectionRadius()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, fishDetectionRadius);
     }
 
     private void GodMode()
