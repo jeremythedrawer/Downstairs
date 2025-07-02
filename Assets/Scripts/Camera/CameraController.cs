@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance {  get; private set; }
+
     public float damping = 5f;
     public float forwardOffset = 0f;
     public static Camera mainCam;
@@ -17,17 +19,27 @@ public class CameraController : MonoBehaviour
     private Vector3 target;
 
     private Vector3 offset;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
     private void Start()
     {
         mainCam = Camera.main;
         camHeight = 2f * mainCam.orthographicSize;
         camWidth = camHeight * mainCam.aspect;
-
-
     }
 
     private void Update()
     {
+        if (PlayerBrain.instance == null) return;
         GetTargetPos();
         FollowTarget();
         GetCurrentCamBounds();

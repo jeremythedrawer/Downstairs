@@ -11,6 +11,8 @@ public class DitherWorldGridVolumeComponent : VolumeComponent
     public FloatParameter gridFallOff = new FloatParameter(0.1f);
     public Vector2Parameter playerPos = new Vector2Parameter(Vector2.zero);
 
+    public FloatParameter centreLightSize = new FloatParameter(5f);
+
     public ClampedFloatParameter sonarPingTime = new ClampedFloatParameter(0.0f, 0.0f, 1.0f);
     public ClampedFloatParameter flareTime = new ClampedFloatParameter(0.0f, 0.0f, 1.0f);
     public Vector2Parameter flarePos = new Vector2Parameter(Vector2.zero);

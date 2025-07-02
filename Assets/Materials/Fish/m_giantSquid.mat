@@ -120,6 +120,7 @@ Material:
     - _ZWrite: 1
     - _clamp: 0.47
     - _fallOff: 1
+    - _found: 0
     - _freq: 10
     - _frequency: 24.94
     - _magnitude: 0.3

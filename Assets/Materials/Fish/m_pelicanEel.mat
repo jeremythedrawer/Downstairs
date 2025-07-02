@@ -137,9 +137,10 @@ Material:
     - _ZWrite: 1
     - _amplitude: 0
     - _clamp: 0.19
+    - _found: 0
     - _frequency: 7.09
     - _magnitude: 0.17
-    - _speed: 6.09
+    - _speed: 0
     - _strength: 0.686
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

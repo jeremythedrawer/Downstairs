@@ -12,7 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/VFX Scene.unity
     guid: d62efc9b31e41ff4a950b02f973bc7ab
   - enabled: 1
-    path: Assets/Scenes/MainScene_v2.unity
+    path: Assets/Scenes/Menu.unity
+    guid: 0c313ae8c265ae941a8f962a421c5ece
+  - enabled: 1
+    path: Assets/Scenes/PlayScene.unity
     guid: a17598c7b99d97c458e4ce12b1bad793
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

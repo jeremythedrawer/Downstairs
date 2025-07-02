@@ -9,6 +9,7 @@ RWTexture2D<float4> Result;
 float _gridScale;
 float _gridThickness;
 float _TimeY;
+float _centreLightSize;
 float _sonarPingTime;
 float _flareTime;
 float _radialScanTime;
@@ -46,7 +47,7 @@ float2 rotateUV(float2 uv, float rotation)
 float circleSDF(float2 uv, float2 aspScreenPos)
 {
     float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
-    float circle = 1 - length(p * 5);
+    float circle = 1 - length(p * _centreLightSize);
     return saturate(circle);
 }
 

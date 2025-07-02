@@ -56,6 +56,96 @@ MonoBehaviour:
   playerPos:
     m_OverrideState: 1
     m_Value: {x: 0.50001717, y: 0.33336377}
+--- !u!114 &-1076198448297262239
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  skipIterations:
+    m_OverrideState: 1
+    m_Value: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 16.55
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.2
+  scatter:
+    m_OverrideState: 1
+    m_Value: 0.373
+  clamp:
+    m_OverrideState: 1
+    m_Value: 65472
+  tint:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  highQualityFiltering:
+    m_OverrideState: 1
+    m_Value: 0
+  downscale:
+    m_OverrideState: 0
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 6
+  dirtTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &-864720479196327234
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce48900f7f01dd47b364668ffbbd890, type: 3}
+  m_Name: DitherWorldGridVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  gridScale:
+    m_OverrideState: 1
+    m_Value: 10
+  gridThickness:
+    m_OverrideState: 1
+    m_Value: 0.12
+  gridFallOff:
+    m_OverrideState: 1
+    m_Value: 2.11
+  playerPos:
+    m_OverrideState: 1
+    m_Value: {x: 0.53648835, y: 0.44298324}
+  centreLightSize:
+    m_OverrideState: 1
+    m_Value: 0
+  sonarPingTime:
+    m_OverrideState: 1
+    m_Value: 0
+  flareTime:
+    m_OverrideState: 1
+    m_Value: 0
+  flarePos:
+    m_OverrideState: 1
+    m_Value: {x: 0.52241945, y: 0.48681527}
+  radialScanTime:
+    m_OverrideState: 1
+    m_Value: 0
+  radialScanRotation:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +159,8 @@ MonoBehaviour:
   m_Name: Dither World Grid Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 7437296422468691243}
+  - {fileID: -1076198448297262239}
+  - {fileID: -864720479196327234}
 --- !u!114 &7437296422468691243
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -85,28 +176,31 @@ MonoBehaviour:
   active: 1
   gridScale:
     m_OverrideState: 1
-    m_Value: 6
+    m_Value: 10
   gridThickness:
     m_OverrideState: 1
     m_Value: 0.12
   gridFallOff:
     m_OverrideState: 1
-    m_Value: 1.49
+    m_Value: 2.04
   playerPos:
     m_OverrideState: 1
-    m_Value: {x: 0.49482858, y: 0.26}
+    m_Value: {x: 0.5, y: 0.5}
+  centreLightSize:
+    m_OverrideState: 1
+    m_Value: 0
   sonarPingTime:
     m_OverrideState: 1
-    m_Value: 0.98073864
+    m_Value: 0
   flareTime:
     m_OverrideState: 1
     m_Value: 0
   flarePos:
     m_OverrideState: 1
-    m_Value: {x: 0.45764536, y: 0.40884238}
+    m_Value: {x: 0.5, y: 0.5}
   radialScanTime:
     m_OverrideState: 1
     m_Value: 0
   radialScanRotation:
     m_OverrideState: 1
-    m_Value: 0.528244
+    m_Value: 0

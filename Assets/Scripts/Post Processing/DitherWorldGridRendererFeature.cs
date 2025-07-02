@@ -114,6 +114,8 @@ public class DitherWorldGridPass : ScriptableRenderPass
         internal float gridThickness;
         internal Vector2 playerPos;
 
+        internal float centreLightSize;
+
         internal float sonarPingTime;
         internal float flareTime;
         internal Vector2 flarePos;
@@ -160,6 +162,8 @@ public class DitherWorldGridPass : ScriptableRenderPass
             computePassData.gridScale = computePassData.vc.gridScale.value;
             computePassData.gridThickness = computePassData.vc.gridThickness.value;
             computePassData.playerPos = computePassData.vc.playerPos.value;
+
+            computePassData.centreLightSize = computePassData.vc.centreLightSize.value;
 
             computePassData.sonarPingTime = computePassData.vc.sonarPingTime.value;
             computePassData.flareTime = computePassData.vc.flareTime.value;
@@ -212,6 +216,8 @@ public class DitherWorldGridPass : ScriptableRenderPass
         ctx.cmd.SetComputeFloatParam(passData.computeShader, "_flareTime", passData.flareTime);
         ctx.cmd.SetComputeFloatParam(passData.computeShader, "_radialScanTime", passData.radialScanTime);
         ctx.cmd.SetComputeFloatParam(passData.computeShader, "_radialScanRotation", passData.radialScanRotation);
+
+        ctx.cmd.SetComputeFloatParam(passData.computeShader, "_centreLightSize", passData.centreLightSize);
 
         ctx.cmd.SetComputeVectorParam(passData.computeShader, "_playerPos", passData.playerPos);
         ctx.cmd.SetComputeVectorParam(passData.computeShader, "_flarePos", passData.flarePos);

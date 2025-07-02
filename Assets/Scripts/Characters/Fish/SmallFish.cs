@@ -20,7 +20,7 @@ public class SmallFish : SchoolFish<SmallFish>
 
     private void Update()
     {
-        if (distanceFromPlayer > 5f) return;
+        if (distanceFromPlayer > 20f) return;
         UpdatePos();
         UpdateRotation();
         UpdateMaterial();
@@ -29,8 +29,8 @@ public class SmallFish : SchoolFish<SmallFish>
 
     private void UpdatePos()
     {
-
-        if ((Vector3.Distance(transform.position, PlayerBrain.instance.transform.position) < triggerRadius && !PlayerBrain.instance.lightController.canPing)) panic = true;
+        
+        if (PlayerBrain.instance != null && (Vector3.Distance(transform.position, PlayerBrain.instance.transform.position) < triggerRadius && !PlayerBrain.instance.lightController.canPing)) panic = true;
 
         if (isMoving)
         {

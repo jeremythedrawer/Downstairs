@@ -9,7 +9,7 @@ public class Fish : MonoBehaviour
     public Vector2 startPos {  get; set; }
     protected Vector2 targetPos { get; set; }
 
-    protected float distanceFromPlayer => (PlayerBrain.instance.transform.position - transform.position).sqrMagnitude;
+    protected float distanceFromPlayer => PlayerBrain.instance != null ? (PlayerBrain.instance.transform.position - transform.position).sqrMagnitude : 0;
     protected virtual void OnEnable()
     {
         startPos = transform.position;

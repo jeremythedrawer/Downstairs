@@ -9,7 +9,7 @@ public class Anglerfish : SolitaryFish
     }
     private void Update()
     {
-        if (distanceFromPlayer > 5f)
+        if (distanceFromPlayer > 20f)
         {
             movementController.rotationInput = 0;
             movementController.moveInput = 0;
