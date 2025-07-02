@@ -124,10 +124,10 @@ MonoBehaviour:
     m_Value: 0.12
   gridFallOff:
     m_OverrideState: 1
-    m_Value: 2.11
+    m_Value: 1.43
   playerPos:
     m_OverrideState: 1
-    m_Value: {x: 0.53648835, y: 0.44298324}
+    m_Value: {x: 0.5213506, y: 0.48884633}
   centreLightSize:
     m_OverrideState: 1
     m_Value: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Value: 0
   flarePos:
     m_OverrideState: 1
-    m_Value: {x: 0.52241945, y: 0.48681527}
+    m_Value: {x: 0.5, y: 0.5}
   radialScanTime:
     m_OverrideState: 1
     m_Value: 0

@@ -6384,7 +6384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8639684568266253998, guid: e2c03d92fe5917d42b1439be08ee16ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.68
+      value: 6.02
       objectReference: {fileID: 0}
     - target: {fileID: 8639684568266253998, guid: e2c03d92fe5917d42b1439be08ee16ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6949,6 +6949,18 @@ PrefabInstance:
     - target: {fileID: 431314430861293326, guid: 0bad01d02cabf2e43a5e5615c25aaeaf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499014417778601958, guid: 0bad01d02cabf2e43a5e5615c25aaeaf, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499014417778601958, guid: 0bad01d02cabf2e43a5e5615c25aaeaf, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499014417778601958, guid: 0bad01d02cabf2e43a5e5615c25aaeaf, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2499014417778601958, guid: 0bad01d02cabf2e43a5e5615c25aaeaf, type: 3}
       propertyPath: m_Intensity
