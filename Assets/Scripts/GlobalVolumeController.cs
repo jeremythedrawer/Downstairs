@@ -8,7 +8,7 @@ public class GlobalVolumeController : MonoBehaviour
 {
     public static GlobalVolumeController instance {  get; private set; }
     public VolumeProfile globalVolume;
-    private DitherWorldGridVolumeComponent ditherWorldGridVolume;
+    public DitherWorldGridVolumeComponent ditherWorldGridVolume;
 
     private float transitionTime = 2f;
 

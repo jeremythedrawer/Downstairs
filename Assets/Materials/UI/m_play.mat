@@ -30,7 +30,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _highlight: 0
-    - _isGlowing: 1
+    - _isGlowing: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

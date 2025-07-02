@@ -121,8 +121,13 @@ public class AquirePowerUpUI : MonoBehaviour
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Pow(elapsedTime / time, 2);
-            Color color = new Color(1, 1, 1, alpha);
+            float t = Mathf.Pow(elapsedTime / time, 2);
+            float gridScale = Mathf.Lerp(GlobalVolumeController.instance.inGameGridScale, GlobalVolumeController.instance.menuGridScale, t);
+            float centrelightSize = Mathf.Lerp(GlobalVolumeController.instance.inGameCenterLightSize, GlobalVolumeController.instance.menuCentreLightSize, t);
+
+            GlobalVolumeController.instance.ditherWorldGridVolume.gridScale.value = gridScale;
+            GlobalVolumeController.instance.ditherWorldGridVolume.centreLightSize.value = centrelightSize;
+            Color color = new Color(1, 1, 1, t);
             powerUpImage.color = color;
             yield return null;
         }
@@ -137,13 +142,19 @@ public class AquirePowerUpUI : MonoBehaviour
         while (elapsedTime > 0)
         {
             elapsedTime -= Time.deltaTime;
-            float alpha = Mathf.Pow(elapsedTime / time, 2);
-            Color color = new Color(1, 1, 1, alpha);
+            float t = Mathf.Pow(elapsedTime / time, 2);
+            float gridScale = Mathf.Lerp(GlobalVolumeController.instance.inGameGridScale, GlobalVolumeController.instance.menuGridScale, t);
+            float centrelightSize = Mathf.Lerp(GlobalVolumeController.instance.inGameCenterLightSize, GlobalVolumeController.instance.menuCentreLightSize, t);
+
+            GlobalVolumeController.instance.ditherWorldGridVolume.gridScale.value = gridScale;
+            GlobalVolumeController.instance.ditherWorldGridVolume.centreLightSize.value = centrelightSize;
+            Color color = new Color(1, 1, 1, t);
             powerUpImage.color = color;
             yield return null;
         }
 
         hideUIFlag = false;
+
         powerUpImage.color = Color.clear;
         activeType = PowerUp.PowerUpType.None;
     }
