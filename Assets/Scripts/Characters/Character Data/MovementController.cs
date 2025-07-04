@@ -14,7 +14,6 @@ public class MovementController : MonoBehaviour
     {
         if (!canMove)
         {
-            body.linearVelocity = Vector2.zero;
             return;
         }
         Vector2 moveDIr = transform.right * moveInput;
@@ -33,6 +32,10 @@ public class MovementController : MonoBehaviour
     }
     public void UpdateRotation()
     {
+        if (!canMove)
+        {
+            return;
+        }
         if (rotationInput != 0)
         {
             desiredAngle += rotationInput * stats.rotationSpeed * Time.deltaTime;

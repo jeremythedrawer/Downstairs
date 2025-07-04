@@ -140,7 +140,7 @@ Material:
     - _found: 0
     - _frequency: 7.09
     - _magnitude: 0.17
-    - _speed: 0
+    - _speed: 1
     - _strength: 0.686
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

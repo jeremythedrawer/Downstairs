@@ -1,15 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    public static MenuController instance;
-
-    public List<MenuButton> menuButtons;
-
-    public Canvas[] canvasList;
+    public MenuCanvasController[] canvasList;
     public enum SoundEffectType
     {
         Hover,
@@ -24,22 +19,13 @@ public class MenuController : MonoBehaviour
     }
 
     public List<SoundEffects> sfxList;
-    public AudioSource audioSource;
 
-    private int currentIndex = 0;
-    private Dictionary<SoundEffectType, AudioClip> sfxDict;
+    private static AudioSource audioSource;
+    private static int currentIndex = 0;
+    private static Dictionary<SoundEffectType, AudioClip> sfxDict;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-
-
         sfxDict = new Dictionary<SoundEffectType, AudioClip>();
 
         foreach (SoundEffects sound in sfxList)
@@ -49,29 +35,22 @@ public class MenuController : MonoBehaviour
                 sfxDict.Add(sound.type, sound.clip);
             }
         }
-    }
-    private void Start()
-    {
-        UpdateSelection();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
-    {
-        MenuInputs();
-    }
-
-    private void MenuInputs()
+    public static void MenuInputs(List<MenuButton> menuButtons)
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
             currentIndex = (currentIndex - 1 + menuButtons.Count) % menuButtons.Count;
-            UpdateSelection();
+            UpdateSelection(menuButtons);
             PlayMenuSFX(SoundEffectType.Hover, 1.1f);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             currentIndex = (currentIndex + 1) % menuButtons.Count;
-            UpdateSelection();
+            UpdateSelection(menuButtons);
             PlayMenuSFX(SoundEffectType.Hover, 0.9f);
         }
         else if (Input.GetKeyDown(KeyCode.Space))
@@ -80,7 +59,7 @@ public class MenuController : MonoBehaviour
             menuButtons[currentIndex].HitButton();
         }
     }
-    private void UpdateSelection()
+    public static void UpdateSelection(List<MenuButton> menuButtons)
     {
         for (int i = 0; i < menuButtons.Count; i++)
         {
@@ -88,7 +67,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    private void PlayMenuSFX(SoundEffectType type, float pitch = 1)
+    private static void PlayMenuSFX(SoundEffectType type, float pitch = 1)
     {
         if(sfxDict.TryGetValue(type, out AudioClip clip))
         {

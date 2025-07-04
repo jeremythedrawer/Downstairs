@@ -13,13 +13,16 @@ public class PowerUp : MonoBehaviour
 
     public PowerUpType powerUpType;
     public AudioSource powerUpAudioSource;
+
     public static event Action onAquirePowerUp;
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            PowerUpCanvasController.activePowerUpType = powerUpType;
+
             powerUpAudioSource.PlayOneShot(powerUpAudioSource.clip);
-            AquirePowerUpUI.GetPowerUI(powerUpType);
+
             onAquirePowerUp?.Invoke();
 
             switch (powerUpType)

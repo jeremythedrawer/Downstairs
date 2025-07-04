@@ -29,16 +29,13 @@ Shader "Unlit/s_ditherWorldGrid"
 
             float3 blitHSV = RGBToHSV(blit);
 
-            float3 hardMix = step(0.992 - blit.rgb, float4(0.9,0.99,0.99,1));
-
             float brightnessFactor = max(blitHSV.z, 0.1);
             float gridSDF = pow(brightnessFactor, _gridFallOff) * col.x;
             
           // return gridSDF;
             float grid = step(0.001, gridSDF); // Grid Mask
-
            // return grid;
-            return blit * grid;
+            return max(blit * grid, col.y * grid * float4(0, 0.005, 0.005, 1));
         }
     ENDHLSL
 

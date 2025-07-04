@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MenuButton : MonoBehaviour
 {
@@ -10,13 +10,14 @@ public class MenuButton : MonoBehaviour
         Play,
         Quit,
         Resume,
-        Continue
+        MainMenu
     }
     public SelectionType selectionType;
     public Image image;
 
     private readonly int isGlowingID = Shader.PropertyToID("_isGlowing");
 
+    public static event Action onPlay;
     public void SetGlow(bool state)
     {
         image.material.SetFloat(isGlowingID, state ? 1f : 0f);
@@ -39,7 +40,7 @@ public class MenuButton : MonoBehaviour
                 Application.Quit();
             }
             break;
-            case SelectionType.Continue:
+            case SelectionType.MainMenu:
             {
 
             }
@@ -54,8 +55,7 @@ public class MenuButton : MonoBehaviour
 
     private void PlayButton()
     {
+        onPlay?.Invoke();
         SceneManager.LoadSceneAsync(1);
-        MenuController.instance.canvasList[0].gameObject.SetActive(false);
-        UIManager.instance.TurnOffMenu();
     }
 }

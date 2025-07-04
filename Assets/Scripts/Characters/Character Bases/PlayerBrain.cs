@@ -36,12 +36,12 @@ public class PlayerBrain : MonoBehaviour
 
     private void OnEnable()
     {
-        PowerUp.onAquirePowerUp += PowerUpMaterial;
+        PowerUp.onAquirePowerUp += AquirePowerUp;
     }
 
     private void OnDisable()
     {
-        PowerUp.onAquirePowerUp -= PowerUpMaterial;      
+        PowerUp.onAquirePowerUp -= AquirePowerUp;      
     }
     private void Update()
     {
@@ -62,8 +62,8 @@ public class PlayerBrain : MonoBehaviour
         movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
         movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
 
-        sonarPingInput = Input.GetKeyDown(KeyCode.I);
-        flareInput = Input.GetKeyDown(KeyCode.O);
+        flareInput = Input.GetKeyDown(KeyCode.I);
+        sonarPingInput = Input.GetKeyDown(KeyCode.O);
         radialScanInput = Input.GetKeyDown(KeyCode.P);
 
         findFishInput = Input.GetKeyDown(KeyCode.Space);
@@ -93,6 +93,12 @@ public class PlayerBrain : MonoBehaviour
         }
     }
 
+
+    private void AquirePowerUp()
+    {
+        PowerUpMaterial();
+        movementController.canMove = false;
+    }
     private void PowerUpMaterial()
     {
         int materialCount = playerMaterialController.GetMaterialCount();
@@ -113,7 +119,7 @@ public class PlayerBrain : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / powerUpTime;
 
-            float intensity = Mathf.Lerp(40, 1, t);
+            float intensity = Mathf.Lerp(10, 1, t);
 
             Color pulsedColor = originalColor * intensity;
 

@@ -4,7 +4,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public MenuController menuController;
-
+    public PowerUpCanvasController powerUpCanvasController;
 
     private void Awake()
     {
@@ -16,8 +16,30 @@ public class UIManager : MonoBehaviour
 
         instance = this;
     }
-    public void TurnOffMenu()
+
+    private void OnEnable()
+    {
+        MenuButton.onPlay += TurnOffMenuController;
+        PowerUp.onAquirePowerUp += TurnOnPowerUpCanvasController;
+    }
+
+    private void OnDisable()
+    {
+        MenuButton.onPlay -= TurnOffMenuController;
+        PowerUp.onAquirePowerUp -= TurnOnPowerUpCanvasController;
+    }
+    public void TurnOffMenuController()
     {
         menuController.gameObject.SetActive(false);
+    }
+
+    public void TurnOnPowerUpCanvasController()
+    {
+        powerUpCanvasController.gameObject.SetActive(true);
+    }
+
+    public void TurnOffPowerUpCanvasController()
+    {
+        powerUpCanvasController.gameObject.SetActive(false);
     }
 }

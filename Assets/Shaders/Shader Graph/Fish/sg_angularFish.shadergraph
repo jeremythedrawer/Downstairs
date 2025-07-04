@@ -1599,6 +1599,20 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "2f74fbe77daf40aa98c7aecd3d1cfbdd",
+    "m_Id": -1815039515,
+    "m_DisplayName": "bloomEnabled",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_bloomEnabled",
+    "m_StageCapability": 3,
+    "m_Value": true,
+    "m_DefaultValue": false
+}
+
+{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
     "m_ObjectId": "2fb57b1cb3e943f2bbfa2e36416cc361",
@@ -3385,6 +3399,9 @@
             "m_Id": "b39b54708c444499a62ad9a389b5bdd3"
         },
         {
+            "m_Id": "2f74fbe77daf40aa98c7aecd3d1cfbdd"
+        },
+        {
             "m_Id": "9352e8382ac04a8aa525af6a34be3c9d"
         },
         {
@@ -3417,7 +3434,8 @@
         "9a8c7b98-25e7-4bdb-be21-3a7ef1c3702c",
         "e081c5f0-e7b9-453e-88b9-15420e545092",
         "096bbf87-0e33-4e82-98b3-389fa5aa958d",
-        "175bf239-7db7-4fce-be01-c23f1c8a13f5"
+        "175bf239-7db7-4fce-be01-c23f1c8a13f5",
+        "58fdc210-3867-41d0-8ff9-9aeb1db26761"
     ],
     "m_PropertyIds": [
         708669356,
@@ -3436,7 +3454,8 @@
         -2095203280,
         1979371471,
         1430562953,
-        -1841036244
+        -1841036244,
+        -1815039515
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
