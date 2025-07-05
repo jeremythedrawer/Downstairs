@@ -25,7 +25,7 @@ public class PlayerBrain : MonoBehaviour
     public bool sonarPingInput { get; set; }
     public bool flareInput { get; set; }
     public bool radialScanInput { get; set; }
-    public bool findFishInput { get; set; }
+    public bool uncoverInput { get; set; }
     public bool menuInput { get; set; }
 
     private bool inGodMode;
@@ -66,7 +66,7 @@ public class PlayerBrain : MonoBehaviour
         sonarPingInput = Input.GetKeyDown(KeyCode.O);
         radialScanInput = Input.GetKeyDown(KeyCode.P);
 
-        findFishInput = Input.GetKeyDown(KeyCode.Space);
+        uncoverInput = Input.GetKeyDown(KeyCode.Space);
 
         menuInput = Input.GetKeyDown(KeyCode.Tab);
     }
@@ -97,7 +97,6 @@ public class PlayerBrain : MonoBehaviour
     private void AquirePowerUp()
     {
         PowerUpMaterial();
-        movementController.canMove = false;
     }
     private void PowerUpMaterial()
     {
@@ -134,7 +133,7 @@ public class PlayerBrain : MonoBehaviour
 
     private void UseFindFish()
     {
-        if (findFishInput)
+        if (uncoverInput)
         {
             FindFish();
         }

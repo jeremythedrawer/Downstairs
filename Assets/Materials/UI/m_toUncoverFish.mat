@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_releaseThe
+  m_Name: m_toUncoverFish
   m_Shader: {fileID: -6465566751694194690, guid: 2ffb3f8844a94b04487b21e5eb67da4b, type: 3}
   m_Parent: {fileID: 2100000, guid: e89d9c50655b51440846ce6f291e1581, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -29,11 +29,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _bottomLeftGridCell: 51.8
+    - _bottomLeftGridCell: 18.5
     - _highlight: 0
     - _isGlowing: 0
     m_Colors:
-    - _color: {r: 1, g: 1, b: 1, a: 1}
-    - _spriteGridSize: {r: 4, g: 1, b: 0, a: 0}
+    - _color: {r: 1, g: 1, b: 1, a: 0}
+    - _spriteGridSize: {r: 5, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

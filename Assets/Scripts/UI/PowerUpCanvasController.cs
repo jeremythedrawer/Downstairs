@@ -27,7 +27,6 @@ public class PowerUpCanvasController : MonoBehaviour
     {
         yield return new WaitUntil(()=> activePowerUpType != prevPowerUpType);
 
-        Debug.Log(activePowerUpType.ToString());
         foreach (PowerUpUI powerUpUI in powerUpUIList)
         {
             if (powerUpUI.powerUpType == activePowerUpType)
@@ -73,7 +72,6 @@ public class PowerUpCanvasController : MonoBehaviour
 
     private void HideActivePowerUpUI()
     {
-        activePowerUpUI.HideUI();
-        PlayerBrain.instance.movementController.canMove = true;
+        activePowerUpUI.HideUI(UIManager.instance.TurnOffPowerUpCanvasController);
     }
 }
