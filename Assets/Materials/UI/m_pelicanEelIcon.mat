@@ -29,11 +29,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _alwaysGlowing: 0
     - _bottomLeftGridCell: 32.2
     - _highlight: 0
     - _isGlowing: 0
     m_Colors:
-    - _color: {r: 0.25, g: 0.25, b: 0.25, a: 0}
+    - _color: {r: 1, g: 1, b: 1, a: 0}
     - _spriteGridSize: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

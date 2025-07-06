@@ -62,7 +62,7 @@ public class GlobalVolumeController : MonoBehaviour
         float maxCentreLightSize = 40f;
         while (elapsedTime < firstHalfTransTime)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             float t = Mathf.Pow(elapsedTime / transitionTime, 0.5f);
             float centreLightSize = AlternatingCosineWave(t, startCentreLightSize, newCentreLightSize, maxCentreLightSize);
 
@@ -77,7 +77,7 @@ public class GlobalVolumeController : MonoBehaviour
 
         while (elapsedTime < transitionTime)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             float t = elapsedTime / transitionTime;
             float centreLightSize = AlternatingCosineWave(t, startCentreLightSize, newCentreLightSize, maxCentreLightSize);
 

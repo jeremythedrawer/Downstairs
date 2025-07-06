@@ -9,7 +9,7 @@ public abstract class ImageController : MonoBehaviour
     public List<Image> images;
     public Image backdrop;
 
-    private bool canExit;
+    public bool canExit {  get; set; }
 
     public delegate void HideUIDelegate();
     public delegate void ShowUIDelegate();
@@ -36,7 +36,7 @@ public abstract class ImageController : MonoBehaviour
 
         while (elapsedTime < time)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             float t = Mathf.Pow(elapsedTime / time, 2);
             float centrelightSize = Mathf.Lerp(GlobalVolumeController.instance.inGameCenterLightSize, GlobalVolumeController.instance.menuCentreLightSize, t);
 
@@ -69,13 +69,14 @@ public abstract class ImageController : MonoBehaviour
 
     protected IEnumerator HidingUI(float time, HideUIDelegate onHideUI = null)
     {
+        Time.timeScale = 1;
         PlayerBrain.instance.movementController.canMove = true;
         float elapsedTime = time;
         GlobalVolumeController.instance.ditherWorldGridVolume.gridScale.value = GlobalVolumeController.instance.inGameGridScale;
 
         while (elapsedTime > 0)
         {
-            elapsedTime -= Time.deltaTime;
+            elapsedTime -= Time.unscaledDeltaTime;
             float t = Mathf.Pow(elapsedTime / time, 2);
             float centrelightSize = Mathf.Lerp(GlobalVolumeController.instance.inGameCenterLightSize, GlobalVolumeController.instance.menuCentreLightSize, t);
 

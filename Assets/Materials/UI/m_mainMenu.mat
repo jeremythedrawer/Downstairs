@@ -29,7 +29,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _alwaysGlowing: 0
     - _bottomLeftGridCell: 29.1
+    - _glowTime: 0
     - _highlight: 0
     - _isGlowing: 0
     m_Colors:

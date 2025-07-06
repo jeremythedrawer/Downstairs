@@ -13,7 +13,7 @@ public class InstructionCanvas : ImageController
 
     private void TurnOffInstructionCanvas()
     {
-        if (PlayerBrain.instance != null && PlayerBrain.instance.uncoverInput)
+        if (PlayerBrain.instance != null && PlayerBrain.instance.uncoverInput && canExit)
         {
             HideUI(time: 3, CanvasController.instance.TurnOffInstructionCanvas);
         }

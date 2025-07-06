@@ -15,15 +15,29 @@ public class MenuButton : MonoBehaviour
     public SelectionType selectionType;
     public Image image;
 
-    private readonly int isGlowingID = Shader.PropertyToID("_isGlowing");
+    private readonly int glowTimeID = Shader.PropertyToID("_glowTime");
+    private float unScaledtime;
+    private bool isGlowing;
 
     public static event Action onPlay;
     public static event Action onMainMenu;
-    public void SetGlow(bool state)
+    public void SetGlow(bool glow)
     {
-        image.material.SetFloat(isGlowingID, state ? 1f : 0f);
+        isGlowing = glow;
     }
 
+    private void Update()
+    {
+        if (isGlowing)
+        {
+            unScaledtime += Time.unscaledDeltaTime;
+        }
+        else
+        {
+            unScaledtime = 0;
+        }
+        image.material.SetFloat(glowTimeID, unScaledtime);
+    }
     public void HitButton()
     {
         SetGlow(false);

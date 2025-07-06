@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -524,7 +524,7 @@ RectTransform:
   m_GameObject: {fileID: 346705735}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721084020}
@@ -571,7 +571,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346705735}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &346705739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,6 +927,7 @@ MonoBehaviour:
   menuButtons:
   - {fileID: 248818598}
   - {fileID: 651006938}
+  stopTime: 0
   transitionTime: 3
 --- !u!1 &443238437
 GameObject:
@@ -1370,7 +1371,7 @@ RectTransform:
   m_GameObject: {fileID: 572365331}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721084020}
@@ -1431,7 +1432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphic: {fileID: 572365333}
-  type: 0
+  type: 1
   color: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &651006934
 GameObject:
@@ -1783,7 +1784,7 @@ RectTransform:
   m_GameObject: {fileID: 754848831}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721084020}
@@ -1844,7 +1845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphic: {fileID: 754848833}
-  type: 0
+  type: 3
   color: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &767780935
 GameObject:
@@ -1874,7 +1875,7 @@ RectTransform:
   m_GameObject: {fileID: 767780935}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721084020}
@@ -1935,7 +1936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphic: {fileID: 767780937}
-  type: 0
+  type: 4
   color: {r: 1, g: 1, b: 0, a: 1}
 --- !u!1 &781086098
 GameObject:
@@ -3109,7 +3110,7 @@ RectTransform:
   m_GameObject: {fileID: 1473288840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721084020}
@@ -3170,7 +3171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphic: {fileID: 1473288842}
-  type: 0
+  type: 5
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &1476995475
 PrefabInstance:
@@ -3654,6 +3655,7 @@ MonoBehaviour:
   menuButtons:
   - {fileID: 1796469866}
   - {fileID: 1210711557}
+  stopTime: 1
   transitionTime: 1
 --- !u!1 &1743633034
 GameObject:
@@ -4130,7 +4132,7 @@ RectTransform:
   m_GameObject: {fileID: 1900694120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721084020}
@@ -4191,7 +4193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphic: {fileID: 1900694122}
-  type: 0
+  type: 2
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1933620064
 GameObject:
@@ -4379,12 +4381,16 @@ MonoBehaviour:
   canvases:
   - type: 2
     canvas: {fileID: 431235031}
+    priority: 0
   - type: 3
     canvas: {fileID: 1721084023}
+    priority: 0
   - type: 0
     canvas: {fileID: 879024631}
+    priority: 1
   - type: 1
     canvas: {fileID: 514695329}
+    priority: 1
   sfxList:
   - clip: {fileID: 8300000, guid: d0129e9a702cd544ba5d2168c1e283e2, type: 3}
     type: 0

@@ -103,6 +103,7 @@ public class PlayerBrain : MonoBehaviour
 
     private void UseUncoverFish()
     {
+        if (MenuCanvas.instance.isActiveAndEnabled) return;
         UncoverFish();
     }
     private void UncoverFish()

@@ -19,10 +19,11 @@ public class CanvasController : MonoBehaviour
     {
         public CanvasType type;
         public Canvas canvas;
+        public int priority = 0;
     }
 
     public List<CanvasObject> canvases;
-
+    private static CanvasObject curCanvasObject;
     public enum SoundEffectType
     {
         Hover,
@@ -43,7 +44,7 @@ public class CanvasController : MonoBehaviour
     private static bool canInput = true;
 
     private static Dictionary<SoundEffectType, AudioClip> sfxDict;
-    private Dictionary<CanvasType, Canvas> canvasDict;
+    private Dictionary<CanvasType, CanvasObject> canvasDict;
 
     private void Awake()
     {
@@ -65,13 +66,13 @@ public class CanvasController : MonoBehaviour
             }
         }
 
-        canvasDict = new Dictionary<CanvasType, Canvas>();
+        canvasDict = new Dictionary<CanvasType, CanvasObject>();
 
         foreach (CanvasObject canvasObject in canvases)
         {
             if(!canvasDict.ContainsKey(canvasObject.type))
             {
-                canvasDict.Add(canvasObject.type, canvasObject.canvas);
+                canvasDict.Add(canvasObject.type, canvasObject);
             }
         }
 
@@ -182,9 +183,18 @@ public class CanvasController : MonoBehaviour
     }
     private void ToggleCanvas(bool turnOn, CanvasType type)
     {
-        if (canvasDict.TryGetValue(type, out Canvas canvas))
+        if (canvasDict.TryGetValue(type, out CanvasObject canvasObject))
         {
-            canvas.gameObject.SetActive(turnOn);
+            if (turnOn && (curCanvasObject == null || canvasObject.priority >= curCanvasObject.priority))
+            {
+                curCanvasObject = canvasObject;
+                canvasObject.canvas.gameObject.SetActive(true);
+            }
+            else if (!turnOn)
+            {
+                curCanvasObject = null;
+                canvasObject.canvas.gameObject.SetActive(false);
+            }
         }
         else
         {

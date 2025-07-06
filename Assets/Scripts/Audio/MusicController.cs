@@ -29,7 +29,7 @@ public class MusicController : MonoBehaviour
 
         while (elapsedTime < turnDownTime)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             float t = elapsedTime / turnDownTime;
             musicAudioSource.volume = Mathf.Lerp(startVolume, targetVolume, t);
             yield return null;
