@@ -124,7 +124,7 @@ public class PlayerBrain : MonoBehaviour
                             playerMaterialController.GlowingMaterial(turnOn: false);
                             playerMaterialController.PowerUpMaterial();
 
-                            audioManager.cameraFlashAudioSource.Play();
+                            audioManager.cameraFlashAudioSource.PlayOneShot(audioManager.cameraFlashAudioSource.clip);
 
                             fish.materialController.FlashMaterial();
                             fish.materialController.GlowingMaterial(turnOn: false);

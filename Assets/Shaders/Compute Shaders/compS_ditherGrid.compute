@@ -56,9 +56,9 @@ float sonarSDF(float2 uv, float2 aspScreenPos, float minValue, float maxValue)
     float2 p = (uv * aspScreenPos) - (_playerPos * aspScreenPos);
 
     p /= _sonarPingTime;
-    float sonarPingLength = pow(length(p * 0.4), 0.9);
+    float sonarPingLength = length(p * 0.4) * 1.5;
     float ping = saturate((1 - distance(sonarPingLength, 1 - sonarPingLength)) - _sonarPingTime);
-    ping = saturate(ping * 2);
+    ping *= 1.5;
     return lerp(minValue, maxValue, ping);
 }
 
@@ -131,7 +131,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
             float4 currSC = float4(frac(scaledTexCoord - offset), floor(scaledTexCoord - offset));
 
             float2 localUV = (currSC.zw + 0.5) / scaledAspectRatioUV;
-            float sonar = sonarSDF(localUV, aspScreen, 0, 8);
+            float sonar = sonarSDF(localUV, aspScreen, 0, 5);
             float flare = flareSDF(localUV, aspScreen, 20, 2) * 4;
             float radialScan = radialScanSDF(localUV, aspScreen, 1, 5);
             

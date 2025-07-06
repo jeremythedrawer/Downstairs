@@ -4025,7 +4025,7 @@ MonoBehaviour:
   ditherWorldGridVolume: {fileID: 0}
   menuGridScale: 10
   menuCentreLightSize: 0.5
-  inGameGridScale: 6
+  inGameGridScale: 8
   inGameCenterLightSize: 5.5
   normalGridThickness: 0.12
   maxGridThickness: 0.5

@@ -127,10 +127,10 @@ MonoBehaviour:
     m_Value: 1.98
   playerPos:
     m_OverrideState: 1
-    m_Value: {x: 0.49890423, y: 0.4000373}
+    m_Value: {x: 0.46707392, y: 0.47578526}
   centreLightSize:
     m_OverrideState: 1
-    m_Value: 5.499998
+    m_Value: 5.4999714
   sonarPingTime:
     m_OverrideState: 1
     m_Value: 0
@@ -139,13 +139,13 @@ MonoBehaviour:
     m_Value: 0
   flarePos:
     m_OverrideState: 1
-    m_Value: {x: 0.4989028, y: 0.40003967}
+    m_Value: {x: 0.47249317, y: 0.39850366}
   radialScanTime:
     m_OverrideState: 1
     m_Value: 0
   radialScanRotation:
     m_OverrideState: 1
-    m_Value: 0.47818056
+    m_Value: 0.65688944
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
