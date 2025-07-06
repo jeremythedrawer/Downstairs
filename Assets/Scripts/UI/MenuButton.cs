@@ -18,6 +18,7 @@ public class MenuButton : MonoBehaviour
     private readonly int isGlowingID = Shader.PropertyToID("_isGlowing");
 
     public static event Action onPlay;
+    public static event Action onMainMenu;
     public void SetGlow(bool state)
     {
         image.material.SetFloat(isGlowingID, state ? 1f : 0f);
@@ -42,12 +43,12 @@ public class MenuButton : MonoBehaviour
             break;
             case SelectionType.MainMenu:
             {
-
+                GlobalVolumeController.instance.TransitionToMenu(MainMenuButton);
             }
             break;
             case SelectionType.Resume:
             {
-
+                MenuCanvas.instance.HideUI(time: 1, ResumeButton);
             }
             break;
         }
@@ -55,7 +56,17 @@ public class MenuButton : MonoBehaviour
 
     private void PlayButton()
     {
-        onPlay?.Invoke();
         SceneManager.LoadSceneAsync(1);
+        onPlay?.Invoke();
+    }
+
+    private void MainMenuButton()
+    {
+        SceneManager.LoadSceneAsync(0);
+        onMainMenu?.Invoke();
+    }
+
+    private void ResumeButton()
+    {
     }
 }

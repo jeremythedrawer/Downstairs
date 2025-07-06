@@ -14,6 +14,7 @@ public class MovementController : MonoBehaviour
     {
         if (!canMove)
         {
+            body.linearVelocity = Vector2.zero;
             return;
         }
         Vector2 moveDIr = transform.right * moveInput;

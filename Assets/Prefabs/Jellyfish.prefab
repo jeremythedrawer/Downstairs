@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveBoundRadius: 1
-  shaderController: {fileID: 1270304821005827741}
   stats: {fileID: 522374910404975}
   spawner: {fileID: 0}
+  materialController: {fileID: 1270304821005827741}
 --- !u!114 &1270304821005827741
 MonoBehaviour:
   m_ObjectHideFlags: 0

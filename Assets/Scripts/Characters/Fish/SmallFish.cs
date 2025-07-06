@@ -23,7 +23,7 @@ public class SmallFish : SchoolFish<SmallFish>
         if (distanceFromPlayer > 20f) return;
         UpdatePos();
         UpdateRotation();
-        UpdateMaterial();
+        SetSpeedMaterial(curSpeed * 10f);
         ReleaseToPool();
     }
 
@@ -82,8 +82,8 @@ public class SmallFish : SchoolFish<SmallFish>
         }
     }
 
-    private void UpdateMaterial()
+    private void SetSpeedMaterial(float newSpeed)
     {
-        shaderController.speed = curSpeed * 10f;
+        materialController.SetNewSpeed(newSpeed);
     }
 }

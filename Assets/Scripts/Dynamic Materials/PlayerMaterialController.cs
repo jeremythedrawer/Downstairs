@@ -1,58 +1,43 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMaterialController : RendererManager
 {
-    private Material[] materials;
-    private Color[] originalColors;
-    private Color[] currentColors;
-
     private readonly int colorID = Shader.PropertyToID("_color");
+    private readonly int glowingID = Shader.PropertyToID("_glowing");
 
-    private void Start()
+    public void PowerUpMaterial()
     {
-        materials = objectRenderer.materials;  // material instances
-        originalColors = new Color[materials.Length];
-        currentColors = new Color[materials.Length];
+        StartCoroutine(PoweringUpMaterial());
+    }
+    private IEnumerator PoweringUpMaterial()
+    {
+        float powerUpTime = 0.75f;
+        float elapsedTime = 0f;
 
-        for (int i = 0; i < materials.Length; i++)
+        while (elapsedTime < powerUpTime)
         {
-            if (materials[i].HasProperty(colorID))
-            {
-                originalColors[i] = materials[i].GetColor(colorID);
-                currentColors[i] = originalColors[i];
-            }
-            else
-            {
-                originalColors[i] = Color.white;
-                currentColors[i] = Color.white;
-            }
+            objectRenderer.GetPropertyBlock(mpb);
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / powerUpTime;
+            float intensity = Mathf.Lerp(3, 1, t);
+            Color newColor = Color.white * intensity;
+
+            mpb.SetColor(colorID, newColor);
+            objectRenderer.SetPropertyBlock(mpb);
+
+            yield return null;
         }
+        // Restore original color after pulse
+        objectRenderer.GetPropertyBlock(mpb);
+        mpb.SetColor(colorID, Color.white);
+        objectRenderer.SetPropertyBlock(mpb);
     }
 
-    private void Update()
+    public void GlowingMaterial(bool turnOn)
     {
-        for (int i = 0; i < materials.Length; i++)
-        {
-            materials[i].SetColor(colorID, currentColors[i]);
-        }
-    }
-
-    // Allow external scripts to set color on a specific material index
-    public void SetColor(int index, Color color)
-    {
-        if (index >= 0 && index < currentColors.Length)
-            currentColors[index] = color;
-    }
-
-    public Color GetOriginalColor(int index)
-    {
-        if (index >= 0 && index < originalColors.Length)
-            return originalColors[index];
-        return Color.white;
-    }
-
-    public int GetMaterialCount()
-    {
-        return materials.Length;
+        objectRenderer.GetPropertyBlock(mpb);
+        mpb.SetFloat(glowingID, turnOn ? 1 : 0);
+        objectRenderer.SetPropertyBlock(mpb);
     }
 }

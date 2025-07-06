@@ -10,7 +10,7 @@ public class GlobalVolumeController : MonoBehaviour
     public VolumeProfile globalVolume;
     public DitherWorldGridVolumeComponent ditherWorldGridVolume;
 
-    private float transitionTime = 2f;
+    private float transitionTime = 3f;
 
 
     [Header("Menu Parameters")]
@@ -20,6 +20,10 @@ public class GlobalVolumeController : MonoBehaviour
     [Header("Game Parameters")]
     public float inGameGridScale = 6;
     public float inGameCenterLightSize = 5;
+
+    [Header("Grid Thickness Paremeters")]
+    public float normalGridThickness = 0.12f;
+    public float maxGridThickness = 0.5f;
 
     public delegate void SceneChangeDelegate();
     private void Awake()
@@ -49,34 +53,39 @@ public class GlobalVolumeController : MonoBehaviour
     {
         return StartCoroutine(TransitioningScene(menuGridScale, menuCentreLightSize, onSceneChange));
     }
-    private IEnumerator TransitioningScene(float endGridScale, float centreLightSize, SceneChangeDelegate onSceneChange = null)
+    private IEnumerator TransitioningScene(float newGridScale, float newCentreLightSize, SceneChangeDelegate onSceneChange = null)
     {
         float elapsedTime = 0;
-        float startGridScale = ditherWorldGridVolume.gridScale.value;
+        float startCentreLightSize = ditherWorldGridVolume.centreLightSize.value;
 
         float firstHalfTransTime = transitionTime * 0.5f;
-        float maxGridScale = 100f;
+        float maxCentreLightSize = 40f;
         while (elapsedTime < firstHalfTransTime)
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Pow(elapsedTime / transitionTime, 0.5f);
-            float gridScale = AlternatingCosineWave(t, startGridScale, endGridScale, maxGridScale);
-            ditherWorldGridVolume.gridScale.value = gridScale;
+            float centreLightSize = AlternatingCosineWave(t, startCentreLightSize, newCentreLightSize, maxCentreLightSize);
+
+            ditherWorldGridVolume.gridThickness.value = Mathf.Lerp(normalGridThickness, maxGridThickness, t * 2);
+            ditherWorldGridVolume.centreLightSize.value = centreLightSize;
             yield return null;
         }
 
+        ditherWorldGridVolume.gridScale.value = newGridScale;
+
         onSceneChange?.Invoke();
-        ditherWorldGridVolume.centreLightSize.value = centreLightSize;
 
         while (elapsedTime < transitionTime)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / transitionTime;
-            float gridScale = AlternatingCosineWave(t, startGridScale, endGridScale, maxGridScale);
-            ditherWorldGridVolume.gridScale.value = gridScale;
+            float centreLightSize = AlternatingCosineWave(t, startCentreLightSize, newCentreLightSize, maxCentreLightSize);
+
+            ditherWorldGridVolume.gridThickness.value = Mathf.Lerp(normalGridThickness, maxGridThickness, 1 - (t*2));
+            ditherWorldGridVolume.centreLightSize.value = centreLightSize;
             yield return null;
         }
-        ditherWorldGridVolume.gridScale.value = endGridScale;
+        ditherWorldGridVolume.centreLightSize.value = newCentreLightSize;
     }
 
     float AlternatingCosineWave(float t, float a, float b, float c)

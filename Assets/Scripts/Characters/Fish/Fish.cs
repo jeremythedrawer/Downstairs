@@ -4,7 +4,6 @@ public class Fish : MonoBehaviour
 {
     public float moveBoundRadius;
 
-    public FishShaderController shaderController;
     public CharacterStats stats;
     public Vector2 startPos {  get; set; }
     protected Vector2 targetPos { get; set; }
@@ -25,7 +24,7 @@ public class Fish : MonoBehaviour
         targetPos = startPos + rotatedDir.normalized * moveBoundRadius;
     }
 
-    private void OnDrawGizmosSelected()
+    protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
 

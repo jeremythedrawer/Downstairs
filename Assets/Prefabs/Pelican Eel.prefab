@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3142685343860469249}
   - component: {fileID: 5930901789094286455}
   - component: {fileID: 4868993307094797512}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pelican Eel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,6 +133,7 @@ MonoBehaviour:
   moveBoundRadius: 2.34
   shaderController: {fileID: 0}
   stats: {fileID: 3142685343860469249}
+  closeToPlayerRadius: 5.32
   movementController: {fileID: 5930901789094286455}
   speedMultiplier: 10
 --- !u!114 &3142685343860469249

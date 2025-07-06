@@ -53,7 +53,9 @@ public class PlayerBrain : MonoBehaviour
         UseFlare();
         UseRadialScan();
 
-        UseFindFish();
+        UseUncoverFish();
+
+        OpenInGameMenu();
 
         GodMode();
     }
@@ -96,49 +98,14 @@ public class PlayerBrain : MonoBehaviour
 
     private void AquirePowerUp()
     {
-        PowerUpMaterial();
+        playerMaterialController.PowerUpMaterial();
     }
-    private void PowerUpMaterial()
+
+    private void UseUncoverFish()
     {
-        int materialCount = playerMaterialController.GetMaterialCount();
-
-        for (int i = 0; i < materialCount; i++)
-        {
-            StartCoroutine(PoweringUpMaterial(i));
-        }
+        UncoverFish();
     }
-    private IEnumerator PoweringUpMaterial(int materialIndex)
-    {
-        float powerUpTime = 0.5f;
-        float elapsedTime = 0f;
-        Color originalColor = playerMaterialController.GetOriginalColor(materialIndex);
-
-        while (elapsedTime < powerUpTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / powerUpTime;
-
-            float intensity = Mathf.Lerp(10, 1, t);
-
-            Color pulsedColor = originalColor * intensity;
-
-            playerMaterialController.SetColor(materialIndex, pulsedColor);
-
-            yield return null;
-        }
-        // Restore original color after pulse
-        playerMaterialController.SetColor(materialIndex, originalColor);
-    }
-
-
-    private void UseFindFish()
-    {
-        if (uncoverInput)
-        {
-            FindFish();
-        }
-    }
-    private void FindFish()
+    private void UncoverFish()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, fishDetectionRadius, fishToFindLayer);
 
@@ -148,12 +115,36 @@ public class PlayerBrain : MonoBehaviour
             {
                 if (c.TryGetComponent<SolitaryFish>(out SolitaryFish fish))
                 {
-                    StatsManager.instance.CheckOffFish(fish);
+                    if(!fish.uncovered)
+                    {
+                        if (uncoverInput)
+                        {
+                            StatsManager.instance.CheckOffFish(fish);
+                            playerMaterialController.GlowingMaterial(turnOn: false);
+                            playerMaterialController.PowerUpMaterial();
+
+                            audioManager.cameraFlashAudioSource.Play();
+
+                            fish.materialController.FlashMaterial();
+                            fish.materialController.GlowingMaterial(turnOn: false);
+                        }
+                        else
+                        {
+                            playerMaterialController.GlowingMaterial(turnOn: true);
+                        }
+                    }
                 }
             }
         }
     }
 
+    private void OpenInGameMenu()
+    {
+        if (menuInput)
+        {
+            CanvasController.instance.TurnOnInGameMenu();
+        }
+    }
     private void OnDrawGizmosSelected()
     {
         DrawFishDetectionRadius();

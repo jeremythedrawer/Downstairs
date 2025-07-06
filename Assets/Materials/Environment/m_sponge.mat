@@ -135,6 +135,7 @@ Material:
     - _bloomEnabled: 0
     - _colorFalloff: 0.52
     - _debug: 0
+    - _glowing: 0
     - _gridFalloff: 0.86
     - _gridScale: 17.1
     - _hit: 0
@@ -154,7 +155,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _color: {r: 1, g: 0.72219443, b: 0, a: 0}
+    - _color: {r: 2, g: 1.4443889, b: 0, a: 0}
     - _innerColor: {r: 0, g: 1, b: 0.010471106, a: 0}
     - _outerColor: {r: 1, g: 0.74702513, b: 0, a: 0}
   m_BuildTextureStacks: []

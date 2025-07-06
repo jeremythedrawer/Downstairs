@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: m_player
-  m_Shader: {fileID: -6465566751694194690, guid: 3fde0c3c4f9ddfc458c02ac3585bd713, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a08f0757e8fb6a445adad1abe4df43e4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -67,8 +67,10 @@ Material:
     - _Float: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _bloomEnabled: 1
     - _colorFalloff: 0.52
     - _debug: 0
+    - _glowing: 0
     - _gridFallOff: 1.94
     - _gridFalloff: 0
     - _gridScale: 10
@@ -82,6 +84,7 @@ Material:
     - _scale: 15.85
     - _steps: 6.5
     - _thickness: 0
+    - _uncover: 0
     - _useAlpha: 0
     - _useLighting: 1
     m_Colors:

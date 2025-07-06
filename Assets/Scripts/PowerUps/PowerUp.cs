@@ -19,7 +19,7 @@ public class PowerUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PowerUpCanvasController.activePowerUpType = powerUpType;
+            PowerUpCanvas.activePowerUpType = powerUpType;
 
             powerUpAudioSource.PlayOneShot(powerUpAudioSource.clip);
 
@@ -28,13 +28,19 @@ public class PowerUp : MonoBehaviour
             switch (powerUpType)
             {
                 case PowerUpType.Flare:
-                PlayerBrain.instance.canFlare = true;
+                {
+                    PlayerBrain.instance.canFlare = true;
+                }
                 break;
                 case PowerUpType.SonarPing:
-                PlayerBrain.instance.canSonarPing = true;
+                {
+                    PlayerBrain.instance.canSonarPing = true;
+                }
                 break;
                 case PowerUpType.RadialScan:
-                PlayerBrain.instance.canRadialScan = true;
+                {
+                    PlayerBrain.instance.canRadialScan = true;
+                }
                 break;
             }
 

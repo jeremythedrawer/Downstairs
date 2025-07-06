@@ -77,7 +77,8 @@ public abstract class ObjectPoolSpawner<T> : MonoBehaviour where T : Component
         Vector2 b = worldPoints[triIndex + 1];
         Vector2 c = worldPoints[triIndex + 2];
 
-        return RandomPointInTriangle(a, b, c);
+        Vector2 finalPoint = RandomPointInTriangle(a, b, c);
+        return new Vector3(finalPoint.x, finalPoint.y, transform.position.z);
     }
 
     protected float TriangleArea(Vector2 a, Vector2 b, Vector2 c)

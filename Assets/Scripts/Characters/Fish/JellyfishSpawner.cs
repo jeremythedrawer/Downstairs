@@ -46,7 +46,7 @@ public class JellyfishSpawner : ObjectPoolSpawner<Jellyfish>
         jellyfish.transform.position = GetRandomPosition();
         jellyfish.startPos = jellyfish.transform.position;
         jellyfish.gameObject.SetActive(true);
-        jellyfish.gameObject.transform.SetParent(this.transform);
+        jellyfish.gameObject.transform.SetParent(transform);
     }
 
 #if UNITY_EDITOR

@@ -120,9 +120,11 @@ Material:
     - _ZWrite: 1
     - _clamp: 0.47
     - _fallOff: 1
+    - _flashIntensity: 0
     - _found: 0
     - _freq: 10
     - _frequency: 24.94
+    - _glowing: 1
     - _magnitude: 0.3
     - _speed: 0.1
     - _strength: 1
@@ -132,7 +134,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _color: {r: 0.04223035, g: 0.2619078, b: 0.6886792, a: 0}
+    - _color: {r: 0.7490197, g: 0.7490197, b: 0.7490197, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6099393931618166848

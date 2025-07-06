@@ -2,9 +2,19 @@ using UnityEngine;
 
 public abstract class SolitaryFish : Fish
 {
+    public float closeToPlayerRadius;
     public MovementController movementController;
+    public AudioSource audioSource;
+    public SolitaryFishMaterialController materialController;
+    public bool uncovered {  get; set; }
+
     private float rotThreshold = 0.9f;
     private float distThreshold = 0.3f;
+
+    protected virtual void Update()
+    {
+        PulsingVolume();
+    }
     protected void UpdateInputs()
     {
         Vector2 toTarget = targetPos - (Vector2)transform.position;
@@ -29,5 +39,24 @@ public abstract class SolitaryFish : Fish
         {
             GetNewPos();
         }
+    }
+
+    private void PulsingVolume()
+    {
+        if (!uncovered)
+        {
+            audioSource.volume = 1 - (Vector2.Distance(transform.position, PlayerBrain.instance.transform.position) / closeToPlayerRadius);
+        }
+        else
+        {
+            audioSource.Stop();
+        }
+    }
+    protected override void OnDrawGizmosSelected()
+    {
+        base.OnDrawGizmosSelected();
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, closeToPlayerRadius);
+
     }
 }

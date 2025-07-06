@@ -13,8 +13,9 @@ public class PelicanEel : SolitaryFish
         base.OnEnable();
         GetNewPos();
     }
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (distanceFromPlayer > 20f)
         {
             movementController.rotationInput = 0;

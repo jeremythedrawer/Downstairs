@@ -14,7 +14,6 @@ public class Jellyfish : SchoolFish<Jellyfish>
     {
         if (distanceFromPlayer > 20f) return;
         UpdatePos();
-        shaderController.speed = stats.linearSpeed;
     }
 
 

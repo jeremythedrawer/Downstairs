@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,14 +5,7 @@ public class StatsManager : MonoBehaviour
 {
     public static StatsManager instance;
 
-    [Serializable]
-    public class FoundFish
-    {
-        public Fish fish;
-        public bool playerFoundFish {  get; set; }
-    }
-
-    public List<FoundFish> fishToFind;
+    public List<SolitaryFish> solitaryFishList;
 
     private void Awake()
     {
@@ -25,27 +17,17 @@ public class StatsManager : MonoBehaviour
 
         instance = this;
     }
-    private void Start()
-    {
-        HideCursor();
-    }
-
 
     public void CheckOffFish(SolitaryFish fish)
     {
-        foreach(FoundFish foundFish in fishToFind)
+        foreach(SolitaryFish solitaryFish in solitaryFishList)
         {
-            if(foundFish.fish == fish)
+            if(solitaryFish == fish)
             {
-                foundFish.playerFoundFish = true;
+                solitaryFish.uncovered = true;
+                solitaryFishList.Remove(solitaryFish);
                 break;
             }
         }
-    }
-    private void HideCursor()
-    {
-#if !UNITY_EDITOR
-    Cursor.visible = false;
-#endif
     }
 }

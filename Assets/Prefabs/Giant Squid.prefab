@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 6618195914491931119}
   - component: {fileID: 7752110141346672230}
   - component: {fileID: 9015120496096485070}
+  - component: {fileID: 2661941339597633122}
+  - component: {fileID: 6741554637484834344}
   - component: {fileID: 8809862471656923853}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Giant Squid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6437158105018901342}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.2125764, z: -0, w: 0.9771445}
+  m_LocalRotation: {x: 0, y: 0.21257845, z: 0, w: 0.977144}
   m_LocalPosition: {x: 46.47, y: 42.73, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -87,6 +89,56 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &2661941339597633122
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437158105018901342}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!136 &6741554637484834344
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437158105018901342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8086846
+  m_Height: 8.730007
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.19581866, z: 0}
 --- !u!114 &8809862471656923853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,4 +154,5 @@ MonoBehaviour:
   moveBoundRadius: 0
   shaderController: {fileID: 0}
   stats: {fileID: 0}
+  closeToPlayerRadius: 6.92
   movementController: {fileID: 0}

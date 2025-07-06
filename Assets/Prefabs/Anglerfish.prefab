@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7875473346042929778}
   m_Layer: 7
   m_Name: Anglerfish
-  m_TagString: Enemy
+  m_TagString: SolitaryFish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5217574708938530013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 30.12, y: 32.04, z: 0.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -111,7 +111,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -132,7 +132,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -152,9 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b4ec23cc69ebd44bc8ba62ced6e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBoundRadius: 4.04
+  moveBoundRadius: 2.77
   shaderController: {fileID: 2010931202419872393}
   stats: {fileID: 5810127711185722081}
+  closeToPlayerRadius: 6.43
   movementController: {fileID: 7875473346042929778}
 --- !u!114 &2010931202419872393
 MonoBehaviour:

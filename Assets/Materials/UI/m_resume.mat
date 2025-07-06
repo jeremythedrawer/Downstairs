@@ -31,7 +31,7 @@ Material:
     m_Floats:
     - _bottomLeftGridCell: 48.19
     - _highlight: 0
-    - _isGlowing: 0
+    - _isGlowing: 1
     m_Colors:
     - _color: {r: 1, g: 1, b: 1, a: 0}
     - _spriteGridSize: {r: 3, g: 1, b: 0, a: 0}

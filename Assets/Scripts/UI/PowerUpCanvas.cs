@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpCanvasController : MonoBehaviour
+public class PowerUpCanvas : MonoBehaviour
 {
     public List<PowerUpUI> powerUpUIList;
     public static PowerUp.PowerUpType activePowerUpType;
@@ -35,7 +35,6 @@ public class PowerUpCanvasController : MonoBehaviour
                 activePowerUpUI = powerUpUI;
                 prevPowerUpType = activePowerUpType;
             }
-
         }
     }
 
@@ -72,6 +71,8 @@ public class PowerUpCanvasController : MonoBehaviour
 
     private void HideActivePowerUpUI()
     {
-        activePowerUpUI.HideUI(UIManager.instance.TurnOffPowerUpCanvasController);
+        activePowerUpUI.HideUI(time: 1, CanvasController.instance.TurnOffPowerUpCanvas);
     }
+
+
 }

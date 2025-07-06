@@ -17,8 +17,15 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
+    private void Start()
     {
-        
+        HideCursor();
+    }
+
+    private void HideCursor()
+    {
+#if !UNITY_EDITOR
+    Cursor.visible = false;
+#endif
     }
 }

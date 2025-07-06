@@ -1,7 +1,11 @@
 using UnityEngine;
 
-public class InstructionCanvasController : ImageController
+public class InstructionCanvas : ImageController
 {
+    private void OnEnable()
+    {
+        ShowUI(time: 3);
+    }
     private void Update()
     {
         TurnOffInstructionCanvas();
@@ -11,7 +15,7 @@ public class InstructionCanvasController : ImageController
     {
         if (PlayerBrain.instance != null && PlayerBrain.instance.uncoverInput)
         {
-            HideUI(UIManager.instance.TurnOffInstructionCanvasController);
+            HideUI(time: 3, CanvasController.instance.TurnOffInstructionCanvas);
         }
     }
 }
