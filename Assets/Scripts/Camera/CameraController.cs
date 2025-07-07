@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -39,7 +40,11 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerBrain.instance == null) return;
+        if (PlayerBrain.instance == null || SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            transform.position = new Vector3(0, 0, transform.position.z);
+            return;
+        }
         GetTargetPos();
         FollowTarget();
         GetCurrentCamBounds();

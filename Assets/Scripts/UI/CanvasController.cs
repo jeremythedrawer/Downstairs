@@ -89,6 +89,7 @@ public class CanvasController : MonoBehaviour
         MenuButton.onPlay += TurnOnInstructionCanvas;
 
         MenuButton.onMainMenu += TurnOnMainMenu;
+        MenuButton.onMainMenu += TurnOffInGameMenu;
 
         PowerUp.onAquirePowerUp += TurnOnPowerUpCanvas;
     }
@@ -98,6 +99,7 @@ public class CanvasController : MonoBehaviour
         MenuButton.onPlay -= TurnOnInstructionCanvas;
 
         MenuButton.onMainMenu -= TurnOnMainMenu;
+        MenuButton.onMainMenu -= TurnOffInGameMenu;
 
         PowerUp.onAquirePowerUp -= TurnOnPowerUpCanvas;
 
