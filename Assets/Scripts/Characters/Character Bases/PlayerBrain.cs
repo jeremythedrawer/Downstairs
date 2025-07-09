@@ -71,8 +71,8 @@ public class PlayerBrain : MonoBehaviour
     }
     private void MoveInputs()
     {
-        movementController.moveInput = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
-        movementController.rotationInput = Input.GetKey(KeyCode.A) ? 1 : Input.GetKey(KeyCode.D) ? -1 : 0;
+        movementController.moveInput = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1 : 0;
+        movementController.rotationInput = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1 : Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? -1 : 0;
 
         flareInput = Input.GetKeyDown(KeyCode.I);
         sonarPingInput = Input.GetKeyDown(KeyCode.O);
@@ -199,7 +199,7 @@ public class PlayerBrain : MonoBehaviour
     {
         if (menuInput)
         {
-            MenuCanvasController.instance.TurnOnInGameMenu();
+            MenuCanvasController.instance.TurnOnPauseMenu();
         }
     }
 

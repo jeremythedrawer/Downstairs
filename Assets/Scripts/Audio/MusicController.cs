@@ -9,11 +9,13 @@ public class MusicController : MonoBehaviour
     private void OnEnable()
     {
         MenuButton.onPlay += TurnOffMusic;
+        MenuButton.onMainMenu += TurnOnMusic;
     }
 
     private void OnDisable()
     {
         MenuButton.onPlay -= TurnOffMusic;
+        MenuButton.onMainMenu -= TurnOnMusic;
     }
 
     private void TurnOffMusic()
@@ -21,8 +23,18 @@ public class MusicController : MonoBehaviour
         StartCoroutine(TogglingMusic(turnOn: false));
     }
 
+    private void TurnOnMusic()
+    {
+        StartCoroutine(TogglingMusic(turnOn: true));
+    }
+
+
     private IEnumerator TogglingMusic(bool turnOn)
     {
+        if (turnOn)
+        {
+            musicAudioSource.PlayOneShot(musicAudioSource.clip);
+        }
         float elapsedTime = 0f;
         float startVolume = musicAudioSource.volume;
         float targetVolume = turnOn ? 1f : 0f;
@@ -36,5 +48,9 @@ public class MusicController : MonoBehaviour
         }
 
         musicAudioSource.volume = targetVolume;
+        if (!turnOn)
+        {
+            musicAudioSource.Stop();
+        }
     }
 }

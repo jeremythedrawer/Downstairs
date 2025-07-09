@@ -6,21 +6,8 @@ public class MenuCanvasController : MonoBehaviour
 {
     public static MenuCanvasController instance;
 
-    public enum CanvasType
-    { 
-        MainMenu,
-        InGame
-    }
-
-    [Serializable]
-    public class CanvasObject
-    {
-        public CanvasType type;
-        public Canvas canvas;
-    }
-
-    public List<CanvasObject> canvases;
-    private static CanvasObject curCanvasObject;
+    public MenuCanvas mainMenuCanvas;
+    public MenuCanvas pauseMenuCanvas;
     public enum SoundEffectType
     {
         Hover,
@@ -41,8 +28,6 @@ public class MenuCanvasController : MonoBehaviour
     private static bool canInput = true;
 
     private static Dictionary<SoundEffectType, AudioClip> sfxDict;
-    private Dictionary<CanvasType, CanvasObject> canvasDict;
-
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -63,16 +48,6 @@ public class MenuCanvasController : MonoBehaviour
             }
         }
 
-        canvasDict = new Dictionary<CanvasType, CanvasObject>();
-
-        foreach (CanvasObject canvasObject in canvases)
-        {
-            if(!canvasDict.ContainsKey(canvasObject.type))
-            {
-                canvasDict.Add(canvasObject.type, canvasObject);
-            }
-        }
-
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -85,14 +60,14 @@ public class MenuCanvasController : MonoBehaviour
         MenuButton.onPlay += TurnOffMainMenu;
 
         MenuButton.onMainMenu += TurnOnMainMenu;
-        MenuButton.onMainMenu += TurnOffInGameMenu;
+        MenuButton.onMainMenu += TurnOffPauseMenu;
     }
     private void OnDisable()
     {
         MenuButton.onPlay -= TurnOffMainMenu;
 
         MenuButton.onMainMenu -= TurnOnMainMenu;
-        MenuButton.onMainMenu -= TurnOffInGameMenu;
+        MenuButton.onMainMenu -= TurnOffPauseMenu;
     }
     public static void MenuInputs(List<MenuButton> menuButtons)
     {
@@ -125,7 +100,6 @@ public class MenuCanvasController : MonoBehaviour
             menuButtons[i].SetGlow(i == currentIndex);
         }
     }
-
     private static void PlayMenuSFX(SoundEffectType type, float pitch = 1)
     {
         if(sfxDict.TryGetValue(type, out AudioClip clip))
@@ -138,41 +112,25 @@ public class MenuCanvasController : MonoBehaviour
     public void TurnOnMainMenu()
     {
         canInput = true;
-        ToggleCanvas(turnOn: true, CanvasType.MainMenu);
+        ToggleCanvas(turnOn: true, mainMenuCanvas);
     }
     public void TurnOffMainMenu()
     {
-        ToggleCanvas(turnOn: false, CanvasType.MainMenu);
+        ToggleCanvas(turnOn: false, mainMenuCanvas);
     }
 
-    public void TurnOnInGameMenu()
+    public void TurnOnPauseMenu()
     {
         canInput = true;
-        ToggleCanvas(turnOn: true, CanvasType.InGame);
+        ToggleCanvas(turnOn: true, pauseMenuCanvas);
     }
 
-    public void TurnOffInGameMenu()
+    public void TurnOffPauseMenu()
     {
-        ToggleCanvas(turnOn: false, CanvasType.InGame);
+        ToggleCanvas(turnOn: false, pauseMenuCanvas);
     }
-    private void ToggleCanvas(bool turnOn, CanvasType type)
+    private void ToggleCanvas(bool turnOn, MenuCanvas menuCanvas)
     {
-        if (canvasDict.TryGetValue(type, out CanvasObject canvasObject))
-        {
-            if (turnOn && (curCanvasObject == null))
-            {
-                curCanvasObject = canvasObject;
-                canvasObject.canvas.gameObject.SetActive(true);
-            }
-            else if (!turnOn)
-            {
-                curCanvasObject = null;
-                canvasObject.canvas.gameObject.SetActive(false);
-            }
-        }
-        else
-        {
-            Debug.LogError($"Canvas Dictionary could not find type {type}");
-        }
+        menuCanvas.gameObject.SetActive(turnOn);
     }
 }
