@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
@@ -8,8 +9,8 @@ public class MovementController : MonoBehaviour
     public float rotationInput { get; set; }
     public bool canMove { get; set; } = true;
 
+    public Transform rotationPivot;
     private float desiredAngle;
-
     public void UpdatePos()
     {
         if (!canMove)
@@ -31,25 +32,31 @@ public class MovementController : MonoBehaviour
             body.linearVelocity = Vector2.Lerp(body.linearVelocity, desiredVelocity, dampFactor);
         }
     }
-    public void UpdateRotation()
+  public void UpdateRotation()
     {
         if (!canMove)
         {
             return;
         }
-        if (rotationInput != 0)
-        {
-            desiredAngle += rotationInput * stats.rotationSpeed * Time.deltaTime;
-        }
+
+        desiredAngle += rotationInput * stats.rotationSpeed * Time.deltaTime;
+
+        float currentZ = body.rotation.eulerAngles.z;
 
         float dampFactor = 1f - Mathf.Exp(-stats.rotationDamp * Time.deltaTime);
+        float smoothedZ = Mathf.LerpAngle(currentZ, desiredAngle, dampFactor);
 
-        float currentY = body.rotation.eulerAngles.y;
-        float smoothedY = Mathf.LerpAngle(currentY, -desiredAngle, dampFactor);
+        Quaternion newBodyRot = Quaternion.AngleAxis(smoothedZ, Vector3.forward);
+        body.MoveRotation(newBodyRot);
 
-        float smoothedZ = Mathf.Sin(-smoothedY * Mathf.Deg2Rad) * 90f;
+        float pivotAngle = smoothedZ - currentZ;
+        float pivotDirection = Mathf.Sign(Vector3.Dot(transform.right, Vector3.down));
+        rotationPivot.Rotate(Vector3.right, pivotAngle * pivotDirection);
+    } 
 
-        Quaternion finalRotation = Quaternion.Euler(0, smoothedY, smoothedZ);
-        body.MoveRotation(finalRotation);
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + (transform.right));
     }
 }

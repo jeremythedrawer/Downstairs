@@ -59,8 +59,8 @@ public class PlayerLightController : MonoBehaviour
         while (elapsedTime < sonarPingTime)
         {
             elapsedTime += Time.deltaTime;
-            float t = Mathf.Pow(elapsedTime / sonarPingTime, 0.5f);
-
+            float t = elapsedTime / sonarPingTime;
+            t *= t;
             ditherVolume.sonarPingTime.value = t;
             yield return null;
         }
@@ -98,11 +98,11 @@ public class PlayerLightController : MonoBehaviour
         while(elapsedTime < radialScanTime)
         {
             elapsedTime += Time.deltaTime;
-            float t = Mathf.Pow(elapsedTime/radialScanTime, 2f);
+            float t = elapsedTime / radialScanTime;
+            
             ditherVolume.radialScanTime.value = t;
 
             float angle = Mathf.Atan2(playerDir.y, playerDir.x);
-            //if (angle < 0f) angle += Mathf.PI * 2f;
             float normalizedAngle = angle / (Mathf.PI * 2f) - 0.25f;
             float angleDiff = Mathf.DeltaAngle(radialScanPrevAngle * 360f, normalizedAngle * 360f) / 360f;
             float smoothAngle = radialScanPrevAngle + angleDiff;

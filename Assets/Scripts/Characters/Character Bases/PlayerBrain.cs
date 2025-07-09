@@ -46,8 +46,6 @@ public class PlayerBrain : MonoBehaviour
     private void Update()
     {
         MoveInputs();
-        movementController.UpdatePos();
-        movementController.UpdateRotation();
 
         UseSonarPing();
         UseFlare();
@@ -58,6 +56,12 @@ public class PlayerBrain : MonoBehaviour
         OpenInGameMenu();
 
         GodMode();
+    }
+
+    private void FixedUpdate()
+    {
+        movementController.UpdatePos();
+        movementController.UpdateRotation();
     }
     private void MoveInputs()
     {
@@ -103,7 +107,7 @@ public class PlayerBrain : MonoBehaviour
 
     private void UseUncoverFish()
     {
-        if (MenuCanvas.instance.isActiveAndEnabled) return;
+        if (MenuCanvas.instance != null && MenuCanvas.instance.isActiveAndEnabled) return;
         UncoverFish();
     }
     private void UncoverFish()
