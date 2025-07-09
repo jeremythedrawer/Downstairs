@@ -1,30 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public abstract class ImageController : MonoBehaviour
 {
-    public List<Image> images;
-    public Image backdrop;
-
-    public bool canExit {  get; set; }
-
     public delegate void HideUIDelegate();
     public delegate void ShowUIDelegate();
-    protected void ShowUI(float time, ShowUIDelegate onShowUI = null)
+    public void ShowUI(float time, List<Image> images, Image backdrop, ShowUIDelegate onShowUI = null)
     {
-        StartCoroutine(ShowingUI(time, onShowUI));
+        StartCoroutine(ShowingUI(time, images, backdrop, onShowUI));
     }
 
-    public void HideUI(float time, HideUIDelegate onHideUI = null)
+    public void HideUI(float time, List<Image> images, Image backdrop, HideUIDelegate onHideUI = null)
     {
-        if (!canExit) return;
-        StartCoroutine(HidingUI(time, onHideUI));
+        StartCoroutine(HidingUI(time, images, backdrop, onHideUI));
     }
 
-    protected IEnumerator ShowingUI(float time, ShowUIDelegate onShowUI = null)
+    protected IEnumerator ShowingUI(float time, List<Image> images, Image backdrop, ShowUIDelegate onShowUI = null)
     {
         yield return new WaitUntil(() => GlobalVolumeController.instance != null);
         foreach (Image image in images)
@@ -57,17 +50,10 @@ public abstract class ImageController : MonoBehaviour
             image.color = Color.white;
         }
 
-        if (SceneManager.GetActiveScene().buildIndex > 0) //skip if in menu scene
-        {
-            yield return new WaitUntil(() => PlayerBrain.instance != null);
-            PlayerBrain.instance.movementController.canMove = false;
-        }
-
         onShowUI?.Invoke();
-        canExit = true;
     }
 
-    protected IEnumerator HidingUI(float time, HideUIDelegate onHideUI = null)
+    protected IEnumerator HidingUI(float time, List<Image> images, Image backdrop, HideUIDelegate onHideUI = null)
     {
         Time.timeScale = 1;
         PlayerBrain.instance.movementController.canMove = true;
@@ -97,7 +83,5 @@ public abstract class ImageController : MonoBehaviour
         }
         if (backdrop != null) backdrop.color = Color.clear;
         onHideUI?.Invoke();
-        canExit = false;
-        gameObject.SetActive(false);
     }
 }

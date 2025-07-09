@@ -32,7 +32,7 @@ public class MovementController : MonoBehaviour
             body.linearVelocity = Vector2.Lerp(body.linearVelocity, desiredVelocity, dampFactor);
         }
     }
-  public void UpdateRotation()
+    public void UpdateRotation()
     {
         if (!canMove)
         {
@@ -53,10 +53,4 @@ public class MovementController : MonoBehaviour
         float pivotDirection = Mathf.Sign(Vector3.Dot(transform.right, Vector3.down));
         rotationPivot.Rotate(Vector3.right, pivotAngle * pivotDirection);
     } 
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (transform.right));
-    }
 }

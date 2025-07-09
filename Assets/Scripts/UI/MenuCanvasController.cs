@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasController : MonoBehaviour
+public class MenuCanvasController : MonoBehaviour
 {
-    public static CanvasController instance;
+    public static MenuCanvasController instance;
 
     public enum CanvasType
     { 
-        PowerUp,
-        Instruction,
         MainMenu,
         InGame
     }
@@ -19,7 +17,6 @@ public class CanvasController : MonoBehaviour
     {
         public CanvasType type;
         public Canvas canvas;
-        public int priority = 0;
     }
 
     public List<CanvasObject> canvases;
@@ -86,23 +83,16 @@ public class CanvasController : MonoBehaviour
     private void OnEnable()
     {
         MenuButton.onPlay += TurnOffMainMenu;
-        MenuButton.onPlay += TurnOnInstructionCanvas;
 
         MenuButton.onMainMenu += TurnOnMainMenu;
         MenuButton.onMainMenu += TurnOffInGameMenu;
-
-        PowerUp.onAquirePowerUp += TurnOnPowerUpCanvas;
     }
     private void OnDisable()
     {
         MenuButton.onPlay -= TurnOffMainMenu;
-        MenuButton.onPlay -= TurnOnInstructionCanvas;
 
         MenuButton.onMainMenu -= TurnOnMainMenu;
         MenuButton.onMainMenu -= TurnOffInGameMenu;
-
-        PowerUp.onAquirePowerUp -= TurnOnPowerUpCanvas;
-
     }
     public static void MenuInputs(List<MenuButton> menuButtons)
     {
@@ -155,24 +145,6 @@ public class CanvasController : MonoBehaviour
         ToggleCanvas(turnOn: false, CanvasType.MainMenu);
     }
 
-    public void TurnOnPowerUpCanvas()
-    {
-        ToggleCanvas(turnOn: true, CanvasType.PowerUp);
-    }
-    public void TurnOffPowerUpCanvas()
-    {
-        ToggleCanvas(turnOn: false, CanvasType.PowerUp);
-    }
-
-    private void TurnOnInstructionCanvas()
-    {
-        ToggleCanvas(turnOn: true, CanvasType.Instruction);
-    }
-    public void TurnOffInstructionCanvas()
-    {
-        ToggleCanvas(turnOn: false, CanvasType.Instruction);
-    }
-
     public void TurnOnInGameMenu()
     {
         canInput = true;
@@ -187,7 +159,7 @@ public class CanvasController : MonoBehaviour
     {
         if (canvasDict.TryGetValue(type, out CanvasObject canvasObject))
         {
-            if (turnOn && (curCanvasObject == null || canvasObject.priority >= curCanvasObject.priority))
+            if (turnOn && (curCanvasObject == null))
             {
                 curCanvasObject = canvasObject;
                 canvasObject.canvas.gameObject.SetActive(true);

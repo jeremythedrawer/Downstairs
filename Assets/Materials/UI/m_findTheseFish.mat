@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_toUncoverFish
+  m_Name: m_findTheseFish
   m_Shader: {fileID: -6465566751694194690, guid: 2ffb3f8844a94b04487b21e5eb67da4b, type: 3}
   m_Parent: {fileID: 2100000, guid: e89d9c50655b51440846ce6f291e1581, type: 2}
   m_ModifiedSerializedProperties: 0

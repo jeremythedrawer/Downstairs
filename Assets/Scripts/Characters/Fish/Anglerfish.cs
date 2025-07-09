@@ -10,7 +10,7 @@ public class Anglerfish : SolitaryFish
     protected override void Update()
     {
         base.Update();
-        if (distanceFromPlayer > 20f)
+        if (distanceFromPlayer > 30f)
         {
             movementController.rotationInput = 0;
             movementController.moveInput = 0;

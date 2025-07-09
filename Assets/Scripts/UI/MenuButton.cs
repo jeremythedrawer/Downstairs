@@ -62,7 +62,7 @@ public class MenuButton : MonoBehaviour
             break;
             case SelectionType.Resume:
             {
-                MenuCanvas.instance.HideUI(time: 1, ResumeButton);
+                MenuCanvas.instance.HideMenuUI();
             }
             break;
         }
@@ -78,9 +78,5 @@ public class MenuButton : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(0);
         onMainMenu?.Invoke();
-    }
-
-    private void ResumeButton()
-    {
     }
 }

@@ -1,9 +1,12 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerBrain : MonoBehaviour
 {
     public static PlayerBrain instance { get; private set; }
+
+    public static PowerUp lastPowerUp;
 
     public SphereCollider sphereCollider;
     public MovementController movementController;
@@ -28,6 +31,7 @@ public class PlayerBrain : MonoBehaviour
     public bool uncoverInput { get; set; }
     public bool menuInput { get; set; }
 
+    private bool foundFirstFish;
     private bool inGodMode;
     private void Awake()
     {
@@ -36,26 +40,28 @@ public class PlayerBrain : MonoBehaviour
 
     private void OnEnable()
     {
-        PowerUp.onAquirePowerUp += AquirePowerUp;
+        PowerUp.onAquirePowerUp += PowerUpMaterial;
     }
 
     private void OnDisable()
     {
-        PowerUp.onAquirePowerUp -= AquirePowerUp;      
+        PowerUp.onAquirePowerUp -= PowerUpMaterial;      
     }
     private void Update()
     {
         MoveInputs();
 
+        AquirePowerUp();
+
         UseSonarPing();
         UseFlare();
         UseRadialScan();
 
-        UseUncoverFish();
-
         OpenInGameMenu();
 
+        TurnOffStartUI();
         GodMode();
+        UseUncoverFish();
     }
 
     private void FixedUpdate()
@@ -77,11 +83,41 @@ public class PlayerBrain : MonoBehaviour
         menuInput = Input.GetKeyDown(KeyCode.Tab);
     }
 
-    private void UseSonarPing()
+
+    private void AquirePowerUp()
     {
-        if (sonarPingInput && canSonarPing)
-        {
-            lightController.SonarPing();
+        if (lastPowerUp == null) return;
+        switch (lastPowerUp.powerUpType)
+        { 
+            case PowerUp.PowerUpType.Flare:
+            {
+                if (flareInput && !canFlare)
+                {
+                    PopUpCanvas.instance.HideFlare();
+                    canFlare = true;
+
+                }
+            }
+            break;
+            case PowerUp.PowerUpType.SonarPing:
+            {
+                if (sonarPingInput && !canSonarPing)
+                {
+                    PopUpCanvas.instance.HideSonarPing();
+                    canSonarPing = true;
+
+                }
+            }
+            break;
+            case PowerUp.PowerUpType.RadialScan:
+            {
+                if (radialScanInput && !canRadialScan)
+                {
+                    PopUpCanvas.instance.HideRadialScan();
+                    canRadialScan = true;
+                }
+            }
+            break;
         }
     }
     private void UseFlare()
@@ -89,6 +125,14 @@ public class PlayerBrain : MonoBehaviour
         if(flareInput && canFlare)
         {
             lightController.Flare();
+        }
+    }
+
+    private void UseSonarPing()
+    {
+        if (sonarPingInput && canSonarPing)
+        {
+            lightController.SonarPing();
         }
     }
     private void UseRadialScan()
@@ -99,8 +143,7 @@ public class PlayerBrain : MonoBehaviour
         }
     }
 
-
-    private void AquirePowerUp()
+    private void PowerUpMaterial()
     {
         playerMaterialController.PowerUpMaterial();
     }
@@ -110,6 +153,7 @@ public class PlayerBrain : MonoBehaviour
         if (MenuCanvas.instance != null && MenuCanvas.instance.isActiveAndEnabled) return;
         UncoverFish();
     }
+
     private void UncoverFish()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, fishDetectionRadius, fishToFindLayer);
@@ -118,36 +162,52 @@ public class PlayerBrain : MonoBehaviour
         {
             foreach (Collider c in hits)
             {
-                if (c.TryGetComponent<SolitaryFish>(out SolitaryFish fish))
+                if (c.TryGetComponent<SolitaryFish>(out SolitaryFish fish) && !fish.uncovered)
                 {
-                    if(!fish.uncovered)
+                    if (uncoverInput)
                     {
-                        if (uncoverInput)
-                        {
-                            StatsManager.instance.CheckOffFish(fish);
-                            playerMaterialController.GlowingMaterial(turnOn: false);
-                            playerMaterialController.PowerUpMaterial();
+                        StatsManager.instance.CheckOffFish(fish);
 
-                            audioManager.cameraFlashAudioSource.PlayOneShot(audioManager.cameraFlashAudioSource.clip);
+                        playerMaterialController.GlowingMaterial(turnOn: false);
+                        playerMaterialController.PowerUpMaterial();
 
-                            fish.materialController.FlashMaterial();
-                            fish.materialController.GlowingMaterial(turnOn: false);
-                        }
-                        else
+                        audioManager.cameraFlashAudioSource.PlayOneShot(audioManager.cameraFlashAudioSource.clip);
+
+                        fish.materialController.FlashMaterial();
+                        fish.materialController.GlowingMaterial(turnOn: false);
+
+                        foundFirstFish = true;
+                        PopUpCanvas.instance.HideFirstFish();
+                    }
+                    else
+                    {
+                        playerMaterialController.GlowingMaterial(turnOn: true);
+                        if (!foundFirstFish)
                         {
-                            playerMaterialController.GlowingMaterial(turnOn: true);
+                            PopUpCanvas.instance.ShowFirstFish();
                         }
                     }
                 }
             }
         }
-    }
-
+        else if (!foundFirstFish)
+        {
+            PopUpCanvas.instance.HideFirstFish();          
+        }
+    }  
     private void OpenInGameMenu()
     {
         if (menuInput)
         {
-            CanvasController.instance.TurnOnInGameMenu();
+            MenuCanvasController.instance.TurnOnInGameMenu();
+        }
+    }
+
+    private void TurnOffStartUI()
+    {
+        if (uncoverInput)
+        {
+            PopUpCanvas.instance.HideStartImages();
         }
     }
     private void OnDrawGizmosSelected()

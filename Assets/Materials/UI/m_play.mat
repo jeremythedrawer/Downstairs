@@ -31,7 +31,7 @@ Material:
     m_Floats:
     - _alwaysGlowing: 0
     - _bottomLeftGridCell: 34.8
-    - _glowTime: 0
+    - _glowTime: 0.9614876
     - _highlight: 0
     - _isGlowing: 0
     m_Colors:
